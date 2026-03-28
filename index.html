@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE GOD SHOP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:wght@300;400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --off-white: #F8F6F2;
+      --warm-gray: #D6D2CC;
+      --mid-gray: #9C9690;
+      --dark-gray: #4A4744;
+      --near-black: #1C1B19;
+      --gold: #C9A84C;
+      --gold-muted: #B8974A;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--off-white);
+      color: var(--near-black);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── LAYOUT ─── */
+
+    .page-wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── HEADER ─── */
+
+    .site-header {
+      text-align: center;
+      padding: 56px 0 40px;
+    }
+
+    .site-name {
+      font-family: 'Cormorant Garant', serif;
+      font-weight: 300;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--near-black);
+      line-height: 1.1;
+    }
+
+    .site-tagline {
+      margin-top: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+    }
+
+    /* ─── VIDEO ─── */
+
+    .video-container {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .manifestation-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 75vh;
+      object-fit: cover;
+      background: var(--near-black);
+    }
+
+    /* subtle ambient glow */
+    .video-container::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      pointer-events: none;
+      box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.18);
+    }
+
+    /* ─── PRODUCT SECTION ─── */
+
+    .product-section {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 48px 0 72px;
+      text-align: center;
+    }
+
+    .product-verse {
+      font-family: 'Cormorant Garant', serif;
+      font-weight: 300;
+      font-size: clamp(1.3rem, 3.5vw, 1.65rem);
+      color: var(--near-black);
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+      margin-bottom: 32px;
+    }
+
+    .product-verse em {
+      font-style: italic;
+      color: var(--gold-muted);
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 12px;
+    }
+
+    .divine-purpose {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.875rem;
+      color: var(--dark-gray);
+      line-height: 1.75;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .price {
+      font-family: 'Cormorant Garant', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 6vw, 2.75rem);
+      letter-spacing: 0.05em;
+      color: var(--near-black);
+      margin-bottom: 20px;
+    }
+
+    /* ─── BUY BUTTON ─── */
+
+    .btn-buy {
+      display: block;
+      width: 100%;
+      padding: 18px 24px;
+      background-color: var(--near-black);
+      color: var(--off-white);
+      border: none;
+      border-radius: 0;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+
+    .btn-buy:hover:not(:disabled) {
+      background-color: var(--gold-muted);
+      color: var(--near-black);
+    }
+
+    .btn-buy:disabled,
+    body[data-state="sold-out"] .btn-buy {
+      background-color: var(--warm-gray);
+      color: var(--mid-gray);
+      cursor: not-allowed;
+      letter-spacing: 0.12em;
+    }
+
+    .stock-counter {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--mid-gray);
+      text-align: center;
+    }
+
+    body[data-state="sold-out"] .stock-counter {
+      color: var(--gold-muted);
+    }
+
+    /* ─── COUNTDOWN ─── */
+
+    .countdown-section {
+      margin-top: 52px;
+      padding-top: 40px;
+      border-top: 1px solid var(--warm-gray);
+      text-align: center;
+    }
+
+    .countdown-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 16px;
+    }
+
+    .countdown-timer {
+      font-family: 'Cormorant Garant', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 8vw, 3rem);
+      letter-spacing: 0.08em;
+      color: var(--near-black);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .countdown-subtext {
+      margin-top: 10px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--warm-gray);
+      text-transform: uppercase;
+    }
+
+    /* ─── DIVIDER ─── */
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--warm-gray);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ─── ARCHIVE ─── */
+
+    .archive-section {
+      padding: 64px 0 80px;
+      text-align: center;
+    }
+
+    .archive-heading {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 40px;
+    }
+
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (min-width: 540px) {
+      .archive-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .archive-item {
+      position: relative;
+    }
+
+    .archive-thumb {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background-color: #E8E5DF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle texture */
+    .archive-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 4px,
+          rgba(0,0,0,0.015) 4px,
+          rgba(0,0,0,0.015) 5px
+        );
+    }
+
+    .archive-claimed {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--near-black);
+      color: var(--off-white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+    }
+
+    .archive-verse {
+      margin-top: 10px;
+      font-family: 'Cormorant Garant', serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      color: var(--mid-gray);
+    }
+
+    /* ─── FOOTER ─── */
+
+    .site-footer {
+      text-align: center;
+      padding: 32px 0 48px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--warm-gray);
+      text-transform: uppercase;
+    }
+
+    /* ─── BETWEEN DROPS STATE ─── */
+
+    body[data-state="between-drops"] .product-section {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* ─── MOBILE REFINEMENTS ─── */
+
+    @media (max-width: 480px) {
+      .site-header {
+        padding: 40px 0 32px;
+      }
+
+      .product-section {
+        padding: 36px 0 56px;
+      }
+    }
+  </style>
+</head>
+<body data-state="active">
+
+  <div class="page-wrapper">
+
+    <!-- ─── HEADER ─── -->
+    <header class="site-header">
+      <h1 class="site-name">The God Shop</h1>
+      <p class="site-tagline">A new product manifests every day at 3:33 AM</p>
+    </header>
+
+  </div><!-- /page-wrapper (header) -->
+
+  <!-- ─── VIDEO — full width constraint at 420px ─── -->
+  <div class="page-wrapper">
+    <div class="video-container">
+      <video
+        class="manifestation-video"
+        src=" video.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+      ></video>
+    </div>
+  </div>
+
+  <!-- ─── PRODUCT ─── -->
+  <div class="page-wrapper">
+    <section class="product-section">
+
+      <p class="product-verse">Genesis 847:3 — <em>The Silicone Spatula</em></p>
+
+      <p class="section-label">Divine Purpose</p>
+      <p class="divine-purpose">
+        For the pancakes of man were burned, and the Lord grew weary of the
+        smoke detector's cries. Thus He spoke: Let there be adequate flipping
+        technology. The spatula arrived at dawn, still warm from the sacred
+        factory in Shenzhen.
+      </p>
+
+      <p class="price">€79.00</p>
+
+      <button class="btn-buy" id="buyBtn">Receive Thy Blessing</button>
+
+      <p class="stock-counter" id="stockCounter">3 of 7 blessings remaining</p>
+
+      <!-- ─── COUNTDOWN ─── -->
+      <div class="countdown-section">
+        <p class="countdown-label">Next Manifestation In</p>
+        <div class="countdown-timer" id="countdown">--:--:--</div>
+        <p class="countdown-subtext">God keeps his own schedule</p>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ─── ARCHIVE ─── -->
+  <hr class="section-divider">
+
+  <div class="page-wrapper">
+    <section class="archive-section">
+      <p class="archive-heading">The Sacred Archive</p>
+
+      <div class="archive-grid">
+
+        <div class="archive-item">
+          <div class="archive-thumb">
+            <span class="archive-claimed">Claimed</span>
+          </div>
+          <p class="archive-verse">Exodus 12:44</p>
+        </div>
+
+        <div class="archive-item">
+          <div class="archive-thumb">
+            <span class="archive-claimed">Claimed</span>
+          </div>
+          <p class="archive-verse">Leviticus 3:17</p>
+        </div>
+
+        <div class="archive-item">
+          <div class="archive-thumb">
+            <span class="archive-claimed">Claimed</span>
+          </div>
+          <p class="archive-verse">Numbers 8:2</p>
+        </div>
+
+        <div class="archive-item">
+          <div class="archive-thumb">
+            <span class="archive-claimed">Claimed</span>
+          </div>
+          <p class="archive-verse">Deuteronomy 14:9</p>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <p>© The God Shop — All blessings are final. No returns. God does not issue refunds.</p>
+  </footer>
+
+  <script>
+    // ─── COUNTDOWN TO NEXT 3:33 AM ───────────────────────────────────────────
+
+    function getNext333AM() {
+      const now = new Date();
+      const target = new Date(now);
+      target.setHours(3, 33, 0, 0);
+
+      // If we've already passed 3:33 AM today, aim for tomorrow
+      if (now >= target) {
+        target.setDate(target.getDate() + 1);
+      }
+
+      return target;
+    }
+
+    function formatCountdown(ms) {
+      if (ms <= 0) return '00:00:00';
+
+      const totalSeconds = Math.floor(ms / 1000);
+      const hours   = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      const pad = n => String(n).padStart(2, '0');
+      return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    }
+
+    const countdownEl = document.getElementById('countdown');
+
+    function tickCountdown() {
+      const now = new Date();
+      const target = getNext333AM();
+      const diff = target - now;
+      countdownEl.textContent = formatCountdown(diff);
+    }
+
+    tickCountdown();
+    setInterval(tickCountdown, 1000);
+
+
+    // ─── STATE MANAGEMENT ────────────────────────────────────────────────────
+
+    const STOCK_TOTAL = 7;
+    let stockRemaining = 3; // current mock state
+
+    const buyBtn       = document.getElementById('buyBtn');
+    const stockCounter = document.getElementById('stockCounter');
+
+    function applyState() {
+      const body = document.body;
+
+      if (stockRemaining <= 0) {
+        body.dataset.state = 'sold-out';
+        buyBtn.textContent = 'God Has Spoken. All Blessings Claimed.';
+        buyBtn.disabled = true;
+        stockCounter.textContent = 'All 7 blessings have been claimed';
+      } else {
+        body.dataset.state = 'active';
+        buyBtn.textContent = 'Receive Thy Blessing';
+        buyBtn.disabled = false;
+        const word = stockRemaining === 1 ? 'blessing' : 'blessings';
+        stockCounter.textContent = `${stockRemaining} of ${STOCK_TOTAL} ${word} remaining`;
+      }
+    }
+
+    buyBtn.addEventListener('click', () => {
+      if (stockRemaining <= 0) return;
+      stockRemaining -= 1;
+      applyState();
+    });
+
+    applyState();
+  </script>
+
+</body>
+</html>
