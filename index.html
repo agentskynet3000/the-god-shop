@@ -6,7 +6,7 @@
   <title>THE GOD SHOP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:wght@300;400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -15,373 +15,437 @@
     }
 
     :root {
-      --off-white: #F8F6F2;
-      --warm-gray: #D6D2CC;
-      --mid-gray: #9C9690;
-      --dark-gray: #4A4744;
-      --near-black: #1C1B19;
       --gold: #C9A84C;
-      --gold-muted: #B8974A;
+      --gold-dim: rgba(201, 168, 76, 0.7);
+      --bg-base: #92959A;
+      --white: #F8F5EF;
+      --white-dim: rgba(248, 245, 239, 0.65);
     }
 
-    html {
-      font-size: 16px;
-      scroll-behavior: smooth;
+    html, body {
+      height: 100%;
+    }
+
+    @keyframes bgBreath {
+      0%   { background-position: 50% 50%; opacity: 1; }
+      25%  { background-position: 55% 45%; opacity: 0.95; }
+      50%  { background-position: 50% 52%; opacity: 1; }
+      75%  { background-position: 45% 50%; opacity: 0.97; }
+      100% { background-position: 50% 50%; opacity: 1; }
+    }
+
+    @keyframes bgRotate {
+      0%   { transform: rotate(0deg)   scale(1.0); }
+      50%  { transform: rotate(180deg) scale(1.08); }
+      100% { transform: rotate(360deg) scale(1.0); }
+    }
+
+    @keyframes rayRotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @keyframes glowPulse {
+      0%   { opacity: 0.55; transform: scale(1.0); }
+      50%  { opacity: 0.75; transform: scale(1.07); }
+      100% { opacity: 0.55; transform: scale(1.0); }
     }
 
     body {
-      background-color: var(--off-white);
-      color: var(--near-black);
+      background-color: var(--bg-base);
+      color: var(--white);
       font-family: 'Inter', sans-serif;
       font-weight: 300;
-      line-height: 1.6;
-      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      position: relative;
     }
 
-    /* ─── LAYOUT ─── */
+    /* ─── ANIMATED BACKGROUND ─── */
 
-    .page-wrapper {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 0 24px;
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -20%;
+      background: radial-gradient(ellipse at 50% 40%,
+        #A8ABB0 0%,
+        #8E9196 35%,
+        #7A7D82 65%,
+        #868990 100%
+      );
+      animation: bgRotate 12s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 38%,
+        rgba(180, 170, 145, 0.25) 0%,
+        rgba(140, 130, 110, 0.12) 40%,
+        transparent 70%
+      );
+      animation: bgBreath 10s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
     }
 
     /* ─── HEADER ─── */
 
     .site-header {
       text-align: center;
-      padding: 56px 0 40px;
+      padding-top: clamp(14px, 2.5vh, 28px);
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
     }
 
     .site-name {
       font-family: 'Cormorant Garant', serif;
+      font-style: italic;
       font-weight: 300;
-      font-size: clamp(1.75rem, 5vw, 2.5rem);
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--near-black);
+      font-size: clamp(1.8rem, 4.5vw, 3rem);
+      letter-spacing: 0.04em;
       line-height: 1.1;
+      color: var(--white);
+    }
+
+    .site-name .gold {
+      color: var(--gold);
     }
 
     .site-tagline {
-      margin-top: 14px;
-      font-family: 'Inter', sans-serif;
+      margin-top: 6px;
+      font-family: 'Cormorant Garant', serif;
+      font-style: normal;
       font-weight: 300;
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
+      font-size: clamp(0.6rem, 1.2vw, 0.78rem);
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--mid-gray);
+      color: var(--white-dim);
     }
 
-    /* ─── VIDEO ─── */
+    /* ─── VIDEO AREA ─── */
 
-    .video-container {
-      width: 100%;
-      max-width: 420px;
-      margin: 0 auto;
+    .video-area {
       position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* divine glow wrapper */
+    .video-glow {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* soft radial halo behind video */
+    .video-glow::before {
+      content: '';
+      position: absolute;
+      inset: -28%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse 70% 80% at 50% 50%,
+        rgba(255, 252, 240, 0.55) 0%,
+        rgba(230, 215, 175, 0.28) 30%,
+        rgba(200, 185, 140, 0.12) 55%,
+        transparent 72%
+      );
+      animation: glowPulse 6s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* conic ray burst */
+    .video-glow::after {
+      content: '';
+      position: absolute;
+      inset: -45%;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(255, 252, 235, 0.04) 4deg,
+        transparent 8deg,
+        rgba(255, 252, 235, 0.03) 14deg,
+        transparent 18deg,
+        rgba(255, 252, 235, 0.05) 22deg,
+        transparent 28deg,
+        rgba(255, 252, 235, 0.02) 34deg,
+        transparent 38deg,
+        rgba(255, 252, 235, 0.04) 44deg,
+        transparent 50deg,
+        rgba(255, 252, 235, 0.03) 56deg,
+        transparent 62deg,
+        rgba(255, 252, 235, 0.05) 66deg,
+        transparent 72deg,
+        rgba(255, 252, 235, 0.02) 78deg,
+        transparent 84deg,
+        rgba(255, 252, 235, 0.04) 90deg,
+        transparent 96deg,
+        rgba(255, 252, 235, 0.03) 104deg,
+        transparent 110deg,
+        rgba(255, 252, 235, 0.05) 116deg,
+        transparent 122deg,
+        rgba(255, 252, 235, 0.02) 130deg,
+        transparent 136deg,
+        rgba(255, 252, 235, 0.04) 144deg,
+        transparent 150deg,
+        rgba(255, 252, 235, 0.03) 158deg,
+        transparent 164deg,
+        rgba(255, 252, 235, 0.05) 170deg,
+        transparent 176deg,
+        rgba(255, 252, 235, 0.02) 182deg,
+        transparent 188deg,
+        rgba(255, 252, 235, 0.04) 196deg,
+        transparent 202deg,
+        rgba(255, 252, 235, 0.03) 210deg,
+        transparent 216deg,
+        rgba(255, 252, 235, 0.05) 222deg,
+        transparent 228deg,
+        rgba(255, 252, 235, 0.02) 234deg,
+        transparent 240deg,
+        rgba(255, 252, 235, 0.04) 248deg,
+        transparent 254deg,
+        rgba(255, 252, 235, 0.03) 262deg,
+        transparent 268deg,
+        rgba(255, 252, 235, 0.05) 274deg,
+        transparent 280deg,
+        rgba(255, 252, 235, 0.02) 286deg,
+        transparent 292deg,
+        rgba(255, 252, 235, 0.04) 298deg,
+        transparent 304deg,
+        rgba(255, 252, 235, 0.03) 312deg,
+        transparent 318deg,
+        rgba(255, 252, 235, 0.05) 324deg,
+        transparent 330deg,
+        rgba(255, 252, 235, 0.02) 336deg,
+        transparent 342deg,
+        rgba(255, 252, 235, 0.04) 350deg,
+        transparent 356deg,
+        transparent 360deg
+      );
+      animation: rayRotate 18s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+      mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, black 25%, transparent 72%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, black 25%, transparent 72%);
     }
 
     .manifestation-video {
       display: block;
-      width: 100%;
+      width: clamp(160px, 24vw, 320px);
       height: auto;
-      max-height: 75vh;
+      max-height: clamp(200px, 46vh, 520px);
       object-fit: cover;
-      background: var(--near-black);
+      background: #1C1B19;
+      box-shadow:
+        0 0 0 1px rgba(201, 168, 76, 0.2),
+        0 8px 40px rgba(0, 0, 0, 0.35),
+        0 0 60px rgba(255, 248, 220, 0.08);
+      position: relative;
+      z-index: 1;
     }
 
-    /* subtle ambient glow */
-    .video-container::after {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      pointer-events: none;
-      box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.18);
-    }
+    /* ─── PRODUCT INFO ─── */
 
-    /* ─── PRODUCT SECTION ─── */
-
-    .product-section {
-      max-width: 420px;
-      margin: 0 auto;
-      padding: 48px 0 72px;
+    .product-info {
       text-align: center;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+      padding: 0 16px;
     }
 
     .product-verse {
       font-family: 'Cormorant Garant', serif;
-      font-weight: 300;
-      font-size: clamp(1.3rem, 3.5vw, 1.65rem);
-      color: var(--near-black);
-      letter-spacing: 0.02em;
-      line-height: 1.3;
-      margin-bottom: 32px;
-    }
-
-    .product-verse em {
-      font-style: italic;
-      color: var(--gold-muted);
-    }
-
-    .section-label {
-      font-family: 'Inter', sans-serif;
       font-weight: 400;
-      font-size: 0.58rem;
-      letter-spacing: 0.25em;
+      font-style: normal;
+      font-size: clamp(0.6rem, 1.1vw, 0.75rem);
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--mid-gray);
-      margin-bottom: 12px;
+      color: var(--gold);
+      line-height: 1.6;
+      margin-bottom: 4px;
     }
 
-    .divine-purpose {
-      font-family: 'Inter', sans-serif;
+    .product-name {
+      font-family: 'Cormorant Garant', serif;
       font-weight: 300;
-      font-size: 0.875rem;
-      color: var(--dark-gray);
-      line-height: 1.75;
-      margin-bottom: 40px;
-      text-align: left;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.6vw, 1.7rem);
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      line-height: 1.2;
+    }
+
+    .product-actions {
+      margin-top: clamp(6px, 1.2vh, 14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
     }
 
     .price {
       font-family: 'Cormorant Garant', serif;
       font-weight: 300;
-      font-size: clamp(2rem, 6vw, 2.75rem);
-      letter-spacing: 0.05em;
-      color: var(--near-black);
-      margin-bottom: 20px;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      letter-spacing: 0.08em;
+      color: var(--white-dim);
     }
 
-    /* ─── BUY BUTTON ─── */
-
     .btn-buy {
-      display: block;
-      width: 100%;
-      padding: 18px 24px;
-      background-color: var(--near-black);
-      color: var(--off-white);
-      border: none;
-      border-radius: 0;
+      padding: 9px 22px;
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid rgba(201, 168, 76, 0.5);
       font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 0.65rem;
+      font-weight: 300;
+      font-size: 0.6rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background-color 0.25s ease, color 0.25s ease;
-      margin-bottom: 14px;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
       line-height: 1;
+      white-space: nowrap;
     }
 
     .btn-buy:hover:not(:disabled) {
-      background-color: var(--gold-muted);
-      color: var(--near-black);
+      background: rgba(201, 168, 76, 0.15);
+      border-color: var(--gold);
     }
 
     .btn-buy:disabled,
     body[data-state="sold-out"] .btn-buy {
-      background-color: var(--warm-gray);
-      color: var(--mid-gray);
+      color: rgba(201, 168, 76, 0.35);
+      border-color: rgba(201, 168, 76, 0.2);
       cursor: not-allowed;
-      letter-spacing: 0.12em;
     }
 
     .stock-counter {
       font-family: 'Inter', sans-serif;
       font-weight: 300;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--mid-gray);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      color: rgba(248, 245, 239, 0.4);
+      margin-top: 6px;
       text-align: center;
     }
 
     body[data-state="sold-out"] .stock-counter {
-      color: var(--gold-muted);
+      color: var(--gold-dim);
     }
 
     /* ─── COUNTDOWN ─── */
 
-    .countdown-section {
-      margin-top: 52px;
-      padding-top: 40px;
-      border-top: 1px solid var(--warm-gray);
-      text-align: center;
+    .countdown-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 10px;
+      margin-top: clamp(4px, 0.8vh, 10px);
     }
 
     .countdown-label {
       font-family: 'Inter', sans-serif;
       font-weight: 300;
-      font-size: 0.58rem;
-      letter-spacing: 0.25em;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--mid-gray);
-      margin-bottom: 16px;
+      color: rgba(248, 245, 239, 0.38);
     }
 
     .countdown-timer {
       font-family: 'Cormorant Garant', serif;
       font-weight: 300;
-      font-size: clamp(2rem, 8vw, 3rem);
-      letter-spacing: 0.08em;
-      color: var(--near-black);
+      font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+      letter-spacing: 0.1em;
+      color: rgba(248, 245, 239, 0.55);
       font-variant-numeric: tabular-nums;
     }
 
-    .countdown-subtext {
-      margin-top: 10px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: var(--warm-gray);
-      text-transform: uppercase;
-    }
-
-    /* ─── DIVIDER ─── */
-
-    .section-divider {
-      border: none;
-      border-top: 1px solid var(--warm-gray);
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    /* ─── ARCHIVE ─── */
-
-    .archive-section {
-      padding: 64px 0 80px;
-      text-align: center;
-    }
-
-    .archive-heading {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--mid-gray);
-      margin-bottom: 40px;
-    }
-
-    .archive-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    @media (min-width: 540px) {
-      .archive-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .archive-item {
-      position: relative;
-    }
-
-    .archive-thumb {
-      width: 100%;
-      aspect-ratio: 3/4;
-      background-color: #E8E5DF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* subtle texture */
-    .archive-thumb::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 4px,
-          rgba(0,0,0,0.015) 4px,
-          rgba(0,0,0,0.015) 5px
-        );
-    }
-
-    .archive-claimed {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: var(--near-black);
-      color: var(--off-white);
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: 0.5rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 4px 8px;
-    }
-
-    .archive-verse {
-      margin-top: 10px;
-      font-family: 'Cormorant Garant', serif;
-      font-weight: 300;
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
-      color: var(--mid-gray);
-    }
-
-    /* ─── FOOTER ─── */
+    /* ─── FOOTER NAV ─── */
 
     .site-footer {
       text-align: center;
-      padding: 32px 0 48px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--warm-gray);
-      text-transform: uppercase;
+      padding-bottom: clamp(12px, 2vh, 22px);
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
     }
 
-    /* ─── BETWEEN DROPS STATE ─── */
+    .footer-nav {
+      font-family: 'Cormorant Garant', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+      letter-spacing: 0.18em;
+      color: var(--white-dim);
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+    }
 
-    body[data-state="between-drops"] .product-section {
-      opacity: 0.5;
+    .footer-nav a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav a:hover {
+      color: var(--white);
+    }
+
+    /* ─── BETWEEN-DROPS STATE ─── */
+
+    body[data-state="between-drops"] .product-info {
+      opacity: 0.45;
       pointer-events: none;
     }
 
-    /* ─── MOBILE REFINEMENTS ─── */
+    /* ─── MOBILE ─── */
 
     @media (max-width: 480px) {
-      .site-header {
-        padding: 40px 0 32px;
+      .product-actions {
+        flex-direction: column;
+        gap: 10px;
       }
 
-      .product-section {
-        padding: 36px 0 56px;
+      .footer-nav {
+        gap: 16px;
       }
     }
   </style>
 </head>
 <body data-state="active">
 
-  <div class="page-wrapper">
+  <!-- ─── HEADER ─── -->
+  <header class="site-header">
+    <h1 class="site-name">the-<span class="gold">god</span>-shop</h1>
+    <p class="site-tagline">Daily Manifestation Altar</p>
+  </header>
 
-    <!-- ─── HEADER ─── -->
-    <header class="site-header">
-      <h1 class="site-name">The God Shop</h1>
-      <p class="site-tagline">A new product manifests every day at 3:33 AM</p>
-    </header>
-
-  </div><!-- /page-wrapper (header) -->
-
-  <!-- ─── VIDEO — full width constraint at 420px ─── -->
-  <div class="page-wrapper">
-    <div class="video-container">
+  <!-- ─── VIDEO ─── -->
+  <div class="video-area">
+    <div class="video-glow">
       <video
         class="manifestation-video"
-        src=" video.mp4"
+        src="video.mp4"
         autoplay
         muted
         loop
@@ -392,78 +456,29 @@
   </div>
 
   <!-- ─── PRODUCT ─── -->
-  <div class="page-wrapper">
-    <section class="product-section">
+  <div class="product-info">
+    <p class="product-verse">Today's Holy Manifestation:</p>
+    <p class="product-name">Genesis 847:3 — The Silicone Spatula</p>
 
-      <p class="product-verse">Genesis 847:3 — <em>The Silicone Spatula</em></p>
-
-      <p class="section-label">Divine Purpose</p>
-      <p class="divine-purpose">
-        For the pancakes of man were burned, and the Lord grew weary of the
-        smoke detector's cries. Thus He spoke: Let there be adequate flipping
-        technology. The spatula arrived at dawn, still warm from the sacred
-        factory in Shenzhen.
-      </p>
-
-      <p class="price">€79.00</p>
-
+    <div class="product-actions">
+      <span class="price">€79.00</span>
       <button class="btn-buy" id="buyBtn">Receive Thy Blessing</button>
+    </div>
+    <p class="stock-counter" id="stockCounter">3 of 7 blessings remaining</p>
 
-      <p class="stock-counter" id="stockCounter">3 of 7 blessings remaining</p>
-
-      <!-- ─── COUNTDOWN ─── -->
-      <div class="countdown-section">
-        <p class="countdown-label">Next Manifestation In</p>
-        <div class="countdown-timer" id="countdown">--:--:--</div>
-        <p class="countdown-subtext">God keeps his own schedule</p>
-      </div>
-
-    </section>
+    <div class="countdown-row">
+      <span class="countdown-label">Next Manifestation</span>
+      <span class="countdown-timer" id="countdown">--:--:--</span>
+    </div>
   </div>
 
-  <!-- ─── ARCHIVE ─── -->
-  <hr class="section-divider">
-
-  <div class="page-wrapper">
-    <section class="archive-section">
-      <p class="archive-heading">The Sacred Archive</p>
-
-      <div class="archive-grid">
-
-        <div class="archive-item">
-          <div class="archive-thumb">
-            <span class="archive-claimed">Claimed</span>
-          </div>
-          <p class="archive-verse">Exodus 12:44</p>
-        </div>
-
-        <div class="archive-item">
-          <div class="archive-thumb">
-            <span class="archive-claimed">Claimed</span>
-          </div>
-          <p class="archive-verse">Leviticus 3:17</p>
-        </div>
-
-        <div class="archive-item">
-          <div class="archive-thumb">
-            <span class="archive-claimed">Claimed</span>
-          </div>
-          <p class="archive-verse">Numbers 8:2</p>
-        </div>
-
-        <div class="archive-item">
-          <div class="archive-thumb">
-            <span class="archive-claimed">Claimed</span>
-          </div>
-          <p class="archive-verse">Deuteronomy 14:9</p>
-        </div>
-
-      </div>
-    </section>
-  </div>
-
+  <!-- ─── FOOTER ─── -->
   <footer class="site-footer">
-    <p>© The God Shop — All blessings are final. No returns. God does not issue refunds.</p>
+    <ul class="footer-nav">
+      <li><a href="#">Manifestations</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
   </footer>
 
   <script>
