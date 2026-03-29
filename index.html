@@ -6,7 +6,7 @@
   <title>THE GOD SHOP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -272,11 +272,11 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Syne', sans-serif;
       font-weight: 700;
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
       color: var(--gold-warm);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       text-shadow: 0 0 30px rgba(212, 168, 83, 0.7), 0 0 60px rgba(212, 168, 83, 0.3);
       animation: goldGlow 2s ease-in-out infinite;
     }
@@ -352,27 +352,27 @@
     }
 
     .site-name {
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: clamp(4rem, 8vw, 6.5rem);
-      letter-spacing: 0.04em;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      letter-spacing: 0.15em;
       line-height: 1;
-      color: var(--text-dark);
+      color: #1A1208;
     }
 
     .site-name .gold {
-      color: var(--gold-warm);
+      color: #C9A84C;
       animation: goldGlow 3s ease-in-out infinite;
     }
 
     .site-tagline {
       margin-top: clamp(8px, 1.2vh, 14px);
       font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: clamp(0.58rem, 1.2vw, 0.75rem);
-      letter-spacing: 0.32em;
+      font-weight: 300;
+      font-size: clamp(0.6rem, 1.5vw, 0.85rem);
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--text-mid);
+      color: rgba(50, 30, 10, 0.7);
     }
 
     /* ─── VIDEO AREA ─── */
@@ -557,10 +557,10 @@
     /* ─── GLASS CARDS ─── */
 
     .glass-card {
-      background: rgba(253, 245, 220, 0.2);
+      background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       border-radius: 20px;
       padding: 24px;
       box-shadow: 0 8px 32px rgba(180, 140, 50, 0.15);
@@ -573,24 +573,25 @@
 
     .product-verse {
       font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: clamp(0.62rem, 1.3vw, 0.78rem);
-      letter-spacing: 0.28em;
+      font-weight: 400;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--gold-warm);
+      color: #C9A84C;
       line-height: 1.5;
       margin-bottom: 8px;
       text-shadow: 0 0 20px rgba(212, 168, 83, 0.35);
     }
 
     .product-name {
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: clamp(1.8rem, 4.2vw, 3rem);
-      letter-spacing: 0.02em;
-      color: var(--text-dark);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      letter-spacing: 0.05em;
+      color: #1A1208;
       line-height: 1.12;
       margin-bottom: 10px;
+      font-style: normal;
     }
 
     .product-subtitle {
@@ -605,32 +606,32 @@
 
     .divine-purpose {
       font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      font-size: clamp(0.92rem, 1.7vw, 1.1rem);
-      line-height: 1.65;
-      color: var(--text-mid);
+      font-weight: 300;
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      line-height: 1.8;
+      color: rgba(30, 20, 5, 0.85);
       max-width: 480px;
       margin: 0 auto 12px;
     }
 
     .divine-purpose-2 {
       font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: clamp(0.88rem, 1.6vw, 1.05rem);
-      line-height: 1.5;
-      color: var(--text-dark);
-      max-width: 420px;
+      font-weight: 400;
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      line-height: 1.8;
+      color: rgba(30, 20, 5, 0.85);
+      max-width: 480px;
       margin: 0 auto;
     }
 
     /* ─── PRICE CARD ─── */
 
     .price {
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: clamp(4rem, 10vw, 6.5rem);
-      letter-spacing: 0.02em;
-      color: var(--gold-warm);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 10vw, 5rem);
+      letter-spacing: -0.02em;
+      color: #C9A84C;
       line-height: 1;
       text-shadow: 0 0 40px rgba(212, 168, 83, 0.65), 0 0 90px rgba(212, 168, 83, 0.25);
       animation: goldGlow 4s ease-in-out infinite;
@@ -671,9 +672,9 @@
       color: #1A0B05;
       border: none;
       font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: clamp(0.85rem, 1.6vw, 1rem);
-      letter-spacing: 0.16em;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       cursor: pointer;
       position: relative;
@@ -731,10 +732,10 @@
     }
 
     .stat-card {
-      background: rgba(253, 245, 220, 0.2);
+      background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       border-radius: 20px;
       padding: 18px 16px;
       box-shadow: 0 8px 32px rgba(180, 140, 50, 0.15);
@@ -742,10 +743,10 @@
     }
 
     .stock-counter {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: clamp(1rem, 2vw, 1.3rem);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: var(--gold-warm);
       text-align: center;
       display: block;
@@ -767,7 +768,7 @@
 
     .viewers-counter {
       font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
+      font-weight: 400;
       font-size: clamp(1rem, 2vw, 1.3rem);
       letter-spacing: 0.04em;
       color: var(--text-dark);
@@ -794,7 +795,7 @@
     }
 
     .footer-heaven {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: clamp(1.1rem, 2.4vw, 1.6rem);
       color: var(--gold-warm);
