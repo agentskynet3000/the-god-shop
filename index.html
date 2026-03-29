@@ -6,7 +6,7 @@
   <title>THE GOD SHOP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -52,10 +52,34 @@
       30%  { transform: translate(-6%, -4%) scale(1.06); }
       70%  { transform: translate(7%, 8%) scale(0.95); }
     }
+    @keyframes blobFloat5 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      45%  { transform: translate(9%, -5%) scale(1.14); }
+      85%  { transform: translate(-7%, 9%) scale(0.88); }
+    }
+    @keyframes blobFloat6 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      20%  { transform: translate(-8%, 6%) scale(1.09); }
+      60%  { transform: translate(6%, -7%) scale(0.93); }
+    }
+    @keyframes blobFloat7 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      35%  { transform: translate(7%, 10%) scale(1.07); }
+      75%  { transform: translate(-9%, -4%) scale(0.96); }
+    }
+    @keyframes blobFloat8 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50%  { transform: translate(-5%, -8%) scale(1.11); }
+      90%  { transform: translate(8%, 5%) scale(0.91); }
+    }
 
     @keyframes glowPulse {
-      0%, 100% { opacity: 0.65; transform: scale(1.0); }
-      50%       { opacity: 0.95; transform: scale(1.1); }
+      0%, 100% { opacity: 0.7; transform: scale(1.0); }
+      50%       { opacity: 1.0; transform: scale(1.15); }
+    }
+    @keyframes centralGlowPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1.0); }
+      50%       { opacity: 0.95; transform: scale(1.12); }
     }
     @keyframes rayRotate {
       from { transform: rotate(0deg); }
@@ -63,7 +87,7 @@
     }
     @keyframes urgentPulse {
       0%, 100% { box-shadow: 0 0 0 0 rgba(204, 26, 26, 0.55); }
-      50%       { box-shadow: 0 0 0 8px rgba(204, 26, 26, 0); }
+      50%       { box-shadow: 0 0 0 10px rgba(204, 26, 26, 0); }
     }
     @keyframes shimmer {
       0%   { left: -100%; }
@@ -82,12 +106,36 @@
       100% { transform: perspective(800px) rotateX(0deg) rotateY(0deg); }
     }
     @keyframes goldGlow {
-      0%, 100% { text-shadow: 0 0 20px rgba(212, 168, 83, 0.4), 0 0 60px rgba(212, 168, 83, 0.15); }
-      50%       { text-shadow: 0 0 30px rgba(212, 168, 83, 0.65), 0 0 90px rgba(212, 168, 83, 0.3); }
+      0%, 100% { text-shadow: 0 0 20px rgba(212, 168, 83, 0.5), 0 0 60px rgba(212, 168, 83, 0.2); }
+      50%       { text-shadow: 0 0 35px rgba(212, 168, 83, 0.8), 0 0 100px rgba(212, 168, 83, 0.4); }
     }
     @keyframes viewerBlink {
       0%, 90%, 100% { opacity: 1; }
       95%            { opacity: 0.4; }
+    }
+    @keyframes godRaySweep {
+      0%   { transform: translateX(-160vw) skewX(-15deg); opacity: 0; }
+      8%   { opacity: 0.08; }
+      92%  { opacity: 0.06; }
+      100% { transform: translateX(160vw) skewX(-15deg); opacity: 0; }
+    }
+    @keyframes lensFlare1 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.7; }
+      33%       { transform: translate(4px, -3px) scale(1.2); opacity: 0.9; }
+      66%       { transform: translate(-3px, 2px) scale(0.85); opacity: 0.5; }
+    }
+    @keyframes lensFlare2 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.5; }
+      40%       { transform: translate(-5px, 4px) scale(1.3); opacity: 0.8; }
+      80%       { transform: translate(3px, -2px) scale(0.8); opacity: 0.3; }
+    }
+    @keyframes lensFlare3 {
+      0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
+      50%       { transform: translate(6px, -5px) scale(1.15); opacity: 1.0; }
+    }
+    @keyframes cntSecsFlicker {
+      0%, 98%, 100% { opacity: 1; }
+      99% { opacity: 0.6; }
     }
 
     /* ─── BASE ─── */
@@ -95,8 +143,8 @@
     body {
       background-color: var(--bg-base);
       color: var(--text-dark);
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -118,38 +166,128 @@
       z-index: 1;
     }
 
+    /* ─── GOD RAY SWEEP ─── */
+
+    .god-ray {
+      position: fixed;
+      top: -10vh;
+      left: 0;
+      width: 35vw;
+      height: 120vh;
+      background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 83, 0.18) 40%, rgba(255, 248, 220, 0.12) 50%, rgba(212, 168, 83, 0.18) 60%, transparent 100%);
+      animation: godRaySweep 4.5s ease-in-out infinite;
+      animation-delay: 1.5s;
+      pointer-events: none;
+      z-index: 2;
+    }
+
     /* ─── BLOBS ─── */
 
     .blob {
       position: fixed;
       border-radius: 50%;
-      filter: blur(80px);
+      filter: blur(90px);
       pointer-events: none;
       z-index: 0;
     }
     .blob-purple {
-      width: 75vw; height: 75vw;
-      top: -20%; left: -20%;
-      background: rgba(123, 79, 212, 0.35);
+      width: 80vw; height: 80vw;
+      top: -22%; left: -22%;
+      background: rgba(123, 59, 232, 0.42);
       animation: blobFloat1 22s ease-in-out infinite;
     }
     .blob-rose {
-      width: 68vw; height: 68vw;
-      top: 15%; right: -22%;
-      background: rgba(232, 64, 122, 0.25);
+      width: 72vw; height: 72vw;
+      top: 12%; right: -24%;
+      background: rgba(232, 44, 112, 0.35);
       animation: blobFloat2 28s ease-in-out infinite;
     }
     .blob-cyan {
-      width: 62vw; height: 62vw;
-      bottom: -12%; left: 8%;
-      background: rgba(64, 196, 212, 0.2);
+      width: 66vw; height: 66vw;
+      bottom: -14%; left: 6%;
+      background: rgba(44, 196, 212, 0.3);
       animation: blobFloat3 24s ease-in-out infinite;
     }
     .blob-gold {
-      width: 58vw; height: 58vw;
-      top: 38%; left: 28%;
-      background: rgba(212, 160, 32, 0.3);
+      width: 62vw; height: 62vw;
+      top: 36%; left: 26%;
+      background: rgba(212, 148, 12, 0.38);
       animation: blobFloat4 19s ease-in-out infinite;
+    }
+    .blob-amber {
+      width: 55vw; height: 55vw;
+      top: 55%; right: -10%;
+      background: rgba(240, 120, 20, 0.28);
+      animation: blobFloat5 31s ease-in-out infinite;
+    }
+    .blob-violet {
+      width: 60vw; height: 60vw;
+      top: -10%; right: 10%;
+      background: rgba(160, 44, 220, 0.32);
+      animation: blobFloat6 26s ease-in-out infinite;
+    }
+    .blob-lime {
+      width: 50vw; height: 50vw;
+      bottom: 5%; right: 5%;
+      background: rgba(80, 220, 160, 0.2);
+      animation: blobFloat7 33s ease-in-out infinite;
+    }
+    .blob-pink {
+      width: 45vw; height: 45vw;
+      top: 25%; left: -15%;
+      background: rgba(255, 80, 180, 0.25);
+      animation: blobFloat8 20s ease-in-out infinite;
+    }
+
+    /* ─── COUNTDOWN STRIP (STICKY TOP) ─── */
+
+    .countdown-strip {
+      width: 100%;
+      background: rgba(10, 5, 0, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 168, 83, 0.5);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .cnt-strip-label {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.62rem, 1.3vw, 0.78rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(212, 168, 83, 0.8);
+    }
+
+    .cnt-strip-numbers {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--gold-warm);
+      letter-spacing: 0.06em;
+      text-shadow: 0 0 30px rgba(212, 168, 83, 0.7), 0 0 60px rgba(212, 168, 83, 0.3);
+      animation: goldGlow 2s ease-in-out infinite;
+    }
+
+    .cnt-strip-sep {
+      opacity: 0.7;
+      padding: 0 1px;
+    }
+
+    #cntSecs {
+      animation: cntSecsFlicker 1s step-end infinite;
     }
 
     /* ─── TICKER ─── */
@@ -170,7 +308,7 @@
       animation: tickerMove 35s linear infinite;
     }
     .ticker-track span {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 600;
       font-size: 0.62rem;
       letter-spacing: 0.22em;
@@ -214,9 +352,8 @@
     }
 
     .site-name {
-      font-family: 'Cormorant Garant', serif;
-      font-style: italic;
-      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
       font-size: clamp(4rem, 8vw, 6.5rem);
       letter-spacing: 0.04em;
       line-height: 1;
@@ -230,7 +367,7 @@
 
     .site-tagline {
       margin-top: clamp(8px, 1.2vh, 14px);
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 600;
       font-size: clamp(0.58rem, 1.2vw, 0.75rem);
       letter-spacing: 0.32em;
@@ -249,25 +386,41 @@
       width: 100%;
     }
 
+    /* Central radial glow behind video */
+    .central-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 253, 240, 0.5) 25%, rgba(212, 168, 83, 0.1) 55%, transparent 75%);
+      animation: centralGlowPulse 3.5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
     .video-glow-halo {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      z-index: 1;
     }
 
     /* radial halo */
     .video-glow-halo::before {
       content: '';
       position: absolute;
-      inset: -55%;
+      inset: -65%;
       border-radius: 50%;
-      background: radial-gradient(ellipse 78% 88% at 50% 50%,
-        rgba(255, 253, 240, 0.98) 0%,
-        rgba(255, 248, 220, 0.7) 20%,
-        rgba(212, 168, 83, 0.15) 45%,
-        rgba(123, 79, 212, 0.07) 62%,
-        transparent 75%
+      background: radial-gradient(ellipse 80% 90% at 50% 50%,
+        rgba(255, 253, 240, 0.99) 0%,
+        rgba(255, 248, 220, 0.75) 18%,
+        rgba(212, 168, 83, 0.2) 42%,
+        rgba(123, 79, 212, 0.1) 60%,
+        transparent 78%
       );
       animation: glowPulse 3.8s ease-in-out infinite;
       pointer-events: none;
@@ -278,53 +431,65 @@
     .video-glow-halo::after {
       content: '';
       position: absolute;
-      inset: -65%;
+      inset: -75%;
       border-radius: 50%;
       background: conic-gradient(
         from 0deg,
-        transparent 0deg, rgba(212, 168, 83, 0.18) 4deg, transparent 8deg,
-        transparent 14deg, rgba(255, 248, 220, 0.1) 18deg, transparent 22deg,
-        transparent 28deg, rgba(212, 168, 83, 0.16) 32deg, transparent 36deg,
-        transparent 44deg, rgba(255, 248, 220, 0.12) 48deg, transparent 52deg,
-        transparent 58deg, rgba(212, 168, 83, 0.18) 62deg, transparent 66deg,
-        transparent 72deg, rgba(255, 248, 220, 0.1) 78deg, transparent 82deg,
-        transparent 90deg, rgba(212, 168, 83, 0.16) 94deg, transparent 98deg,
-        transparent 108deg, rgba(255, 248, 220, 0.12) 114deg, transparent 118deg,
-        transparent 126deg, rgba(212, 168, 83, 0.18) 130deg, transparent 134deg,
-        transparent 144deg, rgba(255, 248, 220, 0.1) 148deg, transparent 152deg,
-        transparent 160deg, rgba(212, 168, 83, 0.16) 164deg, transparent 168deg,
-        transparent 176deg, rgba(255, 248, 220, 0.12) 180deg, transparent 184deg,
-        transparent 192deg, rgba(212, 168, 83, 0.18) 196deg, transparent 200deg,
-        transparent 210deg, rgba(255, 248, 220, 0.1) 214deg, transparent 218deg,
-        transparent 226deg, rgba(212, 168, 83, 0.16) 230deg, transparent 234deg,
-        transparent 242deg, rgba(255, 248, 220, 0.12) 248deg, transparent 252deg,
-        transparent 260deg, rgba(212, 168, 83, 0.18) 264deg, transparent 268deg,
-        transparent 276deg, rgba(255, 248, 220, 0.1) 280deg, transparent 284deg,
-        transparent 292deg, rgba(212, 168, 83, 0.16) 296deg, transparent 300deg,
-        transparent 308deg, rgba(255, 248, 220, 0.12) 314deg, transparent 318deg,
-        transparent 326deg, rgba(212, 168, 83, 0.18) 330deg, transparent 334deg,
-        transparent 342deg, rgba(255, 248, 220, 0.1) 348deg, transparent 352deg,
+        transparent 0deg, rgba(212, 168, 83, 0.22) 4deg, transparent 8deg,
+        transparent 14deg, rgba(255, 248, 220, 0.14) 18deg, transparent 22deg,
+        transparent 28deg, rgba(212, 168, 83, 0.2) 32deg, transparent 36deg,
+        transparent 44deg, rgba(255, 248, 220, 0.16) 48deg, transparent 52deg,
+        transparent 58deg, rgba(212, 168, 83, 0.22) 62deg, transparent 66deg,
+        transparent 72deg, rgba(255, 248, 220, 0.14) 78deg, transparent 82deg,
+        transparent 90deg, rgba(212, 168, 83, 0.2) 94deg, transparent 98deg,
+        transparent 108deg, rgba(255, 248, 220, 0.16) 114deg, transparent 118deg,
+        transparent 126deg, rgba(212, 168, 83, 0.22) 130deg, transparent 134deg,
+        transparent 144deg, rgba(255, 248, 220, 0.14) 148deg, transparent 152deg,
+        transparent 160deg, rgba(212, 168, 83, 0.2) 164deg, transparent 168deg,
+        transparent 176deg, rgba(255, 248, 220, 0.16) 180deg, transparent 184deg,
+        transparent 192deg, rgba(212, 168, 83, 0.22) 196deg, transparent 200deg,
+        transparent 210deg, rgba(255, 248, 220, 0.14) 214deg, transparent 218deg,
+        transparent 226deg, rgba(212, 168, 83, 0.2) 230deg, transparent 234deg,
+        transparent 242deg, rgba(255, 248, 220, 0.16) 248deg, transparent 252deg,
+        transparent 260deg, rgba(212, 168, 83, 0.22) 264deg, transparent 268deg,
+        transparent 276deg, rgba(255, 248, 220, 0.14) 280deg, transparent 284deg,
+        transparent 292deg, rgba(212, 168, 83, 0.2) 296deg, transparent 300deg,
+        transparent 308deg, rgba(255, 248, 220, 0.16) 314deg, transparent 318deg,
+        transparent 326deg, rgba(212, 168, 83, 0.22) 330deg, transparent 334deg,
+        transparent 342deg, rgba(255, 248, 220, 0.14) 348deg, transparent 352deg,
         transparent 360deg
       );
       animation: rayRotate 20s linear infinite;
       pointer-events: none;
       z-index: -1;
-      mask-image: radial-gradient(ellipse 78% 88% at 50% 50%, black 22%, transparent 72%);
-      -webkit-mask-image: radial-gradient(ellipse 78% 88% at 50% 50%, black 22%, transparent 72%);
+      mask-image: radial-gradient(ellipse 80% 90% at 50% 50%, black 20%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 50%, black 20%, transparent 70%);
     }
 
     .video-card {
       border-radius: 20px;
       overflow: hidden;
       position: relative;
-      border: 1px solid rgba(212, 168, 83, 0.5);
+      border: 1px solid rgba(212, 168, 83, 0.6);
       box-shadow:
-        0 0 0 1px rgba(255, 248, 225, 0.6),
-        0 0 40px rgba(212, 168, 83, 0.25),
-        0 0 80px rgba(212, 168, 83, 0.1),
-        0 12px 50px rgba(44, 28, 12, 0.12);
+        0 0 0 1px rgba(255, 248, 225, 0.7),
+        0 0 50px rgba(212, 168, 83, 0.45),
+        0 0 100px rgba(212, 168, 83, 0.2),
+        0 0 160px rgba(212, 168, 83, 0.08),
+        0 12px 60px rgba(44, 28, 12, 0.18);
       transition: transform 0.15s ease-out;
       width: clamp(180px, 28vw, 360px);
+    }
+
+    .video-card::before {
+      content: '';
+      position: absolute;
+      inset: -40%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 248, 200, 0.25) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 3;
+      animation: glowPulse 4s ease-in-out infinite;
     }
 
     @media (hover: none) {
@@ -351,146 +516,142 @@
       transition: background 0.05s linear;
     }
 
-    /* ─── PRODUCT INFO ─── */
+    /* ─── LENS FLARES ─── */
 
-    .product-info {
-      text-align: center;
-      flex-shrink: 0;
-      width: 100%;
+    .lens-flare {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 4;
+    }
+    .lf-1 {
+      width: 12px; height: 12px;
+      top: 8%; left: 62%;
+      background: radial-gradient(circle, rgba(255, 248, 180, 0.95) 0%, rgba(212, 168, 83, 0.6) 50%, transparent 80%);
+      box-shadow: 0 0 12px rgba(255, 248, 180, 0.8), 0 0 24px rgba(212, 168, 83, 0.4);
+      animation: lensFlare1 3.2s ease-in-out infinite;
+    }
+    .lf-2 {
+      width: 5px; height: 5px;
+      top: 15%; left: 72%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.98) 0%, rgba(255, 240, 160, 0.5) 60%, transparent 80%);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+      animation: lensFlare2 4.1s ease-in-out infinite;
+    }
+    .lf-3 {
+      width: 18px; height: 18px;
+      top: 4%; left: 50%;
+      background: radial-gradient(circle, rgba(255, 250, 200, 0.7) 0%, rgba(212, 168, 83, 0.25) 50%, transparent 75%);
+      box-shadow: 0 0 18px rgba(255, 250, 200, 0.5), 0 0 40px rgba(212, 168, 83, 0.2);
+      animation: lensFlare3 5.6s ease-in-out infinite;
+    }
+    .lf-4 {
+      width: 8px; height: 8px;
+      top: 20%; left: 35%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 220, 100, 0.4) 60%, transparent 80%);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      animation: lensFlare1 2.8s ease-in-out infinite;
+      animation-delay: 1.2s;
     }
 
+    /* ─── GLASS CARDS ─── */
+
+    .glass-card {
+      background: rgba(253, 245, 220, 0.2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 32px rgba(180, 140, 50, 0.15);
+      width: 100%;
+      text-align: center;
+      margin: clamp(8px, 1.2vh, 14px) 0;
+    }
+
+    /* ─── PRODUCT INFO ─── */
+
     .product-verse {
-      font-family: 'Cormorant Garant', serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 700;
-      font-style: italic;
-      font-size: clamp(1.1rem, 2.8vw, 1.6rem);
-      letter-spacing: 0.18em;
+      font-size: clamp(0.62rem, 1.3vw, 0.78rem);
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--gold-warm);
       line-height: 1.5;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       text-shadow: 0 0 20px rgba(212, 168, 83, 0.35);
     }
 
     .product-name {
-      font-family: 'Cormorant Garant', serif;
-      font-weight: 700;
-      font-style: italic;
-      font-size: clamp(1.9rem, 4.5vw, 3.2rem);
-      letter-spacing: 0.04em;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 4.2vw, 3rem);
+      letter-spacing: 0.02em;
       color: var(--text-dark);
-      line-height: 1.15;
-      margin-bottom: clamp(8px, 1.4vh, 16px);
+      line-height: 1.12;
+      margin-bottom: 10px;
+    }
+
+    .product-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: clamp(0.72rem, 1.4vw, 0.88rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-warm);
+      margin-bottom: clamp(12px, 1.8vh, 20px);
     }
 
     .divine-purpose {
-      font-family: 'Cormorant Garant', serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 400;
-      font-style: italic;
-      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      font-size: clamp(0.92rem, 1.7vw, 1.1rem);
       line-height: 1.65;
       color: var(--text-mid);
       max-width: 480px;
-      margin: 0 auto clamp(8px, 1.4vh, 16px);
+      margin: 0 auto 12px;
     }
 
-    /* ─── COUNTDOWN ─── */
-
-    .countdown-block {
-      margin: clamp(10px, 1.8vh, 20px) 0;
-    }
-
-    .countdown-label-top {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: clamp(0.55rem, 1.1vw, 0.7rem);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--urgency);
-      margin-bottom: 8px;
-    }
-
-    .countdown-display {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    .countdown-unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-    }
-
-    .cnt-num {
-      font-family: 'Cormorant Garant', serif;
-      font-weight: 700;
-      font-style: italic;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      color: var(--gold-warm);
-      letter-spacing: 0.04em;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-      text-shadow: 0 0 25px rgba(212, 168, 83, 0.5);
-    }
-
-    .cnt-unit-label {
-      font-family: 'Inter', sans-serif;
+    .divine-purpose-2 {
+      font-family: 'DM Sans', sans-serif;
       font-weight: 600;
-      font-size: 0.48rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text-dim);
+      font-size: clamp(0.88rem, 1.6vw, 1.05rem);
+      line-height: 1.5;
+      color: var(--text-dark);
+      max-width: 420px;
+      margin: 0 auto;
     }
 
-    .cnt-sep {
-      font-family: 'Cormorant Garant', serif;
-      font-weight: 700;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      color: var(--gold-warm);
-      line-height: 1;
-      padding: 0 2px;
-      opacity: 0.6;
-    }
-
-    /* ─── PRICE ROW ─── */
-
-    .price-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 18px;
-      flex-wrap: wrap;
-      margin: clamp(6px, 1.2vh, 14px) 0;
-    }
+    /* ─── PRICE CARD ─── */
 
     .price {
-      font-family: 'Cormorant Garant', serif;
-      font-weight: 700;
-      font-style: italic;
-      font-size: clamp(3.8rem, 9vw, 6rem);
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(4rem, 10vw, 6.5rem);
       letter-spacing: 0.02em;
       color: var(--gold-warm);
       line-height: 1;
-      text-shadow: 0 0 40px rgba(212, 168, 83, 0.55), 0 0 80px rgba(212, 168, 83, 0.2);
+      text-shadow: 0 0 40px rgba(212, 168, 83, 0.65), 0 0 90px rgba(212, 168, 83, 0.25);
       animation: goldGlow 4s ease-in-out infinite;
+      display: block;
+      margin-bottom: 18px;
     }
 
     .stock-badge {
       display: inline-block;
       background: var(--urgency);
       color: #fff;
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 700;
-      font-size: 0.62rem;
+      font-size: 0.68rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      padding: 7px 14px;
+      padding: 8px 18px;
       border-radius: 30px;
-      animation: urgentPulse 1.4s ease-in-out infinite;
+      animation: urgentPulse 1.2s ease-in-out infinite;
       white-space: nowrap;
+      margin-bottom: 16px;
     }
 
     body[data-state="sold-out"] .stock-badge {
@@ -504,21 +665,22 @@
       display: block;
       width: 100%;
       max-width: 480px;
-      margin: clamp(10px, 1.6vh, 18px) auto 0;
-      padding: clamp(14px, 2vh, 22px) 40px;
+      margin: 0 auto 12px;
+      padding: clamp(16px, 2.2vh, 24px) 40px;
       background: var(--gold);
       color: #1A0B05;
       border: none;
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 700;
-      font-size: clamp(0.7rem, 1.4vw, 0.85rem);
-      letter-spacing: 0.32em;
+      font-size: clamp(0.85rem, 1.6vw, 1rem);
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       cursor: pointer;
       position: relative;
       overflow: hidden;
+      border-radius: 4px;
       transition: box-shadow 0.3s ease, background 0.3s ease;
-      box-shadow: 0 0 30px rgba(212, 168, 83, 0.35), 0 4px 20px rgba(44, 28, 12, 0.15);
+      box-shadow: 0 0 40px rgba(212, 168, 83, 0.45), 0 4px 24px rgba(44, 28, 12, 0.2);
     }
 
     .btn-buy::after {
@@ -534,7 +696,7 @@
 
     .btn-buy:hover:not(:disabled) {
       background: #D4A853;
-      box-shadow: 0 0 50px rgba(212, 168, 83, 0.55), 0 6px 30px rgba(44, 28, 12, 0.2);
+      box-shadow: 0 0 60px rgba(212, 168, 83, 0.65), 0 6px 36px rgba(44, 28, 12, 0.25);
     }
 
     .btn-buy:disabled,
@@ -549,30 +711,54 @@
       display: none;
     }
 
-    /* ─── URGENCY TEXT ─── */
-
-    .urgency-text {
-      margin-top: clamp(10px, 1.4vh, 16px);
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: clamp(0.5rem, 0.9vw, 0.62rem);
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-variant: small-caps;
+    .shipping-perks {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: clamp(0.6rem, 1.1vw, 0.72rem);
+      letter-spacing: 0.12em;
       color: var(--text-mid);
+      margin-top: 4px;
     }
 
-    /* ─── STOCK + VIEWERS ─── */
+    /* ─── STATS ROW ─── */
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+      margin: clamp(8px, 1.2vh, 14px) 0;
+    }
+
+    .stat-card {
+      background: rgba(253, 245, 220, 0.2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 18px 16px;
+      box-shadow: 0 8px 32px rgba(180, 140, 50, 0.15);
+      text-align: center;
+    }
 
     .stock-counter {
-      font-family: 'Cormorant Garant', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-style: italic;
-      font-size: clamp(0.85rem, 1.6vw, 1.05rem);
-      letter-spacing: 0.14em;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      letter-spacing: 0.06em;
       color: var(--gold-warm);
-      margin-top: clamp(8px, 1.2vh, 12px);
       text-align: center;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .stock-sublabel {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: clamp(0.58rem, 1vw, 0.7rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
     }
 
     body[data-state="sold-out"] .stock-counter {
@@ -580,14 +766,22 @@
     }
 
     .viewers-counter {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      letter-spacing: 0.04em;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+      animation: viewerBlink 8s ease-in-out infinite;
+    }
+
+    .viewers-sublabel {
+      font-family: 'DM Sans', sans-serif;
       font-weight: 400;
-      font-size: clamp(0.58rem, 1vw, 0.72rem);
-      letter-spacing: 0.16em;
+      font-size: clamp(0.58rem, 1vw, 0.7rem);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-dim);
-      margin-top: 8px;
-      animation: viewerBlink 8s ease-in-out infinite;
     }
 
     /* ─── FOOTER ─── */
@@ -599,32 +793,28 @@
       width: 100%;
     }
 
-    .footer-nav {
-      font-family: 'Cormorant Garant', serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: clamp(0.7rem, 1.3vw, 0.88rem);
-      letter-spacing: 0.18em;
-      color: var(--text-mid);
-      list-style: none;
-      display: flex;
-      gap: 28px;
-      justify-content: center;
-    }
-
-    .footer-nav a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .footer-nav a:hover {
+    .footer-heaven {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(1.1rem, 2.4vw, 1.6rem);
       color: var(--gold-warm);
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px rgba(212, 168, 83, 0.35);
+    }
+
+    .footer-micro {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: clamp(0.55rem, 0.9vw, 0.65rem);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
     }
 
     /* ─── BETWEEN-DROPS STATE ─── */
 
-    body[data-state="between-drops"] .product-info {
+    body[data-state="between-drops"] .product-card-wrap {
       opacity: 0.45;
       pointer-events: none;
     }
@@ -632,17 +822,12 @@
     /* ─── MOBILE ─── */
 
     @media (max-width: 520px) {
-      .price-row {
-        flex-direction: column;
-        gap: 12px;
+      .stats-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
       }
-
-      .countdown-display {
-        gap: 2px;
-      }
-
-      .footer-nav {
-        gap: 18px;
+      .cnt-strip-numbers {
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -652,16 +837,35 @@
   <!-- ─── SPARKLE CANVAS ─── -->
   <canvas id="sparkleCanvas"></canvas>
 
+  <!-- ─── GOD RAY SWEEP ─── -->
+  <div class="god-ray"></div>
+
   <!-- ─── BACKGROUND BLOBS ─── -->
   <div class="blob blob-purple"></div>
   <div class="blob blob-rose"></div>
   <div class="blob blob-cyan"></div>
   <div class="blob blob-gold"></div>
+  <div class="blob blob-amber"></div>
+  <div class="blob blob-violet"></div>
+  <div class="blob blob-lime"></div>
+  <div class="blob blob-pink"></div>
+
+  <!-- ─── COUNTDOWN STRIP (STICKY) ─── -->
+  <div class="countdown-strip">
+    <span class="cnt-strip-label">⚡ Next Manifestation In</span>
+    <div class="cnt-strip-numbers">
+      <span id="cntHours">--</span>
+      <span class="cnt-strip-sep">:</span>
+      <span id="cntMins">--</span>
+      <span class="cnt-strip-sep">:</span>
+      <span id="cntSecs">--</span>
+    </div>
+  </div>
 
   <!-- ─── TICKER ─── -->
   <div class="ticker-wrap">
     <div class="ticker-track">
-      <span>✦ MARCOS FROM BERLIN JUST RECEIVED HIS BLESSING ✦ THE ALTAR SPEAKS TO THOSE WHO LISTEN ✦ ANNUNCIATION IMMINENT ✦ DIVINE INTERVENTION NOW AVAILABLE IN YOUR REGION ✦ ONLY THE CHOSEN PROCEED ✦ THE UNIVERSE IS WATCHING YOU READ THIS ✦ SOFIA FROM LISBON SAYS "MY LIFE CHANGED OVERNIGHT" ✦ 7 BLESSINGS REMAIN · CLAIM YOURS ✦ THE VOID CALLS OUT YOUR NAME ✦ MARCOS FROM BERLIN JUST RECEIVED HIS BLESSING ✦ THE ALTAR SPEAKS TO THOSE WHO LISTEN ✦ ANNUNCIATION IMMINENT ✦ DIVINE INTERVENTION NOW AVAILABLE IN YOUR REGION ✦ ONLY THE CHOSEN PROCEED ✦ THE UNIVERSE IS WATCHING YOU READ THIS ✦ SOFIA FROM LISBON SAYS "MY LIFE CHANGED OVERNIGHT" ✦ 7 BLESSINGS REMAIN · CLAIM YOURS ✦ THE VOID CALLS OUT YOUR NAME ✦</span>
+      <span>✦ MARCOS FROM BERLIN JUST WATERED HIS GARDEN ✦ THE HOSE SPEAKS TO THOSE WHO LISTEN ✦ "MY BEGONIAS HAVE NEVER BEEN HAPPIER" — SOFIA, LISBON ✦ DIVINE HYDRATION NOW AVAILABLE IN YOUR REGION ✦ ONLY 3 LEFT — GOD MOVES ON AFTER ✦ "I CRIED WHEN IT ARRIVED" — JAKOB, OSLO ✦ FREE SHIPPING FROM PARADISE ✦ GOD CHECKED YOUR GARDEN. IT NEEDS THIS. ✦ MARCOS FROM BERLIN JUST WATERED HIS GARDEN ✦ THE HOSE SPEAKS TO THOSE WHO LISTEN ✦ "MY BEGONIAS HAVE NEVER BEEN HAPPIER" — SOFIA, LISBON ✦ DIVINE HYDRATION NOW AVAILABLE IN YOUR REGION ✦ ONLY 3 LEFT — GOD MOVES ON AFTER ✦ "I CRIED WHEN IT ARRIVED" — JAKOB, OSLO ✦ FREE SHIPPING FROM PARADISE ✦ GOD CHECKED YOUR GARDEN. IT NEEDS THIS. ✦</span>
     </div>
   </div>
 
@@ -678,6 +882,7 @@
 
     <!-- ─── VIDEO ─── -->
     <div class="video-area">
+      <div class="central-glow"></div>
       <div class="video-glow-halo">
         <div class="video-card" id="videoCard">
           <video
@@ -690,67 +895,52 @@
             preload="auto"
           ></video>
           <div class="video-glare" id="videoGlare"></div>
+          <!-- Lens flares -->
+          <div class="lens-flare lf-1"></div>
+          <div class="lens-flare lf-2"></div>
+          <div class="lens-flare lf-3"></div>
+          <div class="lens-flare lf-4"></div>
         </div>
       </div>
     </div>
 
     <div class="gold-rule"></div>
 
-    <!-- ─── PRODUCT ─── -->
-    <div class="product-info">
+    <!-- ─── PRODUCT CARD ─── -->
+    <div class="glass-card product-card-wrap">
       <p class="product-verse">✦ Today's Holy Manifestation ✦</p>
-      <p class="product-name">Genesis 847:3 — The Silicone Spatula</p>
+      <h2 class="product-name">Genesis 847:3 — The Sacred Garden Hose</h2>
+      <p class="product-subtitle">As seen manifesting on the Holy Altar</p>
+      <p class="divine-purpose">The rains of Eden have returned. This is not a garden hose. This is a 15-meter channel of divine hydration, blessed at 3:33 AM and shipped from heaven's warehouse in 3-5 business days.</p>
+      <p class="divine-purpose-2">Your garden will never be the same. God checked.</p>
+    </div>
 
-      <p class="divine-purpose">Forged in silence. Blessed by morning dew. This is not a spatula. This is an instrument of divine culinary communion. Those who flip with faith shall never hunger again.</p>
+    <!-- ─── PRICE CARD ─── -->
+    <div class="glass-card">
+      <span class="price">€500.00</span>
+      <span class="stock-badge" id="stockBadge">⚡ 3 LEFT</span>
+      <button class="btn-buy" id="buyBtn">BUY NOW — €500</button>
+      <p class="shipping-perks">✦ Free shipping from Paradise &nbsp;·&nbsp; 30-day divine return policy ✦</p>
+    </div>
 
-      <!-- Countdown -->
-      <div class="countdown-block">
-        <p class="countdown-label-top">⚠ Next Manifestation Begins In ⚠</p>
-        <div class="countdown-display">
-          <div class="countdown-unit">
-            <span class="cnt-num" id="cntHours">--</span>
-            <span class="cnt-unit-label">Hrs</span>
-          </div>
-          <span class="cnt-sep">:</span>
-          <div class="countdown-unit">
-            <span class="cnt-num" id="cntMins">--</span>
-            <span class="cnt-unit-label">Min</span>
-          </div>
-          <span class="cnt-sep">:</span>
-          <div class="countdown-unit">
-            <span class="cnt-num" id="cntSecs">--</span>
-            <span class="cnt-unit-label">Sec</span>
-          </div>
-        </div>
+    <!-- ─── STATS ROW ─── -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stock-counter" id="stockCounter">3 of 7</span>
+        <p class="stock-sublabel">Once they're gone, God moves on</p>
       </div>
-
-      <div class="gold-rule"></div>
-
-      <!-- Price + badge -->
-      <div class="price-row">
-        <span class="price">€79.00</span>
-        <span class="stock-badge" id="stockBadge">⚡ Only 3 Remaining</span>
+      <div class="stat-card">
+        <p class="viewers-counter">👁 <span id="viewersCount">1,247</span></p>
+        <p class="viewers-sublabel">people looking at this right now</p>
       </div>
-
-      <!-- Buy -->
-      <button class="btn-buy" id="buyBtn">⚡ Receive Thy Blessing ⚡</button>
-
-      <p class="urgency-text">This Blessing Expires at Midnight · Act Now · God Is Watching</p>
-
-      <p class="stock-counter" id="stockCounter">✦ 3 of 7 Blessings Remaining ✦</p>
-
-      <p class="viewers-counter">👁 <span id="viewersCount">1,247</span> Souls Witnessing This Manifestation</p>
     </div>
 
     <div class="gold-rule" style="margin-top: clamp(14px, 2vh, 24px);"></div>
 
     <!-- ─── FOOTER ─── -->
     <footer class="site-footer">
-      <ul class="footer-nav">
-        <li><a href="#">Manifestations</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+      <p class="footer-heaven">Straight from Heaven™</p>
+      <p class="footer-micro">Products manifest nightly at 3:33 AM · Limited to 7 units · Straight from Heaven™</p>
     </footer>
 
   </div><!-- /page-wrap -->
@@ -788,26 +978,25 @@
     const STOCK_TOTAL = 7;
     let stockRemaining = 3;
 
-    const buyBtn      = document.getElementById('buyBtn');
+    const buyBtn       = document.getElementById('buyBtn');
     const stockCounter = document.getElementById('stockCounter');
-    const stockBadge  = document.getElementById('stockBadge');
+    const stockBadge   = document.getElementById('stockBadge');
 
     function applyState() {
       const body = document.body;
 
       if (stockRemaining <= 0) {
         body.dataset.state = 'sold-out';
-        buyBtn.textContent = 'God Has Spoken. All Blessings Claimed.';
+        buyBtn.textContent = 'Sold Out — God Has Moved On';
         buyBtn.disabled = true;
-        stockCounter.textContent = '✦ All 7 Blessings Have Been Claimed ✦';
+        stockCounter.textContent = '0 of 7';
         stockBadge.textContent = '✦ Sold Out ✦';
       } else {
         body.dataset.state = 'active';
-        buyBtn.textContent = '⚡ Receive Thy Blessing ⚡';
+        buyBtn.textContent = `BUY NOW — €500`;
         buyBtn.disabled = false;
-        const word = stockRemaining === 1 ? 'Blessing' : 'Blessings';
-        stockCounter.textContent = `✦ ${stockRemaining} of ${STOCK_TOTAL} ${word} Remaining ✦`;
-        stockBadge.textContent = `⚡ Only ${stockRemaining} Remaining`;
+        stockCounter.textContent = `${stockRemaining} of ${STOCK_TOTAL}`;
+        stockBadge.textContent = `⚡ ${stockRemaining} LEFT`;
       }
     }
 
@@ -842,7 +1031,7 @@
         const glareX = (e.clientX / window.innerWidth)  * 100;
         const glareY = (e.clientY / window.innerHeight) * 100;
         videoGlare.style.background =
-          `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.28) 0%, transparent 65%)`;
+          `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.32) 0%, transparent 65%)`;
       });
 
       document.addEventListener('mouseleave', () => {
@@ -864,22 +1053,24 @@
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    const SPARKLE_COUNT = 52;
+    const SPARKLE_COUNT = 80;
     const sparkles = [];
 
     function makeSparkle(yOverride) {
+      const isBig = Math.random() > 0.72;
       return {
-        x:           Math.random() * window.innerWidth,
-        y:           yOverride !== undefined ? yOverride : Math.random() * window.innerHeight,
-        size:        3 + Math.random() * 9,
-        opacity:     Math.random() * 0.6,
-        targetOp:    0.3 + Math.random() * 0.7,
-        driftX:      (Math.random() - 0.5) * 0.25,
-        riseSpeed:   0.15 + Math.random() * 0.55,
-        fadeSpeed:   0.004 + Math.random() * 0.012,
-        rotation:    Math.random() * Math.PI * 2,
-        rotSpeed:    (Math.random() - 0.5) * 0.025,
-        isGold:      Math.random() > 0.4,
+        x:         Math.random() * window.innerWidth,
+        y:         yOverride !== undefined ? yOverride : Math.random() * window.innerHeight,
+        size:      isBig ? (12 + Math.random() * 8) : (3 + Math.random() * 9),
+        opacity:   Math.random() * 0.6,
+        targetOp:  0.3 + Math.random() * 0.7,
+        driftX:    (Math.random() - 0.5) * 0.28,
+        riseSpeed: 0.12 + Math.random() * 0.5,
+        fadeSpeed: 0.003 + Math.random() * 0.011,
+        rotation:  Math.random() * Math.PI * 2,
+        rotSpeed:  (Math.random() - 0.5) * 0.022,
+        isGold:    Math.random() > 0.38,
+        isStar:    Math.random() > 0.55,
       };
     }
 
@@ -910,11 +1101,27 @@
       ctx.restore();
     }
 
+    function drawStar4(x, y, outerR, rot) {
+      const innerR = outerR * 0.22;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rot);
+      ctx.beginPath();
+      for (let i = 0; i < 8; i++) {
+        const angle = (i * Math.PI) / 4;
+        const r = i % 2 === 0 ? outerR : innerR;
+        if (i === 0) ctx.moveTo(Math.cos(angle) * r, Math.sin(angle) * r);
+        else ctx.lineTo(Math.cos(angle) * r, Math.sin(angle) * r);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
     function animateSparkles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (const s of sparkles) {
-        // Fade toward target
         if (s.opacity < s.targetOp) {
           s.opacity = Math.min(s.opacity + s.fadeSpeed, s.targetOp);
         } else {
@@ -933,9 +1140,11 @@
         }
 
         ctx.globalAlpha = Math.max(0, s.opacity);
-        ctx.fillStyle   = s.isGold ? '#D4A853' : 'rgba(255,255,255,0.9)';
+        ctx.fillStyle   = s.isGold ? '#D4A853' : 'rgba(255,255,255,0.92)';
 
-        if (s.isGold) {
+        if (s.isStar) {
+          drawStar4(s.x, s.y, s.size * 0.6, s.rotation);
+        } else if (s.isGold) {
           drawDiamond(s.x, s.y, s.size * 0.55, s.rotation);
         } else {
           drawCross(s.x, s.y, s.size, s.rotation);
