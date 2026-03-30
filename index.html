@@ -444,20 +444,53 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 260px;
+      grid-template-columns: 60px 1fr 260px;
       gap: 0;
-      background: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.95);
       border: 1px solid var(--border);
     }
 
     @media (max-width: 860px) {
-      .product-grid { grid-template-columns: 1fr 1fr; }
+      .product-grid { grid-template-columns: 60px 1fr; }
       .buy-box { border-top: 1px solid var(--border); grid-column: 1 / -1; }
     }
     @media (max-width: 540px) {
       .product-grid { grid-template-columns: 1fr; }
       .buy-box { grid-column: 1; }
+      .thumb-col { display: none; }
     }
+
+    /* ─── THUMBNAIL STRIP (Amazon left rail) ─── */
+
+    .thumb-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 6px;
+      border-right: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .thumb {
+      width: 46px; height: 46px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      color: var(--mid);
+      text-align: center;
+      cursor: pointer;
+      overflow: hidden;
+      background: var(--panel);
+      line-height: 1.2;
+      padding: 2px;
+    }
+
+    .thumb.active { border: 2px solid var(--orange); }
+
+    .thumb video, .thumb img { width: 100%; height: 100%; object-fit: cover; }
 
     /* ─── VIDEO / IMAGE COL ─── */
 
@@ -498,33 +531,29 @@
       text-transform: uppercase;
     }
 
-    /* ─── INFO COL ─── */
+    /* ─── INFO COL (merged with buy box on mobile) ─── */
 
     .info-col {
       display: flex;
       flex-direction: column;
       padding: 16px 14px;
-      gap: 10px;
-      border-right: 1px solid var(--border);
+      gap: 9px;
     }
-    @media (max-width: 860px) { .info-col { border-right: none; } }
 
     .product-label {
       font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
       color: var(--link);
     }
 
     .product-name {
       font-family: var(--font-black);
-      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-size: clamp(1rem, 2.2vw, 1.45rem);
       color: var(--dark);
       line-height: 1.2;
     }
 
     .product-sub {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--mid);
       margin-top: -4px;
     }
@@ -537,31 +566,38 @@
       border-bottom: 1px solid var(--border);
       flex-wrap: wrap;
     }
-    .stars { color: var(--orange); font-size: 0.9rem; letter-spacing: 1px; }
+    .stars { color: var(--orange); font-size: 0.85rem; letter-spacing: 1px; }
     .rating-count { font-size: 0.78rem; color: var(--link); }
-    .rating-note { font-size: 0.72rem; color: var(--mid); }
+    .rating-note { font-size: 0.7rem; color: var(--mid); }
 
-    .price-block { display: flex; flex-direction: column; gap: 3px; }
-    .price-label { font-size: 0.72rem; color: var(--mid); }
+    .price-block { display: flex; flex-direction: column; gap: 2px; }
+    .price-label { font-size: 0.7rem; color: var(--mid); }
+    .price-per-m { font-size: 0.7rem; color: var(--mid); margin-top: 2px; }
     .price-main {
       font-family: var(--font-black);
-      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-size: clamp(1.3rem, 3vw, 2rem);
       color: var(--price-red);
       line-height: 1;
     }
-    .price-rrp { font-size: 0.78rem; color: var(--mid); }
+    .price-rrp { font-size: 0.75rem; color: var(--mid); }
     .price-rrp s { color: var(--mid); }
     .price-saving { color: var(--price-red); font-weight: 700; }
+
+    .about-header {
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--dark);
+      margin-top: 4px;
+    }
 
     .product-bullets {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 5px;
-      padding-top: 4px;
     }
     .product-bullets li {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--dark);
       line-height: 1.45;
       padding-left: 12px;
@@ -579,36 +615,58 @@
     .buy-box {
       display: flex;
       flex-direction: column;
-      padding: 16px 14px;
-      gap: 10px;
-      background: rgba(255,255,255,0.95);
+      padding: 14px 12px;
+      gap: 9px;
+      background: rgba(255,255,255,0.97);
+      border-left: 1px solid var(--border);
     }
 
     .buy-box-price {
       font-family: var(--font-black);
-      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-size: clamp(1.3rem, 2.8vw, 1.7rem);
       color: var(--price-red);
+      line-height: 1;
     }
 
+    .buy-box-per-m { font-size: 0.7rem; color: var(--mid); }
+
     .delivery-box {
-      background: rgba(240,242,242,0.8);
+      background: rgba(240,242,242,0.7);
       border: 1px solid var(--border);
-      padding: 10px 11px;
+      padding: 9px 10px;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
-    .delivery-line { font-size: 0.78rem; color: var(--dark); line-height: 1.4; }
+    .delivery-line { font-size: 0.76rem; color: var(--dark); line-height: 1.4; }
     .delivery-line .fast { color: var(--green); font-weight: 700; }
     .delivery-line .loc { color: var(--link); }
 
+    /* Quantity selector */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--dark);
+    }
+    .qty-select {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      padding: 4px 8px;
+      font-size: 0.78rem;
+      font-family: var(--font);
+      color: var(--dark);
+      cursor: pointer;
+    }
+
     .in-stock {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--green);
       font-weight: 700;
       animation: urgentPulse 2s ease-in-out infinite;
     }
-    body[data-state="sold-out"] .in-stock { color: #CC0C39; }
+    body[data-state="sold-out"] .in-stock { color: #CC0C39; animation: none; }
 
     .btn-add-cart {
       display: block;
@@ -625,9 +683,7 @@
       overflow: hidden;
       transition: background 0.1s ease;
     }
-    .btn-add-cart:hover:not(:disabled) {
-      background: linear-gradient(to bottom, #f5d078, #e8b820);
-    }
+    .btn-add-cart:hover:not(:disabled) { background: linear-gradient(to bottom, #f5d078, #e8b820); }
 
     .btn-buy-now {
       display: block;
@@ -652,9 +708,7 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
       animation: shimmer 2.4s ease-in-out infinite;
     }
-    .btn-buy-now:hover:not(:disabled) {
-      background: linear-gradient(to bottom, #e8a020, #d47800);
-    }
+    .btn-buy-now:hover:not(:disabled) { background: linear-gradient(to bottom, #e8a020, #d47800); }
 
     .btn-add-cart:disabled,
     .btn-buy-now:disabled,
@@ -668,20 +722,46 @@
     body[data-state="sold-out"] .btn-add-cart::after { display: none; }
 
     .buy-micro {
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       color: var(--mid);
       line-height: 1.5;
       text-align: center;
     }
 
     .sold-by {
-      font-size: 0.75rem;
+      font-size: 0.73rem;
       color: var(--dark);
       border-top: 1px solid var(--border);
       padding-top: 8px;
+      line-height: 1.7;
     }
     .sold-by a { color: var(--link); text-decoration: none; }
     .sold-by a:hover { text-decoration: underline; color: var(--link-hover); }
+
+    /* ─── COMPARE / SPECS TABLE ─── */
+
+    .specs-section {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+    }
+    .specs-title {
+      font-family: var(--font-black);
+      font-size: 0.95rem;
+      color: var(--dark);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 10px;
+    }
+    .specs-table { width: 100%; border-collapse: collapse; }
+    .specs-table tr:nth-child(even) { background: var(--panel); }
+    .specs-table td {
+      font-size: 0.78rem;
+      padding: 6px 10px;
+      color: var(--dark);
+      border-bottom: 1px solid var(--border);
+    }
+    .specs-table td:first-child { font-weight: 700; width: 40%; color: var(--dark); }
 
     /* ─── STATS ROW ─── */
 
@@ -820,71 +900,110 @@
     <div class="glow-border">
     <div class="product-grid">
 
+      <!-- THUMBNAIL STRIP -->
+      <div class="thumb-col">
+        <div class="thumb active">
+          <video src="video.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video>
+        </div>
+        <div class="thumb" style="font-size:0.5rem;color:var(--mid);padding:3px">✦ Blessed</div>
+        <div class="thumb" style="font-size:0.5rem;color:var(--mid);padding:3px">15m</div>
+        <div class="thumb" style="font-size:0.5rem;color:var(--mid);padding:3px">3:33 AM</div>
+      </div>
+
       <!-- VIDEO -->
       <div class="video-col">
         <video class="manifestation-video" src="video.mp4" autoplay muted loop playsinline preload="auto"></video>
         <div class="drop-badge">Tonight's Drop</div>
       </div>
 
-      <!-- INFO -->
-      <div class="info-col">
-        <p class="product-label">Visit The God Shop · Tonight's Holy Manifestation</p>
-        <h1 class="product-name">The Sacred Garden Hose — Blessed Edition</h1>
-        <p class="product-sub">Genesis 847:3 · 15 metres · Single unit, manifested nightly at 3:33 AM</p>
-
-        <div class="rating-row">
-          <span class="stars">★★★★★</span>
-          <span class="rating-count">4,847 ratings</span>
-          <span class="rating-note">Nobody left a bad one. They were afraid.</span>
-        </div>
-
-        <div class="price-block">
-          <span class="price-label">Price:</span>
-          <span class="price-main">€500.00</span>
-          <p class="price-rrp">RRP: <s>€1,400.00</s> &nbsp;<span class="price-saving">You save €900 (64%). Spiritually, much more.</span></p>
-        </div>
-
-        <ul class="product-bullets">
-          <li>15 metres of genuine Eden-sourced hose. No knock-offs.</li>
-          <li>Blessed at 3:33 AM. The exact minute. Not 3:34.</li>
-          <li>Works with most standard taps. And some non-standard ones.</li>
-          <li>Dispatched from Heaven's fulfilment centre in 3–5 business days.</li>
-          <li>Note: God is not liable for what your begonias become.</li>
-        </ul>
-      </div>
-
-      <!-- BUY BOX -->
+      <!-- BUY BOX (right col, Amazon style — info below on mobile) -->
       <div class="buy-box">
-        <div class="buy-box-price">€500.00</div>
+        <div class="buy-box-price">€500,00</div>
+        <p class="buy-box-per-m">€33,33 / Meter</p>
 
         <div class="delivery-box">
-          <p class="delivery-line"><span class="fast">FREE Delivery — probably tomorrow</span></p>
-          <p class="delivery-line">Order within <strong>2 hrs 13 mins</strong> or wait until God makes another one</p>
-          <p class="delivery-line">Deliver to <span class="loc">Your address on Earth</span></p>
+          <p class="delivery-line"><span class="fast">GRATIS Lieferung — wahrscheinlich morgen</span></p>
+          <p class="delivery-line">Bestellen Sie in den nächsten <strong>2 Std. 13 Min.</strong></p>
+          <p class="delivery-line">Oder warten Sie bis Gott das nächste macht.</p>
+          <p class="delivery-line" style="margin-top:4px">Liefern an: <span class="loc">Ihre Adresse auf der Erde</span></p>
         </div>
 
-        <p class="in-stock" id="stockBadge">In Stock — God made exactly one</p>
+        <div class="qty-row">
+          <label>Menge:</label>
+          <select class="qty-select">
+            <option>1 (maximum)</option>
+          </select>
+        </div>
+
+        <p class="in-stock" id="stockBadge">Auf Lager — Gott hat genau einen gemacht</p>
 
         <div class="glow-border-soft">
-          <button class="btn-add-cart" id="addCartBtn">Add to Cart</button>
+          <button class="btn-add-cart" id="addCartBtn">In den Einkaufswagen</button>
         </div>
         <div class="glow-border-soft">
-          <button class="btn-buy-now" id="buyBtn">Buy Now</button>
+          <button class="btn-buy-now" id="buyBtn">Jetzt kaufen</button>
         </div>
 
         <p class="buy-micro">
-          Secure transaction · Returns: 30 divine days<br>
-          God will know if you abuse this policy.
+          Sichere Transaktion · Gott weiß, wenn Sie das missbrauchen.<br>
+          Rückgabe: 30 göttliche Tage
         </p>
 
         <div class="sold-by">
-          <strong>Sold by</strong> <a href="#">Heaven Logistics GmbH</a><br>
-          <strong>Other sellers:</strong> there are none
+          <strong>Verkäufer:</strong> <a href="#">Heaven Logistics GmbH</a><br>
+          <strong>Versand:</strong> Heaven Logistics GmbH<br>
+          <strong>Andere Anbieter:</strong> Es gibt keine.
         </div>
       </div>
 
     </div>
     </div><!-- /glow-border -->
+
+    <!-- INFO BELOW (Amazon puts this under the image on .de) -->
+    <div class="glow-border-soft" style="margin-top:0">
+    <div style="background:rgba(255,255,255,0.95);border:1px solid var(--border);padding:16px 18px;display:flex;flex-direction:column;gap:10px;">
+      <p class="product-label">Besuche The God Shop · Heutige Heilige Manifestation</p>
+      <h1 class="product-name">The Sacred Garden Hose — Blessed Edition</h1>
+      <p class="product-sub">Genesis 847:3 · 15 Meter · Einzelnes Exemplar, manifestiert jede Nacht um 3:33 Uhr</p>
+
+      <div class="rating-row">
+        <span class="stars">★★★★★</span>
+        <span class="rating-count">4.847 Bewertungen</span>
+        <span class="rating-note">Niemand hat eine schlechte hinterlassen. Sie hatten Angst.</span>
+      </div>
+
+      <div class="price-block">
+        <span class="price-label">Preis:</span>
+        <span class="price-main">€500,00</span>
+        <p class="price-per-m">€33,33 / Meter</p>
+        <p class="price-rrp">UVP: <s>€1.400,00</s> &nbsp;<span class="price-saving">Sie sparen €900 (64 %). Spirituell noch viel mehr.</span></p>
+      </div>
+
+      <p class="about-header">Über diesen Artikel</p>
+      <ul class="product-bullets">
+        <li>15 Meter echter Eden-Schlauch. Keine Fälschungen.</li>
+        <li>Gesegnet um 3:33 Uhr. Die genaue Minute. Nicht 3:34.</li>
+        <li>Kompatibel mit den meisten Standardarmaturen. Und einigen nicht-standardisierten.</li>
+        <li>Versand aus dem Erfüllungszentrum des Himmels in 3–5 Werktagen.</li>
+        <li>Hinweis: Gott haftet nicht für das, was Ihre Begonien werden.</li>
+      </ul>
+    </div>
+    </div>
+
+    <!-- SPECS TABLE -->
+    <div class="specs-section">
+      <p class="specs-title">Technische Daten</p>
+      <table class="specs-table">
+        <tr><td>Marke</td><td>Heaven Logistics GmbH</td></tr>
+        <tr><td>Länge</td><td>15 Meter (gesegnet)</td></tr>
+        <tr><td>Segnungszeit</td><td>3:33 Uhr (täglich, ohne Ausnahmen)</td></tr>
+        <tr><td>Material</td><td>Eden-Polyethylen, Klasse: Göttlich</td></tr>
+        <tr><td>Kompatibilität</td><td>Standard-Wasserhähne · Wunder (separat erhältlich)</td></tr>
+        <tr><td>Garantie</td><td>Ewig, vorbehaltlich göttlichem Ermessen</td></tr>
+        <tr><td>Verfügbarkeit</td><td>1 Einheit / Nacht. Nicht verhandelbar.</td></tr>
+        <tr><td>ASIN</td><td>GOD847X3HOSE</td></tr>
+      </table>
+    </div>
 
     <!-- STATS -->
     <div class="stats-row">
@@ -907,20 +1026,20 @@
 
     <!-- REVIEWS -->
     <div class="glow-border-soft"><div class="reviews-section">
-      <p class="reviews-title">Customer Reviews</p>
+      <p class="reviews-title">Kundenrezensionen</p>
 
       <div class="review-item">
         <span class="review-stars">★★★★★</span>
-        <p class="review-title">"I don't even have a garden."</p>
-        <p class="review-meta">Dieter K. · Verified Purchase · Bochum · Currently on leave from work</p>
-        <p class="review-body">I didn't need a garden hose. I don't even have a garden. And yet here I am, crying in my kitchen, holding the most important thing I've ever owned.</p>
+        <p class="review-title">"Ich habe keinen Garten."</p>
+        <p class="review-meta">Dieter K. · Verifizierter Kauf · Bochum · Aktuell krankgeschrieben</p>
+        <p class="review-body">Ich wusste nicht, warum ich es kaufte. Jetzt halte ich es in der Küche und weine. Das Wichtigste, das ich je besessen habe.</p>
       </div>
 
       <div class="review-item" style="border-top:1px solid var(--border);padding-top:10px">
         <span class="review-stars">★★★★★</span>
-        <p class="review-title">"It arrived warm."</p>
-        <p class="review-meta">Annika W. · Verified Purchase · Düsseldorf</p>
-        <p class="review-body">I don't know how. The packaging was normal. But it was warm. I've stopped asking questions.</p>
+        <p class="review-title">"Es kam warm an."</p>
+        <p class="review-meta">Annika W. · Verifizierter Kauf · Düsseldorf</p>
+        <p class="review-body">Ich weiß nicht wie. Die Verpackung war normal. Aber es war warm. Ich habe aufgehört, Fragen zu stellen.</p>
       </div>
 
     </div></div>
@@ -962,20 +1081,20 @@
     function applyState() {
       if (stock <= 0) {
         document.body.dataset.state = 'sold-out';
-        buyBtn.textContent = 'Sold. See you at 3:33 AM.';
+        buyBtn.textContent = 'Verkauft. Bis 3:33 Uhr.';
         buyBtn.disabled = true;
-        addCartBtn.textContent = 'Too late. It is gone.';
+        addCartBtn.textContent = 'Zu spät. Es ist weg.';
         addCartBtn.disabled = true;
-        stockCnt.textContent = 'Gone';
-        stockBadge.textContent = 'Currently unavailable — God has moved on. New product tonight.';
+        stockCnt.textContent = 'Vergriffen';
+        stockBadge.textContent = 'Derzeit nicht verfügbar — Gott hat weitergemacht. Neues Produkt heute Nacht.';
       } else {
         document.body.dataset.state = 'active';
-        buyBtn.textContent = 'Buy Now';
+        buyBtn.textContent = 'Jetzt kaufen';
         buyBtn.disabled = false;
-        addCartBtn.textContent = 'Add to Cart';
+        addCartBtn.textContent = 'In den Einkaufswagen';
         addCartBtn.disabled = false;
-        stockCnt.textContent = '1 Left';
-        stockBadge.textContent = 'In Stock — God made exactly one';
+        stockCnt.textContent = '1 übrig';
+        stockBadge.textContent = 'Auf Lager — Gott hat genau einen gemacht';
       }
     }
     [buyBtn, addCartBtn].forEach(b => b.addEventListener('click', () => { if(stock>0){stock--;applyState();} }));
