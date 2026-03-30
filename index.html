@@ -8,22 +8,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #000000;
-      --white: #ffffff;
-      --gray-border: #cacaca;
-      --gray-text: #868686;
-      --neon: #00ff40;
-      --bg: #f4f4f4;
-      --urgency: #ff0000;
-      --font: 'Archivo', system-ui, sans-serif;
-      --font-black: 'Archivo Black', system-ui, sans-serif;
+      --gold:        #C9952A;
+      --gold-light:  #F0C060;
+      --gold-pale:   #FFF3D0;
+      --cream:       #FDF6E3;
+      --warm-white:  #FFFBF0;
+      --dark:        #1A1000;
+      --mid:         #5A3E00;
+      --dim:         #9A7A40;
+      --urgency:     #CC2200;
+      --glow:        rgba(240, 180, 50, 0.5);
+      --font:        'Archivo', system-ui, sans-serif;
+      --font-black:  'Archivo Black', system-ui, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -31,144 +30,110 @@
     /* ─── KEYFRAMES ─── */
 
     @keyframes blobFloat1 {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      33%  { transform: translate(5%,8%) scale(1.1); }
-      66%  { transform: translate(-4%,-6%) scale(0.92); }
+      0%,100%{transform:translate(0,0) scale(1);}
+      33%{transform:translate(5%,8%) scale(1.1);}
+      66%{transform:translate(-4%,-6%) scale(0.92);}
     }
     @keyframes blobFloat2 {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      25%  { transform: translate(-7%,5%) scale(1.08); }
-      75%  { transform: translate(5%,-8%) scale(0.94); }
+      0%,100%{transform:translate(0,0) scale(1);}
+      25%{transform:translate(-7%,5%) scale(1.08);}
+      75%{transform:translate(5%,-8%) scale(0.94);}
     }
     @keyframes blobFloat3 {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      40%  { transform: translate(8%,-7%) scale(1.12); }
-      80%  { transform: translate(-5%,6%) scale(0.9); }
+      0%,100%{transform:translate(0,0) scale(1);}
+      40%{transform:translate(8%,-7%) scale(1.12);}
+      80%{transform:translate(-5%,6%) scale(0.9);}
     }
     @keyframes blobFloat4 {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      30%  { transform: translate(-6%,-4%) scale(1.06); }
-      70%  { transform: translate(7%,8%) scale(0.95); }
+      0%,100%{transform:translate(0,0) scale(1);}
+      30%{transform:translate(-6%,-4%) scale(1.06);}
+      70%{transform:translate(7%,8%) scale(0.95);}
     }
     @keyframes blobFloat5 {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      45%  { transform: translate(9%,-5%) scale(1.14); }
-      85%  { transform: translate(-7%,9%) scale(0.88); }
+      0%,100%{transform:translate(0,0) scale(1);}
+      45%{transform:translate(9%,-5%) scale(1.14);}
+      85%{transform:translate(-7%,9%) scale(0.88);}
     }
     @keyframes blobFloat6 {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      20%  { transform: translate(-8%,6%) scale(1.09); }
-      60%  { transform: translate(6%,-7%) scale(0.93); }
-    }
-    @keyframes blobFloat7 {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      35%  { transform: translate(7%,10%) scale(1.07); }
-      75%  { transform: translate(-9%,-4%) scale(0.96); }
-    }
-    @keyframes blobFloat8 {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      50%  { transform: translate(-5%,-8%) scale(1.11); }
-      90%  { transform: translate(8%,5%) scale(0.91); }
-    }
-    @keyframes urgentPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5); }
-      50%       { box-shadow: 0 0 0 8px rgba(255, 0, 0, 0); }
-    }
-    @keyframes shimmer {
-      0%   { left: -100%; }
-      100% { left: 200%; }
+      0%,100%{transform:translate(0,0) scale(1);}
+      20%{transform:translate(-8%,6%) scale(1.09);}
+      60%{transform:translate(6%,-7%) scale(0.93);}
     }
     @keyframes tickerMove {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    @keyframes autoTilt {
-      0%   { transform: perspective(800px) rotateX(0deg) rotateY(0deg); }
-      20%  { transform: perspective(800px) rotateX(-4deg) rotateY(7deg); }
-      40%  { transform: perspective(800px) rotateX(5deg) rotateY(-5deg); }
-      60%  { transform: perspective(800px) rotateX(-3deg) rotateY(-8deg); }
-      80%  { transform: perspective(800px) rotateX(6deg) rotateY(4deg); }
-      100% { transform: perspective(800px) rotateX(0deg) rotateY(0deg); }
-    }
-    @keyframes viewerBlink {
-      0%, 90%, 100% { opacity: 1; }
-      95%            { opacity: 0.4; }
+      0%{transform:translateX(0);}
+      100%{transform:translateX(-50%);}
     }
     @keyframes cntSecsFlicker {
-      0%, 98%, 100% { opacity: 1; }
-      99% { opacity: 0.5; }
+      0%,98%,100%{opacity:1;}
+      99%{opacity:0.4;}
     }
-    @keyframes gleam {
-      0%   { right: 100%; }
-      100% { right: -100%; }
+    @keyframes goldPulse {
+      0%,100%{text-shadow:0 0 20px var(--glow),0 0 50px rgba(240,180,50,0.25);}
+      50%{text-shadow:0 0 40px var(--glow),0 0 90px rgba(240,180,50,0.4);}
+    }
+    @keyframes haloPulse {
+      0%,100%{opacity:0.6;transform:scale(1);}
+      50%{opacity:1;transform:scale(1.06);}
+    }
+    @keyframes rayRotate {
+      from{transform:rotate(0deg);}
+      to{transform:rotate(360deg);}
+    }
+    @keyframes urgentPulse {
+      0%,100%{box-shadow:0 0 0 0 rgba(204,34,0,0.55);}
+      50%{box-shadow:0 0 0 10px rgba(204,34,0,0);}
+    }
+    @keyframes shimmer {
+      0%{left:-100%;}
+      100%{left:200%;}
+    }
+    @keyframes viewerBlink {
+      0%,90%,100%{opacity:1;}
+      95%{opacity:0.4;}
+    }
+    @keyframes godRaySweep {
+      0%{transform:translateX(-160vw) skewX(-15deg);opacity:0;}
+      8%{opacity:0.06;}
+      92%{opacity:0.04;}
+      100%{transform:translateX(160vw) skewX(-15deg);opacity:0;}
     }
 
-    /* ─── BLOBS (pastel, very light) ─── */
+    /* ─── BLOBS ─── */
 
     .blob {
       position: fixed;
       border-radius: 50%;
-      filter: blur(100px);
+      filter: blur(110px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.55;
+      opacity: 0.6;
     }
-    .blob-pink {
-      width: 80vw; height: 80vw;
-      top: -20%; left: -20%;
-      background: #ffc0cb;
-      animation: blobFloat1 22s ease-in-out infinite;
-    }
-    .blob-lavender {
-      width: 70vw; height: 70vw;
-      top: 10%; right: -20%;
-      background: #d8b4fe;
-      animation: blobFloat2 28s ease-in-out infinite;
-    }
-    .blob-mint {
-      width: 65vw; height: 65vw;
-      bottom: -10%; left: 5%;
-      background: #a7f3d0;
-      animation: blobFloat3 24s ease-in-out infinite;
-    }
-    .blob-yellow {
-      width: 60vw; height: 60vw;
-      top: 35%; left: 25%;
-      background: #fef08a;
-      animation: blobFloat4 19s ease-in-out infinite;
-    }
-    .blob-peach {
-      width: 55vw; height: 55vw;
-      top: 55%; right: -8%;
-      background: #fed7aa;
-      animation: blobFloat5 31s ease-in-out infinite;
-    }
-    .blob-blue {
-      width: 58vw; height: 58vw;
-      top: -8%; right: 12%;
-      background: #bae6fd;
-      animation: blobFloat6 26s ease-in-out infinite;
-    }
-    .blob-green {
-      width: 48vw; height: 48vw;
-      bottom: 8%; right: 3%;
-      background: #bbf7d0;
-      animation: blobFloat7 33s ease-in-out infinite;
-    }
-    .blob-rose {
-      width: 44vw; height: 44vw;
-      top: 28%; left: -12%;
-      background: #fecdd3;
-      animation: blobFloat8 20s ease-in-out infinite;
+    .blob-1 { width:80vw;height:80vw;top:-20%;left:-20%;background:#F5C842;animation:blobFloat1 22s ease-in-out infinite; }
+    .blob-2 { width:70vw;height:70vw;top:10%;right:-20%;background:#FF9A3C;animation:blobFloat2 28s ease-in-out infinite; }
+    .blob-3 { width:65vw;height:65vw;bottom:-10%;left:5%;background:#FFDC6A;animation:blobFloat3 24s ease-in-out infinite; }
+    .blob-4 { width:60vw;height:60vw;top:35%;left:25%;background:#FFC13A;animation:blobFloat4 19s ease-in-out infinite; }
+    .blob-5 { width:55vw;height:55vw;top:55%;right:-8%;background:#FFAA50;animation:blobFloat5 31s ease-in-out infinite; }
+    .blob-6 { width:55vw;height:55vw;top:-8%;right:12%;background:#FFE080;animation:blobFloat6 26s ease-in-out infinite; }
+
+    /* ─── GOD RAY ─── */
+
+    .god-ray {
+      position: fixed;
+      top: -10vh; left: 0;
+      width: 30vw; height: 120vh;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,220,80,0.14) 40%, rgba(255,248,200,0.1) 50%, rgba(255,220,80,0.14) 60%, transparent 100%);
+      animation: godRaySweep 5s ease-in-out infinite;
+      animation-delay: 2s;
+      pointer-events: none;
+      z-index: 1;
     }
 
     /* ─── BASE ─── */
 
     body {
-      background: var(--bg);
-      color: var(--black);
+      background: var(--cream);
+      color: var(--dark);
       font-family: var(--font);
-      font-weight: 400;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -182,7 +147,7 @@
 
     .countdown-strip {
       width: 100%;
-      background: var(--black);
+      background: var(--dark);
       padding: 10px 20px;
       display: flex;
       align-items: center;
@@ -193,64 +158,63 @@
       top: 0;
       z-index: 100;
       flex-shrink: 0;
+      border-bottom: 1px solid rgba(240,180,50,0.3);
     }
 
     .cnt-strip-label {
       font-family: var(--font);
       font-weight: 700;
-      font-size: clamp(0.6rem, 1.2vw, 0.75rem);
-      letter-spacing: 0.2em;
+      font-size: clamp(0.58rem, 1.2vw, 0.72rem);
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--neon);
+      color: var(--gold-light);
     }
 
     .cnt-strip-numbers {
       display: flex;
       align-items: center;
       gap: 4px;
-      font-family: var(--font);
-      font-weight: 700;
+      font-family: var(--font-black);
       font-size: clamp(1.4rem, 5vw, 2.2rem);
-      color: var(--white);
+      color: var(--gold-light);
       letter-spacing: 0.04em;
+      animation: goldPulse 2.5s ease-in-out infinite;
     }
 
     .cnt-strip-sep { opacity: 0.5; padding: 0 1px; }
-
     #cntSecs { animation: cntSecsFlicker 1s step-end infinite; }
 
     /* ─── TICKER ─── */
 
     .ticker-wrap {
       width: 100%;
-      background: var(--white);
+      background: var(--gold);
       overflow: hidden;
-      padding: 9px 0;
+      padding: 8px 0;
       position: relative;
       z-index: 10;
       flex-shrink: 0;
-      border-bottom: 1px solid #e0e0e0;
     }
     .ticker-track {
       display: inline-block;
       white-space: nowrap;
-      animation: tickerMove 35s linear infinite;
+      animation: tickerMove 40s linear infinite;
     }
     .ticker-track span {
       font-family: var(--font);
       font-weight: 700;
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--black);
+      color: var(--dark);
     }
 
     /* ─── HEADER ─── */
 
     .site-header {
       width: 100%;
-      background: var(--white);
-      border-bottom: 1px solid #e0e0e0;
+      background: var(--warm-white);
+      border-bottom: 1px solid rgba(180,130,20,0.2);
       padding: 16px 20px;
       display: flex;
       align-items: center;
@@ -263,24 +227,25 @@
 
     .site-name {
       font-family: var(--font-black);
-      font-weight: 400;
-      font-size: clamp(1.1rem, 3.5vw, 2.2rem);
-      letter-spacing: 0.06em;
+      font-size: clamp(1.1rem, 3.5vw, 2rem);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--black);
+      color: var(--dark);
       line-height: 1;
       white-space: nowrap;
     }
 
+    .site-name .gold-word { color: var(--gold); }
+
     .site-tagline {
       font-family: var(--font);
       font-weight: 400;
-      font-size: clamp(0.55rem, 1.1vw, 0.72rem);
-      letter-spacing: 0.1em;
+      font-size: clamp(0.52rem, 1.1vw, 0.68rem);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gray-text);
+      color: var(--dim);
       text-align: right;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     /* ─── PAGE WRAP ─── */
@@ -291,16 +256,13 @@
       padding: 20px 16px;
       display: flex;
       flex-direction: column;
-      gap: 0;
       position: relative;
       z-index: 2;
       flex: 1;
     }
 
     @media (min-width: 641px) {
-      .page-wrap {
-        padding: 32px 24px;
-      }
+      .page-wrap { padding: 32px 24px; }
     }
 
     /* ─── PRODUCT LAYOUT ─── */
@@ -308,23 +270,21 @@
     .product-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-radius: 32px;
+      border-radius: 28px;
       overflow: hidden;
-      background: #ffffff;
+      background: var(--warm-white);
+      box-shadow: 0 8px 60px rgba(180,120,0,0.15), 0 0 0 1px rgba(200,150,30,0.15);
     }
 
     @media (max-width: 640px) {
-      .product-layout {
-        grid-template-columns: 1fr;
-      }
+      .product-layout { grid-template-columns: 1fr; }
     }
 
     /* ─── VIDEO COLUMN ─── */
 
     .video-col {
       position: relative;
-      background: #f4f4f4;
+      background: var(--gold-pale);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -332,24 +292,50 @@
       overflow: hidden;
     }
 
-    @media (max-width: 640px) {
-      .video-col {
-        min-height: 260px;
-      }
+    @media (max-width: 640px) { .video-col { min-height: 260px; } }
+
+    /* Halo glow behind video */
+    .video-col::before {
+      content: '';
+      position: absolute;
+      inset: -20%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255,220,80,0.55) 0%, rgba(255,180,30,0.2) 40%, transparent 70%);
+      animation: haloPulse 3.5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .video-card {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transition: transform 0.15s ease-out;
-    }
-
-    @media (hover: none) {
-      .video-card {
-        animation: autoTilt 8s ease-in-out infinite;
-        transition: none;
-      }
+    /* Conic rays */
+    .video-col::after {
+      content: '';
+      position: absolute;
+      inset: -30%;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg, rgba(255,220,80,0.18) 4deg, transparent 8deg,
+        transparent 18deg, rgba(255,200,60,0.14) 22deg, transparent 26deg,
+        transparent 40deg, rgba(255,220,80,0.18) 44deg, transparent 48deg,
+        transparent 62deg, rgba(255,200,60,0.14) 66deg, transparent 70deg,
+        transparent 84deg, rgba(255,220,80,0.18) 88deg, transparent 92deg,
+        transparent 106deg, rgba(255,200,60,0.14) 110deg, transparent 114deg,
+        transparent 130deg, rgba(255,220,80,0.18) 134deg, transparent 138deg,
+        transparent 152deg, rgba(255,200,60,0.14) 156deg, transparent 160deg,
+        transparent 178deg, rgba(255,220,80,0.18) 182deg, transparent 186deg,
+        transparent 200deg, rgba(255,200,60,0.14) 204deg, transparent 208deg,
+        transparent 224deg, rgba(255,220,80,0.18) 228deg, transparent 232deg,
+        transparent 248deg, rgba(255,200,60,0.14) 252deg, transparent 256deg,
+        transparent 272deg, rgba(255,220,80,0.18) 276deg, transparent 280deg,
+        transparent 296deg, rgba(255,200,60,0.14) 300deg, transparent 304deg,
+        transparent 320deg, rgba(255,220,80,0.18) 324deg, transparent 328deg,
+        transparent 344deg, rgba(255,200,60,0.14) 348deg, transparent 352deg
+      );
+      animation: rayRotate 25s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: radial-gradient(ellipse at center, black 15%, transparent 65%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 15%, transparent 65%);
     }
 
     .manifestation-video {
@@ -358,36 +344,28 @@
       height: 100%;
       object-fit: cover;
       min-height: 360px;
+      position: relative;
+      z-index: 1;
     }
 
-    @media (max-width: 640px) {
-      .manifestation-video { min-height: 260px; }
-    }
+    @media (max-width: 640px) { .manifestation-video { min-height: 260px; } }
 
-    .video-glare {
+    /* ─── BLESSED BADGE ─── */
+
+    .blessed-badge {
       position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 2;
-      transition: background 0.05s linear;
-    }
-
-    /* ─── DISCOUNT BADGE (like sneakers.com) ─── */
-
-    .discount-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--neon);
-      color: var(--black);
-      font-family: var(--font);
-      font-weight: 700;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      padding: 5px 10px;
-      border-radius: 4px;
+      top: 14px;
+      left: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
+      font-family: var(--font-black);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      padding: 5px 12px;
+      border-radius: 30px;
       z-index: 3;
       text-transform: uppercase;
+      box-shadow: 0 2px 16px rgba(200,150,0,0.4);
     }
 
     /* ─── INFO COLUMN ─── */
@@ -400,27 +378,23 @@
     }
 
     @media (min-width: 641px) {
-      .info-col {
-        padding: 28px 24px;
-        gap: 20px;
-      }
+      .info-col { padding: 28px 24px; gap: 18px; }
     }
 
     .product-label {
       font-family: var(--font);
-      font-weight: 500;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
+      font-weight: 700;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--gray-text);
+      color: var(--gold);
     }
 
     .product-name {
       font-family: var(--font-black);
-      font-weight: 400;
-      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
-      letter-spacing: -0.02em;
-      color: var(--black);
+      font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+      letter-spacing: -0.01em;
+      color: var(--dark);
       line-height: 1.1;
     }
 
@@ -428,8 +402,30 @@
       font-family: var(--font);
       font-weight: 400;
       font-size: clamp(0.85rem, 1.6vw, 0.95rem);
-      line-height: 1.75;
-      color: #333;
+      line-height: 1.8;
+      color: var(--mid);
+    }
+
+    /* ─── DIVIDER ─── */
+
+    .divine-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,150,30,0.4), rgba(200,150,30,0.6), rgba(200,150,30,0.4), transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .divine-divider::after {
+      content: '✦';
+      position: absolute;
+      background: var(--warm-white);
+      color: var(--gold);
+      font-size: 0.7rem;
+      padding: 0 8px;
     }
 
     /* ─── PRICE ROW ─── */
@@ -442,18 +438,17 @@
 
     .price-main {
       font-family: var(--font-black);
-      font-weight: 400;
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
       letter-spacing: -0.02em;
-      color: var(--black);
+      color: var(--dark);
       line-height: 1;
     }
 
     .price-original {
       font-family: var(--font);
       font-weight: 400;
-      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
-      color: var(--gray-text);
+      font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+      color: var(--dim);
       text-decoration: line-through;
     }
 
@@ -464,64 +459,65 @@
       align-items: center;
       gap: 6px;
       background: var(--urgency);
-      color: var(--white);
+      color: #fff;
       font-family: var(--font);
       font-weight: 700;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       padding: 6px 14px;
-      border-radius: 4px;
+      border-radius: 30px;
       animation: urgentPulse 1.4s ease-in-out infinite;
       align-self: flex-start;
     }
 
     body[data-state="sold-out"] .stock-badge {
-      background: var(--gray-border);
-      color: var(--gray-text);
+      background: #ccc;
+      color: #888;
       animation: none;
     }
 
-    /* ─── BUY BUTTON (sneakers.com style) ─── */
+    /* ─── BUY BUTTON ─── */
 
     .btn-buy {
       display: block;
       width: 100%;
       padding: clamp(14px, 2vh, 20px) 24px;
-      background: var(--black);
-      color: var(--white);
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--dark);
       border: none;
       border-radius: 24px;
-      font-family: var(--font);
-      font-weight: 700;
+      font-family: var(--font-black);
       font-size: 1rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      transition: background 0.15s ease, color 0.15s ease;
+      transition: opacity 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 4px 30px rgba(200,150,0,0.4);
       margin-top: auto;
     }
 
     .btn-buy::after {
       content: '';
       position: absolute;
-      top: 0; left: 100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
-      animation: gleam 2.5s ease-in-out infinite;
+      top: 0; left: -100%;
+      width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 2.2s ease-in-out infinite;
     }
 
     .btn-buy:hover:not(:disabled) {
-      background: var(--neon);
-      color: var(--black);
+      opacity: 0.88;
+      box-shadow: 0 6px 40px rgba(200,150,0,0.55);
     }
 
     .btn-buy:disabled,
     body[data-state="sold-out"] .btn-buy {
-      background: var(--gray-border);
-      color: var(--gray-text);
+      background: #ddd;
+      color: #999;
+      box-shadow: none;
       cursor: not-allowed;
     }
 
@@ -530,9 +526,9 @@
     .shipping-perks {
       font-family: var(--font);
       font-weight: 400;
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      color: var(--gray-text);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--dim);
       text-align: center;
     }
 
@@ -546,56 +542,83 @@
     }
 
     .stat-card {
-      padding: 16px 12px;
+      padding: 16px 14px;
       text-align: center;
-      background: #ffffff;
-      border-radius: 24px;
+      background: var(--warm-white);
+      border-radius: 20px;
+      box-shadow: 0 4px 24px rgba(180,120,0,0.1), 0 0 0 1px rgba(200,150,30,0.12);
     }
 
     .stock-counter {
       display: block;
-      font-family: var(--font);
-      font-weight: 700;
-      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-      letter-spacing: -0.01em;
-      color: var(--black);
+      font-family: var(--font-black);
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      color: var(--gold);
       margin-bottom: 4px;
+      animation: goldPulse 3s ease-in-out infinite;
     }
 
-    body[data-state="sold-out"] .stock-counter {
-      color: var(--gray-text);
-    }
+    body[data-state="sold-out"] .stock-counter { color: #aaa; animation: none; }
 
     .stock-sublabel,
     .viewers-sublabel {
       font-family: var(--font);
       font-weight: 400;
-      font-size: clamp(0.58rem, 1vw, 0.68rem);
+      font-size: clamp(0.55rem, 1vw, 0.65rem);
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gray-text);
+      color: var(--dim);
     }
 
     .viewers-counter {
-      font-family: var(--font);
-      font-weight: 700;
-      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-      color: var(--black);
+      font-family: var(--font-black);
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      color: var(--dark);
       margin-bottom: 4px;
       animation: viewerBlink 8s ease-in-out infinite;
+    }
+
+    /* ─── TESTIMONIAL STRIP ─── */
+
+    .testimonial-strip {
+      margin-top: 12px;
+      background: var(--warm-white);
+      border-radius: 20px;
+      padding: 18px 20px;
+      box-shadow: 0 4px 24px rgba(180,120,0,0.1), 0 0 0 1px rgba(200,150,30,0.12);
+      text-align: center;
+    }
+
+    .testimonial-text {
+      font-family: var(--font);
+      font-weight: 600;
+      font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+      color: var(--mid);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      margin-top: 6px;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
     }
 
     /* ─── FOOTER ─── */
 
     .site-footer {
       width: 100%;
-      background: var(--white);
-      padding: 24px;
+      background: var(--dark);
+      padding: 22px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       position: relative;
       z-index: 5;
       flex-shrink: 0;
@@ -604,39 +627,40 @@
 
     .footer-brand {
       font-family: var(--font-black);
-      font-weight: 400;
-      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-      letter-spacing: 0.05em;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--black);
+      color: var(--gold-light);
+      animation: goldPulse 4s ease-in-out infinite;
     }
 
     .footer-micro {
       font-family: var(--font);
       font-weight: 400;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--gray-text);
+      color: rgba(255,220,100,0.45);
     }
 
   </style>
 </head>
 <body data-state="active">
 
-  <!-- ─── BACKGROUND BLOBS ─── -->
-  <div class="blob blob-pink"></div>
-  <div class="blob blob-lavender"></div>
-  <div class="blob blob-mint"></div>
-  <div class="blob blob-yellow"></div>
-  <div class="blob blob-peach"></div>
-  <div class="blob blob-blue"></div>
-  <div class="blob blob-green"></div>
-  <div class="blob blob-rose"></div>
+  <!-- ─── BLOBS ─── -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+  <div class="blob blob-5"></div>
+  <div class="blob blob-6"></div>
+
+  <!-- ─── GOD RAY ─── -->
+  <div class="god-ray"></div>
 
   <!-- ─── COUNTDOWN STRIP ─── -->
   <div class="countdown-strip">
-    <span class="cnt-strip-label">⚡ Next Manifestation In</span>
+    <span class="cnt-strip-label">✦ Next Divine Manifestation In ✦</span>
     <div class="cnt-strip-numbers">
       <span id="cntHours">--</span>
       <span class="cnt-strip-sep">:</span>
@@ -649,39 +673,34 @@
   <!-- ─── TICKER ─── -->
   <div class="ticker-wrap">
     <div class="ticker-track">
-      <span>✦ MARCOS FROM BERLIN JUST WATERED HIS GARDEN ✦ THE HOSE SPEAKS TO THOSE WHO LISTEN ✦ "MY BEGONIAS HAVE NEVER BEEN HAPPIER" — SOFIA, LISBON ✦ DIVINE HYDRATION NOW AVAILABLE IN YOUR REGION ✦ ONLY 3 LEFT — GOD MOVES ON AFTER ✦ "I CRIED WHEN IT ARRIVED" — JAKOB, OSLO ✦ FREE SHIPPING FROM PARADISE ✦ GOD CHECKED YOUR GARDEN. IT NEEDS THIS. ✦ MARCOS FROM BERLIN JUST WATERED HIS GARDEN ✦ THE HOSE SPEAKS TO THOSE WHO LISTEN ✦ "MY BEGONIAS HAVE NEVER BEEN HAPPIER" — SOFIA, LISBON ✦ DIVINE HYDRATION NOW AVAILABLE IN YOUR REGION ✦ ONLY 3 LEFT — GOD MOVES ON AFTER ✦ "I CRIED WHEN IT ARRIVED" — JAKOB, OSLO ✦ FREE SHIPPING FROM PARADISE ✦ GOD CHECKED YOUR GARDEN. IT NEEDS THIS. ✦</span>
+      <span>✦ MARCOS FROM BERLIN JUST WATERED HIS GARDEN AND WEPT ✦ GOD LOOKED AT YOUR GARDEN AND SAID: NOT YET ✦ "I COULDN'T SLEEP. I BOUGHT IT. NOW I CAN SLEEP." — ANNIKA, DÜSSELDORF ✦ THE HOSE ARRIVED STILL WARM FROM HEAVEN'S WAREHOUSE ✦ ONLY 1 UNIT DESCENDS PER NIGHT ✦ "I SHOWED MY PASTOR. HE CRIED." — TOMÁS, SEVILLA ✦ FREE SHIPPING FROM PARADISE ✦ NOT AVAILABLE IN HELL ✦ GOD CHECKED YOUR GARDEN. IT NEEDS THIS. ✦ MARCOS FROM BERLIN JUST WATERED HIS GARDEN AND WEPT ✦ GOD LOOKED AT YOUR GARDEN AND SAID: NOT YET ✦ "I COULDN'T SLEEP. I BOUGHT IT. NOW I CAN SLEEP." — ANNIKA, DÜSSELDORF ✦ THE HOSE ARRIVED STILL WARM FROM HEAVEN'S WAREHOUSE ✦ ONLY 1 UNIT DESCENDS PER NIGHT ✦ "I SHOWED MY PASTOR. HE CRIED." — TOMÁS, SEVILLA ✦ FREE SHIPPING FROM PARADISE ✦ NOT AVAILABLE IN HELL ✦ GOD CHECKED YOUR GARDEN. IT NEEDS THIS. ✦</span>
     </div>
   </div>
 
   <!-- ─── HEADER ─── -->
   <header class="site-header">
-    <h1 class="site-name">The God Shop</h1>
+    <h1 class="site-name">The <span class="gold-word">God</span> Shop</h1>
     <p class="site-tagline">A new divine product<br>manifests every night at 3:33 AM</p>
   </header>
 
   <!-- ─── PAGE WRAP ─── -->
   <div class="page-wrap">
 
-    <!-- ─── PRODUCT LAYOUT ─── -->
     <div class="product-layout">
 
       <!-- VIDEO COLUMN -->
       <div class="video-col">
-        <div class="video-card" id="videoCard">
-          <video
-            class="manifestation-video"
-            src="video.mp4"
-            autoplay muted loop playsinline preload="auto"
-          ></video>
-          <div class="video-glare" id="videoGlare"></div>
-          <div class="discount-badge">Holy Drop</div>
-        </div>
+        <video class="manifestation-video" src="video.mp4" autoplay muted loop playsinline preload="auto"></video>
+        <div class="blessed-badge">✦ Blessed Drop</div>
       </div>
 
       <!-- INFO COLUMN -->
       <div class="info-col">
         <p class="product-label">✦ Today's Holy Manifestation ✦</p>
         <h2 class="product-name">Genesis 847:3 — The Sacred Garden Hose</h2>
+
+        <div class="divine-divider"></div>
+
         <p class="product-desc">
           The rains of Eden have returned. This is not a garden hose. This is a 15-meter channel of divine hydration, blessed at 3:33 AM and shipped from heaven's warehouse in 3–5 business days.
           <br><br>
@@ -693,10 +712,10 @@
           <span class="price-original">€1,400</span>
         </div>
 
-        <span class="stock-badge" id="stockBadge">⚡ 1 Left Today</span>
+        <span class="stock-badge" id="stockBadge">🔥 Only 1 Left Today</span>
 
-        <button class="btn-buy" id="buyBtn">Buy Now — €500</button>
-        <p class="shipping-perks">✦ Free shipping from Paradise &nbsp;·&nbsp; 30-day divine return policy ✦</p>
+        <button class="btn-buy" id="buyBtn">✦ Receive the Blessing — €500 ✦</button>
+        <p class="shipping-perks">Free shipping from Paradise · 30-day divine return policy</p>
       </div>
 
     </div>
@@ -705,15 +724,21 @@
     <div class="stats-row">
       <div class="stat-card">
         <span class="stock-counter" id="stockCounter">1 of 1</span>
-        <p class="stock-sublabel">One per day. God moves on after.</p>
+        <p class="stock-sublabel">One per night. God moves on after.</p>
       </div>
       <div class="stat-card">
         <p class="viewers-counter">👁 <span id="viewersCount">1,247</span></p>
-        <p class="viewers-sublabel">people looking at this right now</p>
+        <p class="viewers-sublabel">souls watching right now</p>
       </div>
     </div>
 
-  </div><!-- /page-wrap -->
+    <!-- ─── TESTIMONIAL ─── -->
+    <div class="testimonial-strip">
+      <p class="testimonial-text">"I didn't believe. Then it arrived. My begonias have never been happier and I haven't stopped crying since."</p>
+      <p class="testimonial-author">— Sofia R., Lisbon · Verified Believer</p>
+    </div>
+
+  </div>
 
   <!-- ─── FOOTER ─── -->
   <footer class="site-footer">
@@ -722,11 +747,8 @@
   </footer>
 
   <script>
-    // ─── COUNTDOWN TO NEXT 3:33 AM ───────────────────────────────────────────
-
     function getNext333AM() {
-      const now = new Date();
-      const target = new Date(now);
+      const now = new Date(), target = new Date(now);
       target.setHours(3, 33, 0, 0);
       if (now >= target) target.setDate(target.getDate() + 1);
       return target;
@@ -747,50 +769,38 @@
     tickCountdown();
     setInterval(tickCountdown, 1000);
 
-
-    // ─── STATE MANAGEMENT ────────────────────────────────────────────────────
-
     const STOCK_TOTAL = 1;
     let stockRemaining = 1;
-
     const buyBtn       = document.getElementById('buyBtn');
     const stockCounter = document.getElementById('stockCounter');
     const stockBadge   = document.getElementById('stockBadge');
 
     function applyState() {
-      const body = document.body;
       if (stockRemaining <= 0) {
-        body.dataset.state = 'sold-out';
-        buyBtn.textContent = 'Sold Out — God Has Moved On';
+        document.body.dataset.state = 'sold-out';
+        buyBtn.textContent = 'God Has Moved On';
         buyBtn.disabled = true;
         stockCounter.textContent = '0 of 1';
         stockBadge.textContent = '✦ Sold Out ✦';
       } else {
-        body.dataset.state = 'active';
-        buyBtn.textContent = `Buy Now — €500`;
+        document.body.dataset.state = 'active';
+        buyBtn.textContent = '✦ Receive the Blessing — €500 ✦';
         buyBtn.disabled = false;
         stockCounter.textContent = `${stockRemaining} of ${STOCK_TOTAL}`;
-        stockBadge.textContent = `⚡ 1 Left Today`;
+        stockBadge.textContent = '🔥 Only 1 Left Today';
       }
     }
 
     buyBtn.addEventListener('click', () => {
       if (stockRemaining <= 0) return;
-      stockRemaining -= 1;
+      stockRemaining--;
       applyState();
     });
 
     applyState();
 
-
-    // tilt removed
-
-
-    // ─── VIEWERS COUNTER ─────────────────────────────────────────────────────
-
     let viewers = 1247;
     const viewersEl = document.getElementById('viewersCount');
-
     function updateViewers() {
       const delta = Math.floor(Math.random() * 7) - 3;
       viewers = Math.max(1050, Math.min(1800, viewers + delta));
