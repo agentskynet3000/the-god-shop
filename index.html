@@ -83,6 +83,19 @@
       0%,90%,100%{opacity:1;}
       95%{opacity:0.4;}
     }
+    @keyframes borderShimmer {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes borderSweep {
+      0%   { transform: translateX(-100%) rotate(0deg); }
+      100% { transform: translateX(400%) rotate(0deg); }
+    }
+    @keyframes glowPulse {
+      0%,100% { opacity: 0.7; }
+      50%      { opacity: 1; }
+    }
 
     /* ─── BLOBS (very soft pastels, barely visible under white) ─── */
 
@@ -115,6 +128,52 @@
       position: relative;
       overflow-x: hidden;
     }
+
+    /* ─── DIVINE GLOW BORDER UTILITY ─── */
+
+    .glow-border {
+      position: relative;
+      border-radius: 14px;
+      padding: 2px;
+      background: linear-gradient(270deg, #FFD700, #FF9900, #FFE680, #FF6B00, #FFC200, #FFD700);
+      background-size: 400% 400%;
+      animation: borderShimmer 3s ease infinite;
+      box-shadow: 0 0 18px rgba(255,200,0,0.45), 0 0 40px rgba(255,150,0,0.2);
+    }
+    .glow-border::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(105deg, transparent 20%, rgba(255,255,220,0.65) 50%, transparent 80%);
+      background-size: 300% 100%;
+      animation: borderSweep 2.5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .glow-border > * { border-radius: 12px; position: relative; z-index: 1; }
+
+    .glow-border-soft {
+      position: relative;
+      border-radius: 12px;
+      padding: 1.5px;
+      background: linear-gradient(270deg, rgba(255,215,0,0.9), rgba(255,160,0,0.8), rgba(255,240,100,0.95), rgba(255,120,0,0.7), rgba(255,215,0,0.9));
+      background-size: 400% 400%;
+      animation: borderShimmer 4.5s ease infinite;
+      box-shadow: 0 0 10px rgba(255,200,0,0.28), 0 0 24px rgba(255,150,0,0.1);
+    }
+    .glow-border-soft::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: linear-gradient(105deg, transparent 15%, rgba(255,255,200,0.5) 50%, transparent 85%);
+      background-size: 300% 100%;
+      animation: borderSweep 3.2s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .glow-border-soft > * { border-radius: 10px; position: relative; z-index: 1; }
 
     /* ─── AMAZON-STYLE TOP NAV ─── */
 
@@ -541,7 +600,6 @@
       border-radius: 10px;
       padding: 14px 12px;
       text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     }
 
     .stat-icon { font-size: 1.4rem; margin-bottom: 4px; display: block; }
@@ -568,7 +626,6 @@
       background: var(--white);
       border-radius: 10px;
       padding: 16px 18px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -673,6 +730,7 @@
   <!-- PAGE WRAP -->
   <div class="page-wrap">
 
+    <div class="glow-border">
     <div class="product-layout">
 
       <!-- VIDEO -->
@@ -718,8 +776,8 @@
 
         <p class="stock-badge" id="stockBadge">✦ Only 1 left — order soon</p>
 
-        <button class="btn-add-cart" id="addCartBtn">Add to Cart</button>
-        <button class="btn-buy-now" id="buyBtn">Buy Now</button>
+        <div class="glow-border-soft"><button class="btn-add-cart" id="addCartBtn" style="width:100%;border-radius:10px">Add to Cart</button></div>
+        <div class="glow-border-soft"><button class="btn-buy-now" id="buyBtn" style="width:100%;border-radius:10px">Buy Now</button></div>
 
         <p class="buy-box-micro">
           Secure transaction · Return policy: 30 divine days<br>
@@ -733,32 +791,33 @@
       </div>
 
     </div>
+    </div><!-- /glow-border -->
 
     <!-- STATS ROW -->
     <div class="stats-row">
-      <div class="stat-card">
+      <div class="glow-border-soft"><div class="stat-card">
         <span class="stat-icon">🌿</span>
         <span class="stat-label" id="stockCounter">1 Left</span>
         <span class="stat-sub">One per night. God moves on.</span>
-      </div>
-      <div class="stat-card">
+      </div></div>
+      <div class="glow-border-soft"><div class="stat-card">
         <span class="stat-icon">👁</span>
         <span class="stat-label"><span id="viewersCount">1,247</span> watching</span>
         <span class="stat-sub" style="animation: viewerBlink 8s ease-in-out infinite; display:block">souls viewing right now</span>
-      </div>
-      <div class="stat-card">
+      </div></div>
+      <div class="glow-border-soft"><div class="stat-card">
         <span class="stat-icon">✦</span>
         <span class="stat-label">3:33 AM</span>
         <span class="stat-sub">New product every night</span>
-      </div>
+      </div></div>
     </div>
 
     <!-- TESTIMONIAL -->
-    <div class="testimonial-strip">
+    <div class="glow-border-soft" style="margin-top:12px"><div class="testimonial-strip" style="margin-top:0">
       <p class="testimonial-header">Top Review ★★★★★</p>
       <p class="testimonial-body">"I didn't believe. Then it arrived. My begonias have never been happier and I haven't stopped crying since. Would purchase again if God allows."</p>
       <p class="testimonial-author">— Sofia R., Lisbon · Verified Purchase · Verified Believer</p>
-    </div>
+    </div></div>
 
   </div>
 
