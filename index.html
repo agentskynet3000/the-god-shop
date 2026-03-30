@@ -36,78 +36,157 @@
     /* ─── INTRO OVERLAY ─── */
 
     @keyframes introFadeOut {
-      0%   { opacity: 1; transform: scale(1); }
-      80%  { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(1.04); }
+      0%   { opacity: 1; }
+      85%  { opacity: 1; }
+      100% { opacity: 0; }
     }
     @keyframes introLineIn {
-      from { opacity: 0; transform: translateY(12px); }
+      from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes introBgShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes introHaloGrow {
+      0%   { transform: scale(0.7); opacity: 0; }
+      40%  { opacity: 1; }
+      100% { transform: scale(1.6); opacity: 0.4; }
+    }
+    @keyframes introRayRotate {
+      from { transform: translate(-50%,-50%) rotate(0deg); }
+      to   { transform: translate(-50%,-50%) rotate(360deg); }
     }
 
     #intro-overlay {
       position: fixed;
       inset: 0;
-      background: #0A0800;
+      background: linear-gradient(135deg, #FFFBEA, #FFE88A, #FFF5C0, #FFD060, #FFFDE8, #FFE090, #FFF8D0);
+      background-size: 400% 400%;
+      animation:
+        introBgShift 4s ease infinite,
+        introFadeOut 1.2s ease-in forwards;
+      animation-delay: 0s, 5.5s;
       z-index: 9999;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 20px;
-      padding: 40px 24px;
-      animation: introFadeOut 4s ease-in-out forwards;
-      animation-delay: 2.5s;
-      pointer-events: none;
+      gap: 22px;
+      padding: 40px 32px;
+      overflow: hidden;
     }
 
-    #intro-overlay.gone {
-      display: none;
+    #intro-overlay.gone { display: none; }
+
+    /* Radial halo */
+    #intro-overlay::before {
+      content: '';
+      position: absolute;
+      width: 80vmax; height: 80vmax;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center,
+        rgba(255,255,255,0.98) 0%,
+        rgba(255,240,130,0.6) 30%,
+        rgba(255,190,40,0.15) 60%,
+        transparent 75%
+      );
+      animation: introHaloGrow 6s ease-out forwards;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Conic ray burst */
+    #intro-overlay::after {
+      content: '';
+      position: absolute;
+      width: 200vmax; height: 200vmax;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg, rgba(255,220,60,0.18) 4deg, transparent 8deg,
+        transparent 22deg, rgba(255,200,40,0.13) 26deg, transparent 30deg,
+        transparent 50deg, rgba(255,220,60,0.18) 54deg, transparent 58deg,
+        transparent 76deg, rgba(255,200,40,0.13) 80deg, transparent 84deg,
+        transparent 106deg, rgba(255,220,60,0.18) 110deg, transparent 114deg,
+        transparent 136deg, rgba(255,200,40,0.13) 140deg, transparent 144deg,
+        transparent 166deg, rgba(255,220,60,0.18) 170deg, transparent 174deg,
+        transparent 196deg, rgba(255,200,40,0.13) 200deg, transparent 204deg,
+        transparent 226deg, rgba(255,220,60,0.18) 230deg, transparent 234deg,
+        transparent 256deg, rgba(255,200,40,0.13) 260deg, transparent 264deg,
+        transparent 286deg, rgba(255,220,60,0.18) 290deg, transparent 294deg,
+        transparent 316deg, rgba(255,200,40,0.13) 320deg, transparent 324deg,
+        transparent 346deg, rgba(255,220,60,0.18) 350deg, transparent 354deg
+      );
+      animation: introRayRotate 18s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: radial-gradient(ellipse at center, transparent 8%, black 25%, transparent 60%);
+      -webkit-mask-image: radial-gradient(ellipse at center, transparent 8%, black 25%, transparent 60%);
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
     }
 
     .intro-line {
-      font-family: var(--font-black);
-      font-size: clamp(1.1rem, 4vw, 2rem);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      opacity: 0;
       text-align: center;
       line-height: 1.3;
-      opacity: 0;
     }
 
     .intro-line-1 {
-      color: var(--yellow);
-      animation: introLineIn 0.7s ease forwards;
-      animation-delay: 0.2s;
+      font-family: var(--font-black);
+      font-size: clamp(2.2rem, 8vw, 5rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dark);
+      animation: introLineIn 1s cubic-bezier(0.2,0,0.1,1) forwards;
+      animation-delay: 0.3s;
+      text-shadow: 0 2px 40px rgba(200,140,0,0.3);
     }
 
+    .intro-line-1 .gold-word { color: var(--orange); }
+
     .intro-line-2 {
-      color: rgba(255,255,255,0.5);
       font-family: var(--font);
       font-weight: 400;
-      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-      letter-spacing: 0.18em;
-      animation: introLineIn 0.7s ease forwards;
-      animation-delay: 0.9s;
+      font-size: clamp(0.9rem, 2.8vw, 1.3rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(30,20,0,0.55);
+      animation: introLineIn 1s cubic-bezier(0.2,0,0.1,1) forwards;
+      animation-delay: 1.4s;
     }
 
     .intro-line-3 {
-      color: rgba(255,255,255,0.85);
       font-family: var(--font);
-      font-weight: 400;
-      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-      letter-spacing: 0.18em;
-      animation: introLineIn 0.7s ease forwards;
-      animation-delay: 1.6s;
+      font-weight: 600;
+      font-size: clamp(0.9rem, 2.8vw, 1.3rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(30,20,0,0.8);
+      animation: introLineIn 1s cubic-bezier(0.2,0,0.1,1) forwards;
+      animation-delay: 2.6s;
     }
 
-    .intro-dot {
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--orange);
+    .intro-ornament {
+      font-size: 1.4rem;
       opacity: 0;
-      animation: introLineIn 0.5s ease forwards;
-      animation-delay: 2.2s;
+      color: var(--orange);
+      letter-spacing: 0.4em;
+      animation: introLineIn 0.8s ease forwards;
+      animation-delay: 3.8s;
     }
 
     @keyframes divineGradient {
@@ -846,10 +925,12 @@
 
   <!-- INTRO OVERLAY -->
   <div id="intro-overlay">
-    <p class="intro-line intro-line-1">The God Shop</p>
-    <p class="intro-line intro-line-2">Every night at 3:33 AM</p>
-    <p class="intro-line intro-line-3">God manifests one product.</p>
-    <div class="intro-dot"></div>
+    <div class="intro-content">
+      <p class="intro-line intro-line-1">The <span class="gold-word">God</span> Shop</p>
+      <p class="intro-line intro-line-2">Every night at 3:33 AM</p>
+      <p class="intro-line intro-line-3">God manifests one product.</p>
+      <p class="intro-ornament">✦ ✦ ✦</p>
+    </div>
   </div>
 
   <!-- SPARKLE CANVAS -->
@@ -1059,7 +1140,10 @@
 
     // ─── INTRO ────────────────────────────────────────────────────────────────
     const intro = document.getElementById('intro-overlay');
-    intro.addEventListener('animationend', () => { intro.classList.add('gone'); });
+    // Remove after fade-out animation ends (the second animation = introFadeOut)
+    setTimeout(() => {
+      intro.classList.add('gone');
+    }, 7000);
 
     // ─── SPARKLES ─────────────────────────────────────────────────────────────
     const canvas = document.getElementById('sparkleCanvas');
