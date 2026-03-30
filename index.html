@@ -37,7 +37,7 @@
 
     @keyframes introFadeOut {
       0%   { opacity: 1; }
-      85%  { opacity: 1; }
+      70%  { opacity: 1; }
       100% { opacity: 0; }
     }
     @keyframes introLineIn {
@@ -66,8 +66,8 @@
       background-size: 400% 400%;
       animation:
         introBgShift 4s ease infinite,
-        introFadeOut 1.2s ease-in forwards;
-      animation-delay: 0s, 5.5s;
+        introFadeOut 1.8s ease-in-out forwards;
+      animation-delay: 0s, 5.2s;
       z-index: 9999;
       display: flex;
       flex-direction: column;
@@ -78,7 +78,10 @@
       overflow: hidden;
     }
 
-    #intro-overlay.gone { display: none; }
+    #intro-overlay.gone {
+      visibility: hidden;
+      pointer-events: none;
+    }
 
     /* Radial halo */
     #intro-overlay::before {
@@ -927,8 +930,8 @@
   <div id="intro-overlay">
     <div class="intro-content">
       <p class="intro-line intro-line-1">The <span class="gold-word">God</span> Shop</p>
-      <p class="intro-line intro-line-2">Every night at 3:33 AM</p>
-      <p class="intro-line intro-line-3">God manifests one product.</p>
+      <p class="intro-line intro-line-2">One product. Every night. Whether you need it or not.</p>
+      <p class="intro-line intro-line-3">God has already decided what it is.</p>
       <p class="intro-ornament">✦ ✦ ✦</p>
     </div>
   </div>
@@ -958,16 +961,16 @@
   <!-- TICKER -->
   <div class="ticker-wrap">
     <div class="ticker-track">
-      <span>✦ MARCOS FROM BERLIN JUST WATERED HIS GARDEN AND WEPT ✦ GOD LOOKED AT YOUR GARDEN AND SAID: NOT YET ✦ "I COULDN'T SLEEP. I BOUGHT IT. NOW I CAN SLEEP." — ANNIKA, DÜSSELDORF ✦ THE HOSE ARRIVED STILL WARM FROM HEAVEN'S WAREHOUSE ✦ ONLY 1 UNIT DESCENDS PER NIGHT ✦ "I SHOWED MY PASTOR. HE CRIED." — TOMÁS, SEVILLA ✦ FREE SHIPPING FROM PARADISE ✦ NOT AVAILABLE IN HELL ✦ GOD CHECKED YOUR GARDEN. IT NEEDS THIS. ✦ MARCOS FROM BERLIN JUST WATERED HIS GARDEN AND WEPT ✦ GOD LOOKED AT YOUR GARDEN AND SAID: NOT YET ✦ "I COULDN'T SLEEP. I BOUGHT IT. NOW I CAN SLEEP." — ANNIKA, DÜSSELDORF ✦ THE HOSE ARRIVED STILL WARM FROM HEAVEN'S WAREHOUSE ✦ ONLY 1 UNIT DESCENDS PER NIGHT ✦ "I SHOWED MY PASTOR. HE CRIED." — TOMÁS, SEVILLA ✦ FREE SHIPPING FROM PARADISE ✦ NOT AVAILABLE IN HELL ✦ GOD CHECKED YOUR GARDEN. IT NEEDS THIS. ✦</span>
+      <span>✦ DIETER FROM BOCHUM IS ON LEAVE FROM WORK ✦ "IT ARRIVED WARM. I DON'T KNOW WHY." — ANNIKA, DÜSSELDORF ✦ HEAVEN'S WAREHOUSE HAS A 4.2 STAR RATING ON GOOGLE MAPS ✦ ONE REVIEW SAYS "PARKING DIFFICULT" ✦ GOD IS AWARE ✦ THIS IS NOT A DRILL ✦ "I ALREADY OWNED A HOSE. THIS IS DIFFERENT." — TOMÁS, SEVILLA ✦ FREE SHIPPING. GOD ABSORBS THE COST. ✦ NOT AVAILABLE IN LOCATIONS WITHOUT WATER ✦ CURRENTLY 1,247 PEOPLE LOOKING AT THIS. YOU ARE ALL GOING TO BE FINE. ✦ DIETER FROM BOCHUM IS ON LEAVE FROM WORK ✦ "IT ARRIVED WARM. I DON'T KNOW WHY." — ANNIKA, DÜSSELDORF ✦ HEAVEN'S WAREHOUSE HAS A 4.2 STAR RATING ON GOOGLE MAPS ✦ ONE REVIEW SAYS "PARKING DIFFICULT" ✦ GOD IS AWARE ✦ THIS IS NOT A DRILL ✦ "I ALREADY OWNED A HOSE. THIS IS DIFFERENT." — TOMÁS, SEVILLA ✦ FREE SHIPPING. GOD ABSORBS THE COST. ✦ NOT AVAILABLE IN LOCATIONS WITHOUT WATER ✦ CURRENTLY 1,247 PEOPLE LOOKING AT THIS. YOU ARE ALL GOING TO BE FINE. ✦</span>
     </div>
   </div>
 
   <!-- BREADCRUMB -->
   <div class="breadcrumb">
     <a href="#">Heaven</a><span class="sep">›</span>
-    <a href="#">Divine Products</a><span class="sep">›</span>
+    <a href="#">Things God Made at 3am</a><span class="sep">›</span>
     <a href="#">Garden &amp; Outdoor</a><span class="sep">›</span>
-    <span>Sacred Garden Hose</span>
+    <span>The Sacred Garden Hose</span>
   </div>
 
   <!-- PAGE WRAP -->
@@ -984,26 +987,26 @@
 
       <!-- INFO -->
       <div class="info-col">
-        <p class="product-label">✦ Today's Holy Manifestation — Visit The God Shop</p>
-        <h2 class="product-name">Genesis 847:3 — The Sacred Garden Hose (15m, Blessed Edition)</h2>
+        <p class="product-label">✦ Tonight's Manifestation — Limited to 1</p>
+        <h2 class="product-name">The Sacred Garden Hose<br><span style="font-family:var(--font);font-weight:400;font-size:0.55em;letter-spacing:0.05em;color:var(--mid)">(Genesis 847:3 · Blessed Edition · 15m)</span></h2>
 
         <div class="rating-row">
           <span class="stars">★★★★★</span>
-          <span class="rating-count">4,847 divine ratings</span>
+          <span class="rating-count">4,847 ratings · <span style="color:var(--mid)">Nobody left a bad one. They were afraid.</span></span>
         </div>
 
         <div class="price-block">
           <span class="price-label">Price:</span>
           <span class="price-main">€500.00</span>
-          <p class="price-rrp">RRP: <s>€1,400.00</s> &nbsp;<span class="price-saving">Save €900 (64%)</span></p>
+          <p class="price-rrp">Was: <s>€1,400.00</s> &nbsp;<span class="price-saving">You save €900. Spiritually, much more.</span></p>
         </div>
 
         <ul class="product-bullets">
-          <li>15 meters of pure Eden-sourced divine hydration</li>
-          <li>Blessed at exactly 3:33 AM by a certified celestial entity</li>
-          <li>Compatible with standard garden taps and miracles</li>
-          <li>Shipped from Heaven's warehouse in 3–5 business days</li>
-          <li>Your garden will never be the same. God checked.</li>
+          <li>15 meters of genuine Eden-sourced hose. No knock-offs.</li>
+          <li>Blessed at 3:33 AM. The exact minute. Not 3:34.</li>
+          <li>Works with most standard taps. And some non-standard ones.</li>
+          <li>Dispatched from Heaven's fulfilment centre in 3–5 business days.</li>
+          <li>Note: God is not liable for what your begonias become.</li>
         </ul>
       </div>
 
@@ -1012,24 +1015,24 @@
         <div class="buy-box-price">€500.00</div>
 
         <div class="delivery-badge">
-          <p class="delivery-line"><span class="fast">FREE delivery tomorrow</span></p>
-          <p class="delivery-line">Order within <strong>2 hrs 13 mins</strong></p>
-          <p class="delivery-line">Deliver to <span class="location">Your Soul</span></p>
+          <p class="delivery-line"><span class="fast">FREE delivery, probably tomorrow</span></p>
+          <p class="delivery-line">Order within <strong>2 hrs 13 mins</strong> or wait until God makes another one</p>
+          <p class="delivery-line">Deliver to <span class="location">Your address on Earth</span></p>
         </div>
 
-        <p class="stock-badge" id="stockBadge">✦ Only 1 left — order soon</p>
+        <p class="stock-badge" id="stockBadge">✦ Only 1 — God made exactly one</p>
 
         <div class="glow-border-soft"><button class="btn-add-cart" id="addCartBtn" style="width:100%;border-radius:10px">Add to Cart</button></div>
         <div class="glow-border-soft"><button class="btn-buy-now" id="buyBtn" style="width:100%;border-radius:10px">Buy Now</button></div>
 
         <p class="buy-box-micro">
-          Secure transaction · Return policy: 30 divine days<br>
-          Ships from and sold by <strong>Heaven LLC</strong>
+          Secure transaction · Returns accepted · God will know if you abuse this.<br>
+          Ships from and sold by <strong>Heaven Logistics GmbH</strong>
         </p>
 
         <div class="sold-by">
-          <strong>Sold by:</strong> <a href="#">Heaven LLC</a> ·
-          <a href="#">Other sellers</a> (0 available)
+          <strong>Sold by:</strong> <a href="#">Heaven Logistics GmbH</a> ·
+          <a href="#">Other sellers</a> (there are none)
         </div>
       </div>
 
@@ -1041,25 +1044,25 @@
       <div class="glow-border-soft"><div class="stat-card">
         <span class="stat-icon">🌿</span>
         <span class="stat-label" id="stockCounter">1 Left</span>
-        <span class="stat-sub">One per night. God moves on.</span>
+        <span class="stat-sub">God made exactly one. Classic God.</span>
       </div></div>
       <div class="glow-border-soft"><div class="stat-card">
         <span class="stat-icon">👁</span>
         <span class="stat-label"><span id="viewersCount">1,247</span> watching</span>
-        <span class="stat-sub" style="animation: viewerBlink 8s ease-in-out infinite; display:block">souls viewing right now</span>
+        <span class="stat-sub" style="animation: viewerBlink 8s ease-in-out infinite; display:block">all of them want it. only you can have it.</span>
       </div></div>
       <div class="glow-border-soft"><div class="stat-card">
         <span class="stat-icon">✦</span>
         <span class="stat-label">3:33 AM</span>
-        <span class="stat-sub">New product every night</span>
+        <span class="stat-sub">Every night. Not even Christmas is exempt.</span>
       </div></div>
     </div>
 
     <!-- TESTIMONIAL -->
     <div class="glow-border-soft" style="margin-top:12px"><div class="testimonial-strip" style="margin-top:0">
       <p class="testimonial-header">Top Review ★★★★★</p>
-      <p class="testimonial-body">"I didn't believe. Then it arrived. My begonias have never been happier and I haven't stopped crying since. Would purchase again if God allows."</p>
-      <p class="testimonial-author">— Sofia R., Lisbon · Verified Purchase · Verified Believer</p>
+      <p class="testimonial-body">"I didn't need a garden hose. I don't even have a garden. And yet here I am, crying in my kitchen, holding the most important thing I've ever owned."</p>
+      <p class="testimonial-author">— Dieter K., Bochum · Verified Purchase · Currently on leave from work</p>
     </div></div>
 
   </div>
@@ -1102,12 +1105,12 @@
     function applyState() {
       if (stockRemaining <= 0) {
         document.body.dataset.state = 'sold-out';
-        buyBtn.textContent = 'Currently Unavailable';
+        buyBtn.textContent = 'Sold. See you at 3:33 AM.';
         buyBtn.disabled = true;
-        addCartBtn.textContent = 'God Has Moved On';
+        addCartBtn.textContent = 'Too late. It is gone.';
         addCartBtn.disabled = true;
-        stockCounter.textContent = 'Sold Out';
-        stockBadge.textContent = '✦ God has moved on for today';
+        stockCounter.textContent = 'Gone';
+        stockBadge.textContent = '✦ God has moved on. New product tonight.';
         stockBadge.style.color = '#CC0C39';
       } else {
         document.body.dataset.state = 'active';
@@ -1140,10 +1143,7 @@
 
     // ─── INTRO ────────────────────────────────────────────────────────────────
     const intro = document.getElementById('intro-overlay');
-    // Remove after fade-out animation ends (the second animation = introFadeOut)
-    setTimeout(() => {
-      intro.classList.add('gone');
-    }, 7000);
+    setTimeout(() => { intro.classList.add('gone'); }, 7200);
 
     // ─── SPARKLES ─────────────────────────────────────────────────────────────
     const canvas = document.getElementById('sparkleCanvas');
