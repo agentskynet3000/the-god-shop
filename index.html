@@ -263,7 +263,7 @@
     }
     @keyframes borderSweep {
       0%   { background-position: 200% 50%; }
-      100% { background-position: -200% 50%; }
+      100% { background-position: -100% 50%; }
     }
     @keyframes glowPulse {
       0%,100% { opacity: 0.7; }
@@ -334,39 +334,30 @@
         0 0 80px rgba(255,100,0,0.1);
     }
 
-    /* Sweep highlight — bright white streak running along the border */
+    /* Sweep highlight — pseudo rotating shine on top of border */
     .glow-border::before {
       content: '';
       position: absolute;
       inset: -3px;
       border-radius: 14px;
-      background: conic-gradient(
-        from var(--sweep-angle, 0deg),
-        transparent 0deg,
-        rgba(255,255,220,0.0) 60deg,
-        rgba(255,255,255,0.9) 90deg,
-        rgba(255,255,220,0.0) 120deg,
-        transparent 360deg
+      background: linear-gradient(
+        var(--shine-angle, 120deg),
+        transparent 20%,
+        rgba(255,255,200,0.0) 38%,
+        rgba(255,255,255,0.95) 48%,
+        rgba(255,255,200,0.0) 58%,
+        transparent 78%
       );
+      background-size: 200% 200%;
+      animation: borderSweep 10s linear infinite;
+      pointer-events: none;
+      z-index: 3;
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       padding: 3px;
-      animation: sweepRotate 10s linear infinite;
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    @property --sweep-angle {
-      syntax: '<angle>';
-      initial-value: 0deg;
-      inherits: false;
-    }
-
-    @keyframes sweepRotate {
-      to { --sweep-angle: 360deg; }
     }
 
     /* Soft version for smaller cards */
@@ -389,23 +380,24 @@
       position: absolute;
       inset: -2px;
       border-radius: 12px;
-      background: conic-gradient(
-        from var(--sweep-angle, 0deg),
-        transparent 0deg,
-        rgba(255,255,255,0.0) 70deg,
-        rgba(255,255,255,0.85) 90deg,
-        rgba(255,255,255,0.0) 110deg,
-        transparent 360deg
+      background: linear-gradient(
+        120deg,
+        transparent 25%,
+        rgba(255,255,255,0.0) 40%,
+        rgba(255,255,255,0.9) 50%,
+        rgba(255,255,255,0.0) 60%,
+        transparent 75%
       );
+      background-size: 200% 200%;
+      animation: borderSweep 3.5s linear infinite;
+      pointer-events: none;
+      z-index: 3;
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       padding: 2px;
-      animation: sweepRotate 2.8s linear infinite;
-      pointer-events: none;
-      z-index: 3;
     }
 
     /* ─── AMAZON-STYLE TOP NAV ─── */
