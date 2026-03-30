@@ -444,20 +444,43 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 240px;
+      grid-template-columns: 1fr 1fr;
       gap: 0;
       background: rgba(255,255,255,0.95);
       border: 1px solid var(--border);
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 640px) {
       .product-grid { grid-template-columns: 1fr; }
       .video-col { border-right: none; border-bottom: 1px solid var(--border); }
-      .info-col { border-right: none; border-bottom: 1px solid var(--border); }
-      .buy-box { border-left: none; border-top: 1px solid var(--border); }
+      .right-col { border-left: none; }
     }
 
-        /* ─── VIDEO / IMAGE COL ─── */
+        /* ─── RIGHT COLUMN ─── */
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .right-top {
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .right-buybox {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    /* ─── VIDEO / IMAGE COL ─── */
 
     .video-col {
       position: relative;
@@ -872,85 +895,83 @@
 
     <div class="glow-border">
     <div class="product-grid">
+
       <!-- VIDEO -->
       <div class="video-col">
         <video class="manifestation-video" src="video.mp4" autoplay muted loop playsinline preload="auto"></video>
         <div class="drop-badge">Tonight's Drop</div>
       </div>
 
-      <!-- BUY BOX (right col, Amazon style — info below on mobile) -->
-      <div class="buy-box">
-        <div class="buy-box-price">€500,00</div>
-        <p class="buy-box-per-m">€33,33 / Meter</p>
+      <!-- RIGHT COLUMN: title + info + buy box -->
+      <div class="right-col">
 
-        <div class="delivery-box">
-          <p class="delivery-line"><span class="fast">GRATIS Lieferung — wahrscheinlich morgen</span></p>
-          <p class="delivery-line">Bestellen Sie in den nächsten <strong>2 Std. 13 Min.</strong></p>
-          <p class="delivery-line">Oder warten Sie bis Gott das nächste macht.</p>
-          <p class="delivery-line" style="margin-top:4px">Liefern an: <span class="loc">Ihre Adresse auf der Erde</span></p>
+        <!-- Title / info block -->
+        <div class="right-top">
+          <p class="product-label">Besuche The God Shop · Heutige Heilige Manifestation</p>
+          <h1 class="product-name">The Sacred Garden Hose — Blessed Edition</h1>
+          <p class="product-sub">Genesis 847:3 · 15 Meter · jede Nacht manifestiert um 3:33 Uhr</p>
+
+          <div class="rating-row">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">4.847 Bewertungen</span>
+            <span class="rating-note">Niemand hat eine schlechte hinterlassen. Sie hatten Angst.</span>
+          </div>
+
+          <div class="price-block">
+            <span class="price-label">Preis:</span>
+            <span class="price-main">€500,00</span>
+            <p class="price-per-m">€33,33 / Meter</p>
+            <p class="price-rrp">UVP: <s>€1.400,00</s> &nbsp;<span class="price-saving">Sie sparen €900 (64 %). Spirituell noch viel mehr.</span></p>
+          </div>
+
+          <ul class="product-bullets">
+            <li>15 Meter echter Eden-Schlauch. Keine Fälschungen.</li>
+            <li>Gesegnet um 3:33 Uhr. Die genaue Minute. Nicht 3:34.</li>
+            <li>Kompatibel mit den meisten Standardarmaturen.</li>
+            <li>Hinweis: Gott haftet nicht für das, was Ihre Begonien werden.</li>
+          </ul>
         </div>
 
-        <div class="qty-row">
-          <label>Menge:</label>
-          <select class="qty-select">
-            <option>1 (maximum)</option>
-          </select>
+        <!-- Buy box block -->
+        <div class="right-buybox">
+          <div class="delivery-box">
+            <p class="delivery-line"><span class="fast">GRATIS Lieferung — wahrscheinlich morgen</span></p>
+            <p class="delivery-line">Bestellen Sie in den nächsten <strong>2 Std. 13 Min.</strong></p>
+            <p class="delivery-line">Oder warten Sie bis Gott das nächste macht.</p>
+            <p class="delivery-line" style="margin-top:4px">Liefern an: <span class="loc">Ihre Adresse auf der Erde</span></p>
+          </div>
+
+          <div class="qty-row">
+            <label>Menge:</label>
+            <select class="qty-select">
+              <option>1 (maximum)</option>
+            </select>
+          </div>
+
+          <p class="in-stock" id="stockBadge">Auf Lager — Gott hat genau einen gemacht</p>
+
+          <div class="glow-border-soft">
+            <button class="btn-add-cart" id="addCartBtn">In den Einkaufswagen</button>
+          </div>
+          <div class="glow-border-soft">
+            <button class="btn-buy-now" id="buyBtn">Jetzt kaufen</button>
+          </div>
+
+          <p class="buy-micro">
+            Sichere Transaktion · Gott weiß, wenn Sie das missbrauchen.<br>
+            Rückgabe: 30 göttliche Tage
+          </p>
+
+          <div class="sold-by">
+            <strong>Verkäufer:</strong> <a href="#">Heaven Logistics GmbH</a><br>
+            <strong>Andere Anbieter:</strong> Es gibt keine.
+          </div>
         </div>
 
-        <p class="in-stock" id="stockBadge">Auf Lager — Gott hat genau einen gemacht</p>
-
-        <div class="glow-border-soft">
-          <button class="btn-add-cart" id="addCartBtn">In den Einkaufswagen</button>
-        </div>
-        <div class="glow-border-soft">
-          <button class="btn-buy-now" id="buyBtn">Jetzt kaufen</button>
-        </div>
-
-        <p class="buy-micro">
-          Sichere Transaktion · Gott weiß, wenn Sie das missbrauchen.<br>
-          Rückgabe: 30 göttliche Tage
-        </p>
-
-        <div class="sold-by">
-          <strong>Verkäufer:</strong> <a href="#">Heaven Logistics GmbH</a><br>
-          <strong>Versand:</strong> Heaven Logistics GmbH<br>
-          <strong>Andere Anbieter:</strong> Es gibt keine.
-        </div>
-      </div>
+      </div><!-- /right-col -->
 
     </div>
     </div><!-- /glow-border -->
-
-    <!-- INFO BELOW (Amazon puts this under the image on .de) -->
-    <div class="glow-border-soft" style="margin-top:0">
-    <div style="background:rgba(255,255,255,0.95);border:1px solid var(--border);padding:16px 18px;display:flex;flex-direction:column;gap:10px;">
-      <p class="product-label">Besuche The God Shop · Heutige Heilige Manifestation</p>
-      <h1 class="product-name">The Sacred Garden Hose — Blessed Edition</h1>
-      <p class="product-sub">Genesis 847:3 · 15 Meter · Einzelnes Exemplar, manifestiert jede Nacht um 3:33 Uhr</p>
-
-      <div class="rating-row">
-        <span class="stars">★★★★★</span>
-        <span class="rating-count">4.847 Bewertungen</span>
-        <span class="rating-note">Niemand hat eine schlechte hinterlassen. Sie hatten Angst.</span>
-      </div>
-
-      <div class="price-block">
-        <span class="price-label">Preis:</span>
-        <span class="price-main">€500,00</span>
-        <p class="price-per-m">€33,33 / Meter</p>
-        <p class="price-rrp">UVP: <s>€1.400,00</s> &nbsp;<span class="price-saving">Sie sparen €900 (64 %). Spirituell noch viel mehr.</span></p>
-      </div>
-
-      <p class="about-header">Über diesen Artikel</p>
-      <ul class="product-bullets">
-        <li>15 Meter echter Eden-Schlauch. Keine Fälschungen.</li>
-        <li>Gesegnet um 3:33 Uhr. Die genaue Minute. Nicht 3:34.</li>
-        <li>Kompatibel mit den meisten Standardarmaturen. Und einigen nicht-standardisierten.</li>
-        <li>Versand aus dem Erfüllungszentrum des Himmels in 3–5 Werktagen.</li>
-        <li>Hinweis: Gott haftet nicht für das, was Ihre Begonien werden.</li>
-      </ul>
-    </div>
-    </div>
 
     <!-- SPECS TABLE -->
     <div class="specs-section">
