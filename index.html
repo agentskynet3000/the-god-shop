@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE GOD SHOP</title>
+  <title>The God Shop</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,11 +11,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
+      --nav:         #131921;
+      --nav-hover:   #232F3E;
       --orange:      #FF9900;
-      --orange-dark: #C45500;
-      --yellow:      #FFD814;
-      --yellow-dark: #F0C14B;
-      --black:       #000000;
+      --orange-btn:  #F0C14B;
+      --orange-btn-border: #A88734;
+      --buy-btn:     #FF9900;
+      --buy-btn-border: #E47911;
+      --link:        #007185;
+      --link-hover:  #C45500;
+      --price-red:   #B12704;
+      --green:       #007600;
       --dark:        #0F1111;
       --mid:         #565959;
       --light:       #767676;
@@ -23,25 +29,21 @@
       --bg:          #EAEDED;
       --white:       #FFFFFF;
       --panel:       #F0F2F2;
-      --neon:        #00ff40;
-      --urgency:     #CC0C39;
-      --font:        'Archivo', system-ui, sans-serif;
-      --font-black:  'Archivo Black', system-ui, sans-serif;
+      --font:        'Archivo', 'Amazon Ember', Arial, system-ui, sans-serif;
+      --font-black:  'Archivo Black', 'Amazon Ember', Arial, system-ui, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     /* ─── KEYFRAMES ─── */
 
-    /* ─── INTRO OVERLAY ─── */
-
     @keyframes introFadeOut {
       0%   { opacity: 1; }
-      70%  { opacity: 1; }
+      75%  { opacity: 1; }
       100% { opacity: 0; }
     }
     @keyframes introLineIn {
-      from { opacity: 0; transform: translateY(18px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes introBgShift {
@@ -50,162 +52,14 @@
       100% { background-position: 0% 50%; }
     }
     @keyframes introHaloGrow {
-      0%   { transform: scale(0.7); opacity: 0; }
+      0%   { transform: scale(0.6); opacity: 0; }
       40%  { opacity: 1; }
-      100% { transform: scale(1.6); opacity: 0.4; }
+      100% { transform: scale(1.8); opacity: 0; }
     }
     @keyframes introRayRotate {
       from { transform: translate(-50%,-50%) rotate(0deg); }
       to   { transform: translate(-50%,-50%) rotate(360deg); }
     }
-
-    #intro-overlay {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #FFFBEA, #FFE88A, #FFF5C0, #FFD060, #FFFDE8, #FFE090, #FFF8D0);
-      background-size: 400% 400%;
-      animation:
-        introBgShift 4s ease infinite,
-        introFadeOut 1.8s ease-in-out forwards;
-      animation-delay: 0s, 5.2s;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 22px;
-      padding: 40px 32px;
-      overflow: hidden;
-    }
-
-    #intro-overlay.gone {
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    /* Radial halo */
-    #intro-overlay::before {
-      content: '';
-      position: absolute;
-      width: 80vmax; height: 80vmax;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center,
-        rgba(255,255,255,0.98) 0%,
-        rgba(255,240,130,0.6) 30%,
-        rgba(255,190,40,0.15) 60%,
-        transparent 75%
-      );
-      animation: introHaloGrow 6s ease-out forwards;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Conic ray burst */
-    #intro-overlay::after {
-      content: '';
-      position: absolute;
-      width: 200vmax; height: 200vmax;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%) rotate(0deg);
-      background: conic-gradient(
-        from 0deg,
-        transparent 0deg, rgba(255,220,60,0.18) 4deg, transparent 8deg,
-        transparent 22deg, rgba(255,200,40,0.13) 26deg, transparent 30deg,
-        transparent 50deg, rgba(255,220,60,0.18) 54deg, transparent 58deg,
-        transparent 76deg, rgba(255,200,40,0.13) 80deg, transparent 84deg,
-        transparent 106deg, rgba(255,220,60,0.18) 110deg, transparent 114deg,
-        transparent 136deg, rgba(255,200,40,0.13) 140deg, transparent 144deg,
-        transparent 166deg, rgba(255,220,60,0.18) 170deg, transparent 174deg,
-        transparent 196deg, rgba(255,200,40,0.13) 200deg, transparent 204deg,
-        transparent 226deg, rgba(255,220,60,0.18) 230deg, transparent 234deg,
-        transparent 256deg, rgba(255,200,40,0.13) 260deg, transparent 264deg,
-        transparent 286deg, rgba(255,220,60,0.18) 290deg, transparent 294deg,
-        transparent 316deg, rgba(255,200,40,0.13) 320deg, transparent 324deg,
-        transparent 346deg, rgba(255,220,60,0.18) 350deg, transparent 354deg
-      );
-      animation: introRayRotate 18s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-      mask-image: radial-gradient(ellipse at center, transparent 8%, black 25%, transparent 60%);
-      -webkit-mask-image: radial-gradient(ellipse at center, transparent 8%, black 25%, transparent 60%);
-    }
-
-    .intro-content {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      text-align: center;
-    }
-
-    .intro-line {
-      opacity: 0;
-      text-align: center;
-      line-height: 1.3;
-    }
-
-    .intro-line-1 {
-      font-family: var(--font-black);
-      font-size: clamp(2.2rem, 8vw, 5rem);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--dark);
-      animation: introLineIn 1s cubic-bezier(0.2,0,0.1,1) forwards;
-      animation-delay: 0.3s;
-      text-shadow: 0 2px 40px rgba(200,140,0,0.3);
-    }
-
-    .intro-line-1 .gold-word { color: var(--orange); }
-
-    .intro-line-2 {
-      font-family: var(--font);
-      font-weight: 400;
-      font-size: clamp(0.9rem, 2.8vw, 1.3rem);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(30,20,0,0.55);
-      animation: introLineIn 1s cubic-bezier(0.2,0,0.1,1) forwards;
-      animation-delay: 1.4s;
-    }
-
-    .intro-line-3 {
-      font-family: var(--font);
-      font-weight: 600;
-      font-size: clamp(0.9rem, 2.8vw, 1.3rem);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(30,20,0,0.8);
-      animation: introLineIn 1s cubic-bezier(0.2,0,0.1,1) forwards;
-      animation-delay: 2.6s;
-    }
-
-    .intro-ornament {
-      font-size: 1.4rem;
-      opacity: 0;
-      color: var(--orange);
-      letter-spacing: 0.4em;
-      animation: introLineIn 0.8s ease forwards;
-      animation-delay: 3.8s;
-    }
-
-    @keyframes divineGradient {
-      0%   { background-position: 0% 50%; }
-      25%  { background-position: 100% 0%; }
-      50%  { background-position: 100% 100%; }
-      75%  { background-position: 0% 100%; }
-      100% { background-position: 0% 50%; }
-    }
-    @keyframes sparkleFloat {
-      0%   { transform: translateY(0) scale(1);   opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 1; }
-      100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
-    }
-
     @keyframes blobFloat1 {
       0%,100%{transform:translate(0,0) scale(1);}
       33%{transform:translate(5%,8%) scale(1.1);}
@@ -242,21 +96,22 @@
     }
     @keyframes cntSecsFlicker {
       0%,98%,100%{opacity:1;}
-      99%{opacity:0.4;}
+      99%{opacity:0.3;}
     }
     @keyframes urgentPulse {
-      0%,100%{box-shadow:0 0 0 0 rgba(204,12,57,0.5);}
-      50%{box-shadow:0 0 0 8px rgba(204,12,57,0);}
+      0%,100%{opacity:1;}
+      50%{opacity:0.6;}
     }
     @keyframes shimmer {
       0%{left:-100%;}
       100%{left:200%;}
     }
-    @keyframes viewerBlink {
-      0%,90%,100%{opacity:1;}
-      95%{opacity:0.4;}
+    @keyframes divineGradient {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    @keyframes borderShimmer {
+    @keyframes borderGlow {
       0%   { background-position: 0% 50%; }
       50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
@@ -265,20 +120,130 @@
       0%   { background-position: 200% 50%; }
       100% { background-position: -100% 50%; }
     }
-    @keyframes glowPulse {
-      0%,100% { opacity: 0.7; }
-      50%      { opacity: 1; }
+    @keyframes viewerBlink {
+      0%,90%,100%{opacity:1;}
+      95%{opacity:0.4;}
     }
 
-    /* ─── BLOBS (very soft pastels, barely visible under white) ─── */
+    /* ─── INTRO OVERLAY ─── */
+
+    #intro-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #FFFBEA, #FFE88A, #FFF5C0, #FFD060, #FFFDE8, #FFE090, #FFF8D0);
+      background-size: 400% 400%;
+      animation: introBgShift 4s ease infinite, introFadeOut 1.8s ease-in-out forwards;
+      animation-delay: 0s, 5.2s;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 32px;
+      overflow: hidden;
+    }
+    #intro-overlay.gone { visibility: hidden; pointer-events: none; }
+
+    #intro-overlay::before {
+      content: '';
+      position: absolute;
+      width: 80vmax; height: 80vmax;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center,
+        rgba(255,255,255,0.98) 0%,
+        rgba(255,240,130,0.6) 30%,
+        rgba(255,190,40,0.1) 60%,
+        transparent 75%
+      );
+      animation: introHaloGrow 6s ease-out forwards;
+      pointer-events: none;
+      z-index: 0;
+    }
+    #intro-overlay::after {
+      content: '';
+      position: absolute;
+      width: 200vmax; height: 200vmax;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%) rotate(0deg);
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg, rgba(255,220,60,0.15) 4deg, transparent 8deg,
+        transparent 22deg, rgba(255,200,40,0.1) 26deg, transparent 30deg,
+        transparent 50deg, rgba(255,220,60,0.15) 54deg, transparent 58deg,
+        transparent 76deg, rgba(255,200,40,0.1) 80deg, transparent 84deg,
+        transparent 106deg, rgba(255,220,60,0.15) 110deg, transparent 114deg,
+        transparent 136deg, rgba(255,200,40,0.1) 140deg, transparent 144deg,
+        transparent 166deg, rgba(255,220,60,0.15) 170deg, transparent 174deg,
+        transparent 196deg, rgba(255,200,40,0.1) 200deg, transparent 204deg,
+        transparent 226deg, rgba(255,220,60,0.15) 230deg, transparent 234deg
+      );
+      animation: introRayRotate 18s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: radial-gradient(ellipse at center, transparent 8%, black 25%, transparent 60%);
+      -webkit-mask-image: radial-gradient(ellipse at center, transparent 8%, black 25%, transparent 60%);
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+    .intro-line { opacity: 0; }
+    .intro-line-1 {
+      font-family: var(--font-black);
+      font-size: clamp(2.4rem, 9vw, 5.5rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--dark);
+      animation: introLineIn 1s cubic-bezier(0.2,0,0.1,1) forwards;
+      animation-delay: 0.3s;
+    }
+    .intro-line-1 .gold { color: var(--orange); }
+    .intro-line-2 {
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(30,20,0,0.5);
+      animation: introLineIn 1s cubic-bezier(0.2,0,0.1,1) forwards;
+      animation-delay: 1.5s;
+    }
+    .intro-line-3 {
+      font-family: var(--font);
+      font-weight: 600;
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(30,20,0,0.75);
+      animation: introLineIn 1s cubic-bezier(0.2,0,0.1,1) forwards;
+      animation-delay: 2.8s;
+    }
+    .intro-ornament {
+      opacity: 0;
+      font-size: 1.2rem;
+      color: var(--orange);
+      letter-spacing: 0.5em;
+      animation: introLineIn 0.8s ease forwards;
+      animation-delay: 4s;
+    }
+
+    /* ─── BLOBS ─── */
 
     .blob {
       position: fixed;
       border-radius: 50%;
-      filter: blur(120px);
+      filter: blur(130px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.35;
+      opacity: 0.28;
     }
     .blob-1 { width:80vw;height:80vw;top:-20%;left:-20%;background:#ffc0cb;animation:blobFloat1 22s ease-in-out infinite; }
     .blob-2 { width:70vw;height:70vw;top:10%;right:-20%;background:#d8b4fe;animation:blobFloat2 28s ease-in-out infinite; }
@@ -287,25 +252,7 @@
     .blob-5 { width:55vw;height:55vw;top:55%;right:-8%;background:#fed7aa;animation:blobFloat5 31s ease-in-out infinite; }
     .blob-6 { width:55vw;height:55vw;top:-8%;right:12%;background:#bae6fd;animation:blobFloat6 26s ease-in-out infinite; }
 
-    /* ─── BASE ─── */
-
-    body {
-      background: linear-gradient(
-        135deg,
-        #FFF8DC, #FFE8A0, #FFF0B0, #FFD060, #FFFACD, #FFE090, #FFF5C0, #FFD878, #FFFBEA
-      );
-      background-size: 600% 600%;
-      animation: divineGradient 8s ease infinite;
-      color: var(--dark);
-      font-family: var(--font);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      -webkit-font-smoothing: antialiased;
-      position: relative;
-      overflow-x: hidden;
-    }
+    /* ─── SPARKLE CANVAS ─── */
 
     #sparkleCanvas {
       position: fixed;
@@ -316,96 +263,82 @@
       z-index: 1;
     }
 
-    /* ─── DIVINE GLOW BORDER UTILITY ─── */
+    /* ─── GLOW BORDER ─── */
 
-    /* Main glow border — thick, bright, animated gold */
     .glow-border {
       position: relative;
-      border-radius: 14px;
       border: 3px solid transparent;
       background:
         linear-gradient(var(--white), var(--white)) padding-box,
         linear-gradient(270deg, #FFD700, #FF6B00, #FFE680, #FF9900, #FFF0A0, #FF6B00, #FFD700) border-box;
       background-size: 400% 400%;
-      animation: borderShimmer 12s linear infinite;
-      box-shadow:
-        0 0 16px rgba(255,180,0,0.6),
-        0 0 40px rgba(255,140,0,0.3),
-        0 0 80px rgba(255,100,0,0.1);
+      animation: borderGlow 12s linear infinite;
+      box-shadow: 0 0 18px rgba(255,180,0,0.5), 0 0 40px rgba(255,140,0,0.2);
     }
-
-    /* Sweep highlight — pseudo rotating shine on top of border */
     .glow-border::before {
       content: '';
       position: absolute;
       inset: -3px;
-      border-radius: 14px;
-      background: linear-gradient(
-        var(--shine-angle, 120deg),
-        transparent 20%,
-        rgba(255,255,200,0.0) 38%,
-        rgba(255,255,255,0.95) 48%,
-        rgba(255,255,200,0.0) 58%,
-        transparent 78%
-      );
+      background: linear-gradient(120deg, transparent 20%, rgba(255,255,200,0.0) 38%, rgba(255,255,255,0.9) 48%, rgba(255,255,200,0.0) 58%, transparent 78%);
       background-size: 200% 200%;
       animation: borderSweep 10s linear infinite;
       pointer-events: none;
       z-index: 3;
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       padding: 3px;
     }
 
-    /* Soft version for smaller cards */
     .glow-border-soft {
       position: relative;
-      border-radius: 12px;
       border: 2px solid transparent;
       background:
         linear-gradient(var(--white), var(--white)) padding-box,
         linear-gradient(270deg, #FFD700, #FF9900, #FFE080, #FF8C00, #FFD700) border-box;
       background-size: 400% 400%;
-      animation: borderShimmer 3.5s linear infinite;
-      box-shadow:
-        0 0 10px rgba(255,180,0,0.4),
-        0 0 24px rgba(255,140,0,0.15);
+      animation: borderGlow 4s linear infinite;
+      box-shadow: 0 0 8px rgba(255,180,0,0.35);
     }
-
     .glow-border-soft::before {
       content: '';
       position: absolute;
       inset: -2px;
-      border-radius: 12px;
-      background: linear-gradient(
-        120deg,
-        transparent 25%,
-        rgba(255,255,255,0.0) 40%,
-        rgba(255,255,255,0.9) 50%,
-        rgba(255,255,255,0.0) 60%,
-        transparent 75%
-      );
+      background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,0.0) 40%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.0) 60%, transparent 75%);
       background-size: 200% 200%;
       animation: borderSweep 3.5s linear infinite;
       pointer-events: none;
       z-index: 3;
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       padding: 2px;
     }
 
-    /* ─── AMAZON-STYLE TOP NAV ─── */
+    /* ─── BASE ─── */
+
+    body {
+      background: linear-gradient(135deg, #FFF8DC, #FFE8A0, #FFF0B0, #FFD060, #FFFACD, #FFE090, #FFF5C0, #FFD878, #FFFBEA);
+      background-size: 600% 600%;
+      animation: divineGradient 8s ease infinite;
+      color: var(--dark);
+      font-family: var(--font);
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ─── TOP NAV ─── */
 
     .top-nav {
       width: 100%;
-      background: var(--dark);
-      padding: 8px 20px;
+      background: var(--nav);
+      padding: 8px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -418,62 +351,60 @@
 
     .nav-logo {
       font-family: var(--font-black);
-      font-size: clamp(1rem, 3vw, 1.6rem);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      letter-spacing: 0.04em;
       color: var(--white);
       white-space: nowrap;
     }
+    .nav-logo .orange { color: var(--orange); }
 
-    .nav-logo span { color: var(--orange); }
-
-    .nav-countdown {
+    .nav-right {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      gap: 16px;
     }
 
     .nav-cnt-label {
       font-family: var(--font);
+      font-size: 0.65rem;
       font-weight: 700;
-      font-size: clamp(0.55rem, 1.1vw, 0.68rem);
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--orange);
+      color: rgba(255,255,255,0.6);
+      display: block;
+      line-height: 1;
     }
 
     .nav-cnt-numbers {
       font-family: var(--font-black);
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      color: var(--white);
+      font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+      color: var(--orange);
       letter-spacing: 0.04em;
+      line-height: 1;
     }
 
-    .nav-cnt-sep { opacity: 0.5; }
     #cntSecs { animation: cntSecsFlicker 1s step-end infinite; }
 
-    /* ─── TICKER ─── */
+    /* ─── TICKER (orange, tight) ─── */
 
     .ticker-wrap {
       width: 100%;
       background: var(--orange);
       overflow: hidden;
-      padding: 7px 0;
-      z-index: 10;
+      padding: 6px 0;
       flex-shrink: 0;
+      border-bottom: 1px solid var(--orange-btn-border);
     }
     .ticker-track {
       display: inline-block;
       white-space: nowrap;
-      animation: tickerMove 40s linear infinite;
+      animation: tickerMove 45s linear infinite;
     }
     .ticker-track span {
       font-family: var(--font);
       font-weight: 700;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--dark);
     }
@@ -482,72 +413,66 @@
 
     .breadcrumb {
       width: 100%;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 8px 20px;
-      font-family: var(--font);
+      padding: 6px 18px;
       font-size: 0.72rem;
-      color: var(--light);
+      color: var(--mid);
       position: relative;
       z-index: 5;
       flex-shrink: 0;
+      background: rgba(255,255,255,0.6);
+      border-bottom: 1px solid rgba(213,217,217,0.5);
     }
-
-    .breadcrumb a { color: #007185; text-decoration: none; }
-    .breadcrumb a:hover { color: var(--orange-dark); text-decoration: underline; }
-    .breadcrumb .sep { margin: 0 6px; color: var(--light); }
+    .breadcrumb a { color: var(--link); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--link-hover); text-decoration: underline; }
+    .breadcrumb .sep { margin: 0 5px; color: var(--light); }
 
     /* ─── PAGE WRAP ─── */
 
     .page-wrap {
       width: 100%;
-      max-width: 1000px;
-      padding: 16px 16px;
+      max-width: 1060px;
+      padding: 14px 18px;
       display: flex;
       flex-direction: column;
+      gap: 12px;
       position: relative;
       z-index: 2;
       flex: 1;
     }
 
-    @media (min-width: 641px) { .page-wrap { padding: 20px 24px; } }
+    /* ─── PRODUCT GRID ─── */
 
-    /* ─── PRODUCT LAYOUT ─── */
-
-    .product-layout {
+    .product-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 280px;
+      grid-template-columns: 1fr 1fr 260px;
       gap: 0;
-      background: var(--white);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
     }
 
     @media (max-width: 860px) {
-      .product-layout { grid-template-columns: 1fr 1fr; }
+      .product-grid { grid-template-columns: 1fr 1fr; }
       .buy-box { border-top: 1px solid var(--border); grid-column: 1 / -1; }
     }
-
-    @media (max-width: 560px) {
-      .product-layout { grid-template-columns: 1fr; }
+    @media (max-width: 540px) {
+      .product-grid { grid-template-columns: 1fr; }
       .buy-box { grid-column: 1; }
     }
 
-    /* ─── VIDEO COLUMN ─── */
+    /* ─── VIDEO / IMAGE COL ─── */
 
     .video-col {
       position: relative;
-      background: var(--panel);
+      background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 340px;
+      min-height: 360px;
       overflow: hidden;
       border-right: 1px solid var(--border);
+      padding: 8px;
     }
-
-    @media (max-width: 560px) {
+    @media (max-width: 540px) {
       .video-col { min-height: 240px; border-right: none; border-bottom: 1px solid var(--border); }
     }
 
@@ -555,336 +480,267 @@
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      min-height: 340px;
+      object-fit: contain;
+      min-height: 344px;
     }
-
-    @media (max-width: 560px) { .manifestation-video { min-height: 240px; } }
-
-    /* ─── BADGE ─── */
+    @media (max-width: 540px) { .manifestation-video { min-height: 224px; } }
 
     .drop-badge {
       position: absolute;
-      top: 12px; left: 12px;
-      background: var(--urgency);
-      color: var(--white);
+      top: 8px; left: 8px;
+      background: #CC0C39;
+      color: #fff;
       font-family: var(--font-black);
-      font-size: 0.65rem;
-      letter-spacing: 0.06em;
-      padding: 4px 10px;
-      border-radius: 4px;
+      font-size: 0.6rem;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
       z-index: 3;
       text-transform: uppercase;
     }
 
-    /* ─── INFO COLUMN ─── */
+    /* ─── INFO COL ─── */
 
     .info-col {
       display: flex;
       flex-direction: column;
-      padding: 20px 18px;
-      gap: 12px;
+      padding: 16px 14px;
+      gap: 10px;
       border-right: 1px solid var(--border);
     }
-
     @media (max-width: 860px) { .info-col { border-right: none; } }
 
     .product-label {
-      font-family: var(--font);
-      font-weight: 400;
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #007185;
+      color: var(--link);
     }
 
     .product-name {
       font-family: var(--font-black);
-      font-size: clamp(1.2rem, 2.8vw, 1.9rem);
-      letter-spacing: -0.01em;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
       color: var(--dark);
-      line-height: 1.15;
+      line-height: 1.2;
     }
 
-    /* ─── STAR RATING ─── */
+    .product-sub {
+      font-size: 0.78rem;
+      color: var(--mid);
+      margin-top: -4px;
+    }
 
     .rating-row {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding-bottom: 10px;
+      gap: 6px;
+      padding-bottom: 8px;
       border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
     }
+    .stars { color: var(--orange); font-size: 0.9rem; letter-spacing: 1px; }
+    .rating-count { font-size: 0.78rem; color: var(--link); }
+    .rating-note { font-size: 0.72rem; color: var(--mid); }
 
-    .stars { color: var(--orange); font-size: 1rem; letter-spacing: 1px; }
-    .rating-count { font-family: var(--font); font-size: 0.8rem; color: #007185; }
-
-    /* ─── PRICE ─── */
-
-    .price-block { display: flex; flex-direction: column; gap: 2px; }
-
-    .price-label {
-      font-family: var(--font);
-      font-size: 0.68rem;
-      color: var(--mid);
-    }
-
+    .price-block { display: flex; flex-direction: column; gap: 3px; }
+    .price-label { font-size: 0.72rem; color: var(--mid); }
     .price-main {
       font-family: var(--font-black);
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      color: var(--urgency);
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      color: var(--price-red);
       line-height: 1;
     }
-
-    .price-rrp {
-      font-family: var(--font);
-      font-size: 0.8rem;
-      color: var(--mid);
-    }
-
+    .price-rrp { font-size: 0.78rem; color: var(--mid); }
     .price-rrp s { color: var(--mid); }
-    .price-saving { color: var(--urgency); font-weight: 700; }
-
-    /* ─── BULLETS ─── */
+    .price-saving { color: var(--price-red); font-weight: 700; }
 
     .product-bullets {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
+      padding-top: 4px;
     }
-
     .product-bullets li {
-      font-family: var(--font);
-      font-size: clamp(0.8rem, 1.4vw, 0.88rem);
+      font-size: 0.82rem;
       color: var(--dark);
-      line-height: 1.5;
-      padding-left: 14px;
+      line-height: 1.45;
+      padding-left: 12px;
       position: relative;
     }
-
     .product-bullets li::before {
       content: '•';
       position: absolute;
       left: 0;
-      color: var(--orange);
-      font-size: 1rem;
+      color: var(--dark);
     }
 
-    /* ─── BUY BOX (Amazon sidebar) ─── */
+    /* ─── BUY BOX ─── */
 
     .buy-box {
       display: flex;
       flex-direction: column;
-      padding: 18px 16px;
-      gap: 12px;
-      background: var(--white);
+      padding: 16px 14px;
+      gap: 10px;
+      background: rgba(255,255,255,0.95);
     }
 
     .buy-box-price {
       font-family: var(--font-black);
-      font-size: clamp(1.6rem, 3.5vw, 2rem);
-      color: var(--urgency);
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      color: var(--price-red);
     }
 
-    .delivery-badge {
-      background: var(--panel);
+    .delivery-box {
+      background: rgba(240,242,242,0.8);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 12px;
+      padding: 10px 11px;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
+    .delivery-line { font-size: 0.78rem; color: var(--dark); line-height: 1.4; }
+    .delivery-line .fast { color: var(--green); font-weight: 700; }
+    .delivery-line .loc { color: var(--link); }
 
-    .delivery-line {
-      font-family: var(--font);
-      font-size: 0.78rem;
-      color: var(--dark);
-      line-height: 1.4;
-    }
-
-    .delivery-line strong { color: var(--dark); }
-    .delivery-line .fast { color: #007600; font-weight: 700; }
-    .delivery-line .location { color: #007185; }
-
-    .stock-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font);
+    .in-stock {
+      font-size: 0.9rem;
+      color: var(--green);
       font-weight: 700;
-      font-size: 0.82rem;
-      color: #007600;
-      animation: urgentPulse 1.6s ease-in-out infinite;
+      animation: urgentPulse 2s ease-in-out infinite;
     }
-
-    body[data-state="sold-out"] .stock-badge {
-      color: var(--urgency);
-      animation: none;
-    }
-
-    /* ─── AMAZON-STYLE BUTTONS ─── */
+    body[data-state="sold-out"] .in-stock { color: #CC0C39; }
 
     .btn-add-cart {
       display: block;
       width: 100%;
-      padding: 12px 20px;
-      background: var(--yellow);
+      padding: 9px 16px;
+      background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
       color: var(--dark);
-      border: 1px solid var(--yellow-dark);
-      border-radius: 24px;
-      font-family: var(--font-black);
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      border: 1px solid var(--orange-btn-border);
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 0.85rem;
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      transition: background 0.15s ease;
-      box-shadow: 0 2px 5px rgba(213,217,217,0.5);
+      transition: background 0.1s ease;
+    }
+    .btn-add-cart:hover:not(:disabled) {
+      background: linear-gradient(to bottom, #f5d078, #e8b820);
     }
 
+    .btn-buy-now {
+      display: block;
+      width: 100%;
+      padding: 9px 16px;
+      background: linear-gradient(to bottom, #f9a825, #e8870e);
+      color: var(--dark);
+      border: 1px solid var(--buy-btn-border);
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.1s ease;
+      position: relative;
+      overflow: hidden;
+    }
     .btn-add-cart::after {
       content: '';
       position: absolute;
       top: 0; left: -100%;
       width: 55%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
-      animation: shimmer 2.2s ease-in-out infinite;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2.4s ease-in-out infinite;
     }
-
-    .btn-add-cart:hover:not(:disabled) { background: #F7CA00; }
-
-    .btn-buy-now {
-      display: block;
-      width: 100%;
-      padding: 12px 20px;
-      background: var(--orange);
-      color: var(--dark);
-      border: 1px solid var(--orange-dark);
-      border-radius: 24px;
-      font-family: var(--font-black);
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.15s ease;
-      box-shadow: 0 2px 5px rgba(213,217,217,0.5);
+    .btn-buy-now:hover:not(:disabled) {
+      background: linear-gradient(to bottom, #e8a020, #d47800);
     }
-
-    .btn-buy-now:hover:not(:disabled) { background: #E8870E; }
 
     .btn-add-cart:disabled,
     .btn-buy-now:disabled,
     body[data-state="sold-out"] .btn-add-cart,
     body[data-state="sold-out"] .btn-buy-now {
-      background: #ddd;
-      color: #999;
+      background: #e9e9e9;
+      color: #888;
       border-color: #ccc;
       cursor: not-allowed;
     }
-
     body[data-state="sold-out"] .btn-add-cart::after { display: none; }
 
-    .buy-box-micro {
-      font-family: var(--font);
+    .buy-micro {
       font-size: 0.68rem;
       color: var(--mid);
-      text-align: center;
       line-height: 1.5;
+      text-align: center;
     }
 
     .sold-by {
-      font-family: var(--font);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--dark);
       border-top: 1px solid var(--border);
-      padding-top: 10px;
+      padding-top: 8px;
     }
+    .sold-by a { color: var(--link); text-decoration: none; }
+    .sold-by a:hover { text-decoration: underline; color: var(--link-hover); }
 
-    .sold-by a { color: #007185; text-decoration: none; }
-    .sold-by a:hover { text-decoration: underline; color: var(--orange-dark); }
-
-    /* ─── STATS / FEATURES ROW ─── */
+    /* ─── STATS ROW ─── */
 
     .stats-row {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 10px;
-      margin-top: 12px;
     }
-
-    @media (max-width: 560px) {
+    @media (max-width: 540px) {
       .stats-row { grid-template-columns: 1fr 1fr; }
       .stat-card:last-child { grid-column: 1 / -1; }
     }
 
     .stat-card {
-      background: var(--white);
-      border-radius: 10px;
-      padding: 14px 12px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
+      padding: 12px;
       text-align: center;
     }
-
-    .stat-icon { font-size: 1.4rem; margin-bottom: 4px; display: block; }
-
+    .stat-icon { font-size: 1.3rem; margin-bottom: 4px; display: block; }
     .stat-label {
-      font-family: var(--font);
       font-weight: 700;
-      font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+      font-size: 0.8rem;
       color: var(--dark);
       display: block;
       margin-bottom: 2px;
     }
+    .stat-sub { font-size: 0.65rem; color: var(--mid); }
 
-    .stat-sub {
-      font-family: var(--font);
-      font-size: clamp(0.58rem, 1vw, 0.65rem);
-      color: var(--mid);
-    }
+    /* ─── CUSTOMER REVIEWS ─── */
 
-    /* ─── TESTIMONIAL ─── */
-
-    .testimonial-strip {
-      margin-top: 12px;
-      background: var(--white);
-      border-radius: 10px;
+    .reviews-section {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border);
       padding: 16px 18px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
     }
-
-    .testimonial-header {
+    .reviews-title {
       font-family: var(--font-black);
-      font-size: 0.85rem;
+      font-size: 1rem;
       color: var(--dark);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
     }
-
-    .testimonial-body {
-      font-family: var(--font);
-      font-size: 0.82rem;
-      color: var(--mid);
-      font-style: italic;
-      line-height: 1.6;
-    }
-
-    .testimonial-author {
-      font-family: var(--font);
-      font-weight: 700;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      color: var(--light);
-      text-transform: uppercase;
-    }
+    .review-item { display: flex; flex-direction: column; gap: 4px; }
+    .review-stars { color: var(--orange); font-size: 0.85rem; }
+    .review-title { font-weight: 700; font-size: 0.82rem; color: var(--dark); }
+    .review-meta { font-size: 0.7rem; color: var(--mid); }
+    .review-body { font-size: 0.8rem; color: var(--dark); line-height: 1.5; }
+    .review-author { font-size: 0.72rem; color: var(--mid); }
 
     /* ─── FOOTER ─── */
 
     .site-footer {
       width: 100%;
-      background: var(--dark);
-      padding: 18px 24px;
+      background: var(--nav);
+      padding: 16px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -894,41 +750,32 @@
       z-index: 5;
       flex-shrink: 0;
       margin-top: auto;
+      border-top: 2px solid var(--orange);
     }
-
     .footer-brand {
       font-family: var(--font-black);
-      font-size: clamp(0.9rem, 2vw, 1.2rem);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      letter-spacing: 0.04em;
       color: var(--white);
     }
-
-    .footer-brand span { color: var(--orange); }
-
-    .footer-micro {
-      font-family: var(--font);
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-    }
+    .footer-brand .orange { color: var(--orange); }
+    .footer-micro { font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; }
 
   </style>
 </head>
 <body data-state="active">
 
-  <!-- INTRO OVERLAY -->
+  <!-- INTRO -->
   <div id="intro-overlay">
     <div class="intro-content">
-      <p class="intro-line intro-line-1">The <span class="gold-word">God</span> Shop</p>
+      <p class="intro-line intro-line-1">The <span class="gold">God</span> Shop</p>
       <p class="intro-line intro-line-2">One product. Every night. Whether you need it or not.</p>
       <p class="intro-line intro-line-3">God has already decided what it is.</p>
       <p class="intro-ornament">✦ ✦ ✦</p>
     </div>
   </div>
 
-  <!-- SPARKLE CANVAS -->
+  <!-- SPARKLES -->
   <canvas id="sparkleCanvas"></canvas>
 
   <!-- BLOBS -->
@@ -939,13 +786,15 @@
   <div class="blob blob-5"></div>
   <div class="blob blob-6"></div>
 
-  <!-- TOP NAV -->
+  <!-- NAV -->
   <nav class="top-nav">
-    <div class="nav-logo">The <span>God</span> Shop</div>
-    <div class="nav-countdown">
-      <span class="nav-cnt-label">Next drop in</span>
-      <div class="nav-cnt-numbers">
-        <span id="cntHours">--</span><span class="nav-cnt-sep">:</span><span id="cntMins">--</span><span class="nav-cnt-sep">:</span><span id="cntSecs">--</span>
+    <div class="nav-logo">The <span class="orange">God</span> Shop</div>
+    <div class="nav-right">
+      <div>
+        <span class="nav-cnt-label">Next drop in</span>
+        <div class="nav-cnt-numbers">
+          <span id="cntHours">--</span>:<span id="cntMins">--</span>:<span id="cntSecs">--</span>
+        </div>
       </div>
     </div>
   </nav>
@@ -953,7 +802,7 @@
   <!-- TICKER -->
   <div class="ticker-wrap">
     <div class="ticker-track">
-      <span>✦ DIETER FROM BOCHUM IS ON LEAVE FROM WORK ✦ "IT ARRIVED WARM. I DON'T KNOW WHY." — ANNIKA, DÜSSELDORF ✦ HEAVEN'S WAREHOUSE HAS A 4.2 STAR RATING ON GOOGLE MAPS ✦ ONE REVIEW SAYS "PARKING DIFFICULT" ✦ GOD IS AWARE ✦ THIS IS NOT A DRILL ✦ "I ALREADY OWNED A HOSE. THIS IS DIFFERENT." — TOMÁS, SEVILLA ✦ FREE SHIPPING. GOD ABSORBS THE COST. ✦ NOT AVAILABLE IN LOCATIONS WITHOUT WATER ✦ CURRENTLY 1,247 PEOPLE LOOKING AT THIS. YOU ARE ALL GOING TO BE FINE. ✦ DIETER FROM BOCHUM IS ON LEAVE FROM WORK ✦ "IT ARRIVED WARM. I DON'T KNOW WHY." — ANNIKA, DÜSSELDORF ✦ HEAVEN'S WAREHOUSE HAS A 4.2 STAR RATING ON GOOGLE MAPS ✦ ONE REVIEW SAYS "PARKING DIFFICULT" ✦ GOD IS AWARE ✦ THIS IS NOT A DRILL ✦ "I ALREADY OWNED A HOSE. THIS IS DIFFERENT." — TOMÁS, SEVILLA ✦ FREE SHIPPING. GOD ABSORBS THE COST. ✦ NOT AVAILABLE IN LOCATIONS WITHOUT WATER ✦ CURRENTLY 1,247 PEOPLE LOOKING AT THIS. YOU ARE ALL GOING TO BE FINE. ✦</span>
+      <span>✦ DIETER FROM BOCHUM IS ON LEAVE FROM WORK ✦ "IT ARRIVED WARM. I DON'T KNOW WHY." — ANNIKA, DÜSSELDORF ✦ HEAVEN'S WAREHOUSE HAS A 4.2 STAR RATING ON GOOGLE MAPS ✦ ONE REVIEW SAYS "PARKING DIFFICULT" ✦ GOD IS AWARE ✦ "I ALREADY OWNED A HOSE. THIS IS DIFFERENT." — TOMÁS, SEVILLA ✦ FREE SHIPPING. GOD ABSORBS THE COST. ✦ NOT AVAILABLE IN LOCATIONS WITHOUT WATER ✦ 1,247 PEOPLE LOOKING AT THIS. YOU ARE ALL GOING TO BE FINE. ✦ DIETER FROM BOCHUM IS ON LEAVE FROM WORK ✦ "IT ARRIVED WARM. I DON'T KNOW WHY." — ANNIKA, DÜSSELDORF ✦ HEAVEN'S WAREHOUSE HAS A 4.2 STAR RATING ON GOOGLE MAPS ✦ ONE REVIEW SAYS "PARKING DIFFICULT" ✦ GOD IS AWARE ✦ "I ALREADY OWNED A HOSE. THIS IS DIFFERENT." — TOMÁS, SEVILLA ✦ FREE SHIPPING. GOD ABSORBS THE COST. ✦ NOT AVAILABLE IN LOCATIONS WITHOUT WATER ✦ 1,247 PEOPLE LOOKING AT THIS. YOU ARE ALL GOING TO BE FINE. ✦</span>
     </div>
   </div>
 
@@ -965,36 +814,38 @@
     <span>The Sacred Garden Hose</span>
   </div>
 
-  <!-- PAGE WRAP -->
+  <!-- PAGE -->
   <div class="page-wrap">
 
     <div class="glow-border">
-    <div class="product-layout">
+    <div class="product-grid">
 
       <!-- VIDEO -->
       <div class="video-col">
         <video class="manifestation-video" src="video.mp4" autoplay muted loop playsinline preload="auto"></video>
-        <div class="drop-badge">Today's Drop</div>
+        <div class="drop-badge">Tonight's Drop</div>
       </div>
 
       <!-- INFO -->
       <div class="info-col">
-        <p class="product-label">✦ Tonight's Manifestation — Limited to 1</p>
-        <h2 class="product-name">The Sacred Garden Hose<br><span style="font-family:var(--font);font-weight:400;font-size:0.55em;letter-spacing:0.05em;color:var(--mid)">(Genesis 847:3 · Blessed Edition · 15m)</span></h2>
+        <p class="product-label">Visit The God Shop · Tonight's Holy Manifestation</p>
+        <h1 class="product-name">The Sacred Garden Hose — Blessed Edition</h1>
+        <p class="product-sub">Genesis 847:3 · 15 metres · Single unit, manifested nightly at 3:33 AM</p>
 
         <div class="rating-row">
           <span class="stars">★★★★★</span>
-          <span class="rating-count">4,847 ratings · <span style="color:var(--mid)">Nobody left a bad one. They were afraid.</span></span>
+          <span class="rating-count">4,847 ratings</span>
+          <span class="rating-note">Nobody left a bad one. They were afraid.</span>
         </div>
 
         <div class="price-block">
           <span class="price-label">Price:</span>
           <span class="price-main">€500.00</span>
-          <p class="price-rrp">Was: <s>€1,400.00</s> &nbsp;<span class="price-saving">You save €900. Spiritually, much more.</span></p>
+          <p class="price-rrp">RRP: <s>€1,400.00</s> &nbsp;<span class="price-saving">You save €900 (64%). Spiritually, much more.</span></p>
         </div>
 
         <ul class="product-bullets">
-          <li>15 meters of genuine Eden-sourced hose. No knock-offs.</li>
+          <li>15 metres of genuine Eden-sourced hose. No knock-offs.</li>
           <li>Blessed at 3:33 AM. The exact minute. Not 3:34.</li>
           <li>Works with most standard taps. And some non-standard ones.</li>
           <li>Dispatched from Heaven's fulfilment centre in 3–5 business days.</li>
@@ -1006,32 +857,36 @@
       <div class="buy-box">
         <div class="buy-box-price">€500.00</div>
 
-        <div class="delivery-badge">
-          <p class="delivery-line"><span class="fast">FREE delivery, probably tomorrow</span></p>
+        <div class="delivery-box">
+          <p class="delivery-line"><span class="fast">FREE Delivery — probably tomorrow</span></p>
           <p class="delivery-line">Order within <strong>2 hrs 13 mins</strong> or wait until God makes another one</p>
-          <p class="delivery-line">Deliver to <span class="location">Your address on Earth</span></p>
+          <p class="delivery-line">Deliver to <span class="loc">Your address on Earth</span></p>
         </div>
 
-        <p class="stock-badge" id="stockBadge">✦ Only 1 — God made exactly one</p>
+        <p class="in-stock" id="stockBadge">In Stock — God made exactly one</p>
 
-        <div class="glow-border-soft"><button class="btn-add-cart" id="addCartBtn" style="width:100%;border-radius:10px">Add to Cart</button></div>
-        <div class="glow-border-soft"><button class="btn-buy-now" id="buyBtn" style="width:100%;border-radius:10px">Buy Now</button></div>
+        <div class="glow-border-soft">
+          <button class="btn-add-cart" id="addCartBtn">Add to Cart</button>
+        </div>
+        <div class="glow-border-soft">
+          <button class="btn-buy-now" id="buyBtn">Buy Now</button>
+        </div>
 
-        <p class="buy-box-micro">
-          Secure transaction · Returns accepted · God will know if you abuse this.<br>
-          Ships from and sold by <strong>Heaven Logistics GmbH</strong>
+        <p class="buy-micro">
+          Secure transaction · Returns: 30 divine days<br>
+          God will know if you abuse this policy.
         </p>
 
         <div class="sold-by">
-          <strong>Sold by:</strong> <a href="#">Heaven Logistics GmbH</a> ·
-          <a href="#">Other sellers</a> (there are none)
+          <strong>Sold by</strong> <a href="#">Heaven Logistics GmbH</a><br>
+          <strong>Other sellers:</strong> there are none
         </div>
       </div>
 
     </div>
     </div><!-- /glow-border -->
 
-    <!-- STATS ROW -->
+    <!-- STATS -->
     <div class="stats-row">
       <div class="glow-border-soft"><div class="stat-card">
         <span class="stat-icon">🌿</span>
@@ -1041,7 +896,7 @@
       <div class="glow-border-soft"><div class="stat-card">
         <span class="stat-icon">👁</span>
         <span class="stat-label"><span id="viewersCount">1,247</span> watching</span>
-        <span class="stat-sub" style="animation: viewerBlink 8s ease-in-out infinite; display:block">all of them want it. only you can have it.</span>
+        <span class="stat-sub" style="animation:viewerBlink 8s ease-in-out infinite;display:block">all of them want it. only you can have it.</span>
       </div></div>
       <div class="glow-border-soft"><div class="stat-card">
         <span class="stat-icon">✦</span>
@@ -1050,157 +905,132 @@
       </div></div>
     </div>
 
-    <!-- TESTIMONIAL -->
-    <div class="glow-border-soft" style="margin-top:12px"><div class="testimonial-strip" style="margin-top:0">
-      <p class="testimonial-header">Top Review ★★★★★</p>
-      <p class="testimonial-body">"I didn't need a garden hose. I don't even have a garden. And yet here I am, crying in my kitchen, holding the most important thing I've ever owned."</p>
-      <p class="testimonial-author">— Dieter K., Bochum · Verified Purchase · Currently on leave from work</p>
+    <!-- REVIEWS -->
+    <div class="glow-border-soft"><div class="reviews-section">
+      <p class="reviews-title">Customer Reviews</p>
+
+      <div class="review-item">
+        <span class="review-stars">★★★★★</span>
+        <p class="review-title">"I don't even have a garden."</p>
+        <p class="review-meta">Dieter K. · Verified Purchase · Bochum · Currently on leave from work</p>
+        <p class="review-body">I didn't need a garden hose. I don't even have a garden. And yet here I am, crying in my kitchen, holding the most important thing I've ever owned.</p>
+      </div>
+
+      <div class="review-item" style="border-top:1px solid var(--border);padding-top:10px">
+        <span class="review-stars">★★★★★</span>
+        <p class="review-title">"It arrived warm."</p>
+        <p class="review-meta">Annika W. · Verified Purchase · Düsseldorf</p>
+        <p class="review-body">I don't know how. The packaging was normal. But it was warm. I've stopped asking questions.</p>
+      </div>
+
     </div></div>
 
   </div>
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <p class="footer-brand">Straight from <span>Heaven</span>™</p>
+    <p class="footer-brand">Straight from <span class="orange">Heaven</span>™</p>
     <p class="footer-micro">Products manifest nightly at 3:33 AM · 1 unit per day · Not responsible for spiritual side effects</p>
   </footer>
 
   <script>
     function getNext333AM() {
-      const now = new Date(), target = new Date(now);
-      target.setHours(3, 33, 0, 0);
-      if (now >= target) target.setDate(target.getDate() + 1);
-      return target;
+      const now = new Date(), t = new Date(now);
+      t.setHours(3,33,0,0);
+      if (now >= t) t.setDate(t.getDate()+1);
+      return t;
     }
-
-    const pad = n => String(n).padStart(2, '0');
-    const cntHours = document.getElementById('cntHours');
-    const cntMins  = document.getElementById('cntMins');
-    const cntSecs  = document.getElementById('cntSecs');
-
-    function tickCountdown() {
+    const pad = n => String(n).padStart(2,'0');
+    const cntH = document.getElementById('cntHours');
+    const cntM = document.getElementById('cntMins');
+    const cntS = document.getElementById('cntSecs');
+    function tick() {
       const diff = Math.max(0, getNext333AM() - new Date());
-      const total = Math.floor(diff / 1000);
-      cntHours.textContent = pad(Math.floor(total / 3600));
-      cntMins.textContent  = pad(Math.floor((total % 3600) / 60));
-      cntSecs.textContent  = pad(total % 60);
+      const tot = Math.floor(diff/1000);
+      cntH.textContent = pad(Math.floor(tot/3600));
+      cntM.textContent = pad(Math.floor((tot%3600)/60));
+      cntS.textContent = pad(tot%60);
     }
-    tickCountdown();
-    setInterval(tickCountdown, 1000);
+    tick(); setInterval(tick, 1000);
 
-    let stockRemaining = 1;
-    const buyBtn      = document.getElementById('buyBtn');
-    const addCartBtn  = document.getElementById('addCartBtn');
-    const stockCounter = document.getElementById('stockCounter');
-    const stockBadge  = document.getElementById('stockBadge');
+    let stock = 1;
+    const buyBtn     = document.getElementById('buyBtn');
+    const addCartBtn = document.getElementById('addCartBtn');
+    const stockCnt   = document.getElementById('stockCounter');
+    const stockBadge = document.getElementById('stockBadge');
 
     function applyState() {
-      if (stockRemaining <= 0) {
+      if (stock <= 0) {
         document.body.dataset.state = 'sold-out';
         buyBtn.textContent = 'Sold. See you at 3:33 AM.';
         buyBtn.disabled = true;
         addCartBtn.textContent = 'Too late. It is gone.';
         addCartBtn.disabled = true;
-        stockCounter.textContent = 'Gone';
-        stockBadge.textContent = '✦ God has moved on. New product tonight.';
-        stockBadge.style.color = '#CC0C39';
+        stockCnt.textContent = 'Gone';
+        stockBadge.textContent = 'Currently unavailable — God has moved on. New product tonight.';
       } else {
         document.body.dataset.state = 'active';
         buyBtn.textContent = 'Buy Now';
         buyBtn.disabled = false;
         addCartBtn.textContent = 'Add to Cart';
         addCartBtn.disabled = false;
-        stockCounter.textContent = '1 Left';
-        stockBadge.textContent = '✦ Only 1 left — order soon';
+        stockCnt.textContent = '1 Left';
+        stockBadge.textContent = 'In Stock — God made exactly one';
       }
     }
-
-    [buyBtn, addCartBtn].forEach(btn => btn.addEventListener('click', () => {
-      if (stockRemaining <= 0) return;
-      stockRemaining--;
-      applyState();
-    }));
-
+    [buyBtn, addCartBtn].forEach(b => b.addEventListener('click', () => { if(stock>0){stock--;applyState();} }));
     applyState();
 
     let viewers = 1247;
-    const viewersEl = document.getElementById('viewersCount');
-    function updateViewers() {
-      const delta = Math.floor(Math.random() * 7) - 3;
-      viewers = Math.max(1050, Math.min(1800, viewers + delta));
-      viewersEl.textContent = viewers.toLocaleString('en');
-      setTimeout(updateViewers, 2500 + Math.random() * 3000);
+    const viewEl = document.getElementById('viewersCount');
+    function updateV() {
+      viewers = Math.max(1050, Math.min(1800, viewers + Math.floor(Math.random()*7)-3));
+      viewEl.textContent = viewers.toLocaleString('en');
+      setTimeout(updateV, 2500 + Math.random()*3000);
     }
-    setTimeout(updateViewers, 3000);
+    setTimeout(updateV, 3000);
 
-    // ─── INTRO ────────────────────────────────────────────────────────────────
+    // INTRO
     const intro = document.getElementById('intro-overlay');
-    setTimeout(() => { intro.classList.add('gone'); }, 7200);
+    setTimeout(() => intro.classList.add('gone'), 7200);
 
-    // ─── SPARKLES ─────────────────────────────────────────────────────────────
+    // SPARKLES
     const canvas = document.getElementById('sparkleCanvas');
     const ctx = canvas.getContext('2d');
-
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const SPARKLE_COUNT = 60;
+    function resize() { canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
     const sparkles = [];
-
-    function makeSparkle(yOverride) {
-      const big = Math.random() > 0.7;
-      return {
-        x:       Math.random() * window.innerWidth,
-        y:       yOverride !== undefined ? yOverride : Math.random() * window.innerHeight,
-        size:    big ? (10 + Math.random() * 10) : (3 + Math.random() * 8),
-        opacity: Math.random() * 0.5,
-        target:  0.4 + Math.random() * 0.8,
-        driftX:  (Math.random() - 0.5) * 0.3,
-        rise:    0.2 + Math.random() * 0.6,
-        fade:    0.004 + Math.random() * 0.012,
-        rot:     Math.random() * Math.PI * 2,
-        rotSpd:  (Math.random() - 0.5) * 0.025,
-        gold:    Math.random() > 0.3,
-      };
+    function mk(y) {
+      const big = Math.random()>0.72;
+      return { x:Math.random()*window.innerWidth, y:y!==undefined?y:Math.random()*window.innerHeight,
+        size:big?(10+Math.random()*10):(3+Math.random()*8), op:Math.random()*0.4,
+        target:0.3+Math.random()*0.7, dx:(Math.random()-0.5)*0.3, rise:0.15+Math.random()*0.5,
+        fade:0.003+Math.random()*0.01, rot:Math.random()*Math.PI*2, rs:(Math.random()-0.5)*0.02, gold:Math.random()>0.35 };
     }
-
-    for (let i = 0; i < SPARKLE_COUNT; i++) sparkles.push(makeSparkle());
-
-    function drawStar4(x, y, r, rot) {
-      const ir = r * 0.2;
-      ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.beginPath();
-      for (let i = 0; i < 8; i++) {
-        const a = (i * Math.PI) / 4;
-        const rr = i % 2 === 0 ? r : ir;
-        i === 0 ? ctx.moveTo(Math.cos(a)*rr, Math.sin(a)*rr) : ctx.lineTo(Math.cos(a)*rr, Math.sin(a)*rr);
-      }
+    for(let i=0;i<55;i++) sparkles.push(mk());
+    function star4(x,y,r,rot) {
+      const ir=r*0.2; ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.beginPath();
+      for(let i=0;i<8;i++){const a=(i*Math.PI)/4,rr=i%2===0?r:ir;i===0?ctx.moveTo(Math.cos(a)*rr,Math.sin(a)*rr):ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr);}
       ctx.closePath(); ctx.fill(); ctx.restore();
     }
-
-    function drawCross(x, y, s, rot) {
-      const hw = s * 0.12, hl = s * 0.5;
-      ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
-      ctx.fillRect(-hw,-hl,hw*2,hl*2); ctx.fillRect(-hl,-hw,hl*2,hw*2);
-      ctx.restore();
+    function cross(x,y,s,rot) {
+      const hw=s*0.12,hl=s*0.5; ctx.save(); ctx.translate(x,y); ctx.rotate(rot);
+      ctx.fillRect(-hw,-hl,hw*2,hl*2); ctx.fillRect(-hl,-hw,hl*2,hw*2); ctx.restore();
     }
-
-    function animateSparkles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const s of sparkles) {
-        s.opacity < s.target ? (s.opacity = Math.min(s.opacity + s.fade, s.target)) : (s.opacity -= s.fade);
-        if (s.opacity <= 0) { s.target = 0.4 + Math.random() * 0.8; }
-        s.y -= s.rise; s.x += s.driftX; s.rot += s.rotSpd;
-        if (s.y < -20) Object.assign(s, makeSparkle(canvas.height + 20));
-        ctx.globalAlpha = Math.max(0, s.opacity);
-        ctx.fillStyle = s.gold ? '#D4A020' : 'rgba(255,255,200,0.95)';
-        Math.random() > 0.5 ? drawStar4(s.x, s.y, s.size * 0.6, s.rot) : drawCross(s.x, s.y, s.size, s.rot);
+    function anim() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      for(const s of sparkles) {
+        s.op<s.target?(s.op=Math.min(s.op+s.fade,s.target)):(s.op-=s.fade);
+        if(s.op<=0)s.target=0.3+Math.random()*0.7;
+        s.y-=s.rise; s.x+=s.dx; s.rot+=s.rs;
+        if(s.y<-20)Object.assign(s,mk(canvas.height+20));
+        ctx.globalAlpha=Math.max(0,s.op);
+        ctx.fillStyle=s.gold?'#C8920A':'rgba(255,255,180,0.9)';
+        Math.random()>0.5?star4(s.x,s.y,s.size*0.6,s.rot):cross(s.x,s.y,s.size,s.rot);
       }
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(animateSparkles);
+      ctx.globalAlpha=1; requestAnimationFrame(anim);
     }
-    animateSparkles();
+    anim();
   </script>
-
 </body>
 </html>
