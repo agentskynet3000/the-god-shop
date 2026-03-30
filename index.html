@@ -6,7 +6,7 @@
   <title>THE GOD SHOP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -22,7 +22,8 @@
       --neon: #00ff40;
       --bg: #f4f4f4;
       --urgency: #ff0000;
-      --font: 'Space Grotesk', system-ui, sans-serif;
+      --font: 'Archivo', system-ui, sans-serif;
+      --font-black: 'Archivo Black', system-ui, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -228,8 +229,6 @@
       position: relative;
       z-index: 10;
       flex-shrink: 0;
-      border-top: 2px solid var(--black);
-      border-bottom: 2px solid var(--black);
     }
     .ticker-track {
       display: inline-block;
@@ -250,7 +249,6 @@
     .site-header {
       width: 100%;
       background: var(--white);
-      border-bottom: 2px solid var(--black);
       padding: 20px 24px;
       display: flex;
       align-items: center;
@@ -261,8 +259,8 @@
     }
 
     .site-name {
-      font-family: var(--font);
-      font-weight: 700;
+      font-family: var(--font-black);
+      font-weight: 400;
       font-size: clamp(1.4rem, 4vw, 2.2rem);
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -300,8 +298,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0;
-      border: 2px solid var(--black);
-      border-radius: 6px;
+      border-radius: 32px;
       overflow: hidden;
       background: rgba(255,255,255,0.7);
       backdrop-filter: blur(20px);
@@ -318,7 +315,6 @@
 
     .video-col {
       position: relative;
-      border-right: 2px solid var(--black);
       background: rgba(255,255,255,0.4);
       display: flex;
       align-items: center;
@@ -329,8 +325,6 @@
 
     @media (max-width: 640px) {
       .video-col {
-        border-right: none;
-        border-bottom: 2px solid var(--black);
         min-height: 260px;
       }
     }
@@ -406,8 +400,8 @@
     }
 
     .product-name {
-      font-family: var(--font);
-      font-weight: 700;
+      font-family: var(--font-black);
+      font-weight: 400;
       font-size: clamp(1.5rem, 3.5vw, 2.4rem);
       letter-spacing: -0.02em;
       color: var(--black);
@@ -431,8 +425,8 @@
     }
 
     .price-main {
-      font-family: var(--font);
-      font-weight: 700;
+      font-family: var(--font-black);
+      font-weight: 400;
       font-size: clamp(2.2rem, 5vw, 3.5rem);
       letter-spacing: -0.02em;
       color: var(--black);
@@ -480,8 +474,8 @@
       padding: clamp(14px, 2vh, 20px) 24px;
       background: var(--black);
       color: var(--white);
-      border: 2px solid var(--black);
-      border-radius: 6px;
+      border: none;
+      border-radius: 24px;
       font-family: var(--font);
       font-weight: 700;
       font-size: 1rem;
@@ -506,14 +500,12 @@
     .btn-buy:hover:not(:disabled) {
       background: var(--neon);
       color: var(--black);
-      border-color: var(--black);
     }
 
     .btn-buy:disabled,
     body[data-state="sold-out"] .btn-buy {
       background: var(--gray-border);
       color: var(--gray-text);
-      border-color: var(--gray-border);
       cursor: not-allowed;
     }
 
@@ -533,23 +525,17 @@
     .stats-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: 2px solid var(--black);
-      border-radius: 6px;
-      overflow: hidden;
+      gap: 12px;
       margin-top: 16px;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
     }
 
     .stat-card {
       padding: 20px 24px;
       text-align: center;
-    }
-
-    .stat-card:first-child {
-      border-right: 2px solid var(--black);
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
     }
 
     .stock-counter {
@@ -590,7 +576,6 @@
     .site-footer {
       width: 100%;
       background: var(--white);
-      border-top: 2px solid var(--black);
       padding: 24px;
       display: flex;
       align-items: center;
@@ -604,8 +589,8 @@
     }
 
     .footer-brand {
-      font-family: var(--font);
-      font-weight: 700;
+      font-family: var(--font-black);
+      font-weight: 400;
       font-size: clamp(1.1rem, 2.5vw, 1.6rem);
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -694,7 +679,7 @@
           <span class="price-original">€1,400</span>
         </div>
 
-        <span class="stock-badge" id="stockBadge">⚡ 3 Left</span>
+        <span class="stock-badge" id="stockBadge">⚡ 1 Left Today</span>
 
         <button class="btn-buy" id="buyBtn">Buy Now — €500</button>
         <p class="shipping-perks">✦ Free shipping from Paradise &nbsp;·&nbsp; 30-day divine return policy ✦</p>
@@ -705,8 +690,8 @@
     <!-- ─── STATS ROW ─── -->
     <div class="stats-row">
       <div class="stat-card">
-        <span class="stock-counter" id="stockCounter">3 of 7</span>
-        <p class="stock-sublabel">Once they're gone, God moves on</p>
+        <span class="stock-counter" id="stockCounter">1 of 1</span>
+        <p class="stock-sublabel">One per day. God moves on after.</p>
       </div>
       <div class="stat-card">
         <p class="viewers-counter">👁 <span id="viewersCount">1,247</span></p>
@@ -751,8 +736,8 @@
 
     // ─── STATE MANAGEMENT ────────────────────────────────────────────────────
 
-    const STOCK_TOTAL = 7;
-    let stockRemaining = 3;
+    const STOCK_TOTAL = 1;
+    let stockRemaining = 1;
 
     const buyBtn       = document.getElementById('buyBtn');
     const stockCounter = document.getElementById('stockCounter');
@@ -764,14 +749,14 @@
         body.dataset.state = 'sold-out';
         buyBtn.textContent = 'Sold Out — God Has Moved On';
         buyBtn.disabled = true;
-        stockCounter.textContent = '0 of 7';
+        stockCounter.textContent = '0 of 1';
         stockBadge.textContent = '✦ Sold Out ✦';
       } else {
         body.dataset.state = 'active';
         buyBtn.textContent = `Buy Now — €500`;
         buyBtn.disabled = false;
         stockCounter.textContent = `${stockRemaining} of ${STOCK_TOTAL}`;
-        stockBadge.textContent = `⚡ ${stockRemaining} Left`;
+        stockBadge.textContent = `⚡ 1 Left Today`;
       }
     }
 
@@ -784,32 +769,7 @@
     applyState();
 
 
-    // ─── 3D TILT EFFECT ──────────────────────────────────────────────────────
-
-    const videoCard  = document.getElementById('videoCard');
-    const videoGlare = document.getElementById('videoGlare');
-    const isTouchOnly = window.matchMedia('(hover: none)').matches;
-
-    if (!isTouchOnly) {
-      document.addEventListener('mousemove', e => {
-        const cx = window.innerWidth  / 2;
-        const cy = window.innerHeight / 2;
-        const dx = (e.clientX - cx) / cx;
-        const dy = (e.clientY - cy) / cy;
-        const rotY =  dx * 8;
-        const rotX = -dy * 8;
-        videoCard.style.transform =
-          `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-        const glareX = (e.clientX / window.innerWidth)  * 100;
-        const glareY = (e.clientY / window.innerHeight) * 100;
-        videoGlare.style.background =
-          `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.25) 0%, transparent 65%)`;
-      });
-      document.addEventListener('mouseleave', () => {
-        videoCard.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
-        videoGlare.style.background = 'none';
-      });
-    }
+    // tilt removed
 
 
     // ─── VIEWERS COUNTER ─────────────────────────────────────────────────────
