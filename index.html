@@ -6,7 +6,7 @@
   <title>THE GOD SHOP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Lora:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -15,79 +15,63 @@
     }
 
     :root {
-      --gold: #C9A84C;
-      --gold-warm: #D4A853;
-      --gold-dim: rgba(212, 168, 83, 0.5);
-      --gold-glow: rgba(212, 168, 83, 0.35);
-      --bg-base: #FDF9F0;
-      --text-dark: #1A0B05;
-      --text-mid: rgba(44, 28, 12, 0.75);
-      --text-dim: rgba(44, 28, 12, 0.45);
-      --urgency: #CC1A1A;
+      --black: #000000;
+      --white: #ffffff;
+      --gray-border: #cacaca;
+      --gray-text: #868686;
+      --neon: #00ff40;
+      --bg: #f4f4f4;
+      --urgency: #ff0000;
+      --font: 'Space Grotesk', system-ui, sans-serif;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     /* ─── KEYFRAMES ─── */
 
     @keyframes blobFloat1 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33%  { transform: translate(5%, 8%) scale(1.1); }
-      66%  { transform: translate(-4%, -6%) scale(0.92); }
+      0%, 100% { transform: translate(0,0) scale(1); }
+      33%  { transform: translate(5%,8%) scale(1.1); }
+      66%  { transform: translate(-4%,-6%) scale(0.92); }
     }
     @keyframes blobFloat2 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25%  { transform: translate(-7%, 5%) scale(1.08); }
-      75%  { transform: translate(5%, -8%) scale(0.94); }
+      0%, 100% { transform: translate(0,0) scale(1); }
+      25%  { transform: translate(-7%,5%) scale(1.08); }
+      75%  { transform: translate(5%,-8%) scale(0.94); }
     }
     @keyframes blobFloat3 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      40%  { transform: translate(8%, -7%) scale(1.12); }
-      80%  { transform: translate(-5%, 6%) scale(0.9); }
+      0%, 100% { transform: translate(0,0) scale(1); }
+      40%  { transform: translate(8%,-7%) scale(1.12); }
+      80%  { transform: translate(-5%,6%) scale(0.9); }
     }
     @keyframes blobFloat4 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      30%  { transform: translate(-6%, -4%) scale(1.06); }
-      70%  { transform: translate(7%, 8%) scale(0.95); }
+      0%, 100% { transform: translate(0,0) scale(1); }
+      30%  { transform: translate(-6%,-4%) scale(1.06); }
+      70%  { transform: translate(7%,8%) scale(0.95); }
     }
     @keyframes blobFloat5 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      45%  { transform: translate(9%, -5%) scale(1.14); }
-      85%  { transform: translate(-7%, 9%) scale(0.88); }
+      0%, 100% { transform: translate(0,0) scale(1); }
+      45%  { transform: translate(9%,-5%) scale(1.14); }
+      85%  { transform: translate(-7%,9%) scale(0.88); }
     }
     @keyframes blobFloat6 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      20%  { transform: translate(-8%, 6%) scale(1.09); }
-      60%  { transform: translate(6%, -7%) scale(0.93); }
+      0%, 100% { transform: translate(0,0) scale(1); }
+      20%  { transform: translate(-8%,6%) scale(1.09); }
+      60%  { transform: translate(6%,-7%) scale(0.93); }
     }
     @keyframes blobFloat7 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      35%  { transform: translate(7%, 10%) scale(1.07); }
-      75%  { transform: translate(-9%, -4%) scale(0.96); }
+      0%, 100% { transform: translate(0,0) scale(1); }
+      35%  { transform: translate(7%,10%) scale(1.07); }
+      75%  { transform: translate(-9%,-4%) scale(0.96); }
     }
     @keyframes blobFloat8 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50%  { transform: translate(-5%, -8%) scale(1.11); }
-      90%  { transform: translate(8%, 5%) scale(0.91); }
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { opacity: 0.7; transform: scale(1.0); }
-      50%       { opacity: 1.0; transform: scale(1.15); }
-    }
-    @keyframes centralGlowPulse {
-      0%, 100% { opacity: 0.6; transform: scale(1.0); }
-      50%       { opacity: 0.95; transform: scale(1.12); }
-    }
-    @keyframes rayRotate {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50%  { transform: translate(-5%,-8%) scale(1.11); }
+      90%  { transform: translate(8%,5%) scale(0.91); }
     }
     @keyframes urgentPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(204, 26, 26, 0.55); }
-      50%       { box-shadow: 0 0 0 10px rgba(204, 26, 26, 0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5); }
+      50%       { box-shadow: 0 0 0 8px rgba(255, 0, 0, 0); }
     }
     @keyframes shimmer {
       0%   { left: -100%; }
@@ -105,153 +89,104 @@
       80%  { transform: perspective(800px) rotateX(6deg) rotateY(4deg); }
       100% { transform: perspective(800px) rotateX(0deg) rotateY(0deg); }
     }
-    @keyframes goldGlow {
-      0%, 100% { text-shadow: 0 0 20px rgba(212, 168, 83, 0.5), 0 0 60px rgba(212, 168, 83, 0.2); }
-      50%       { text-shadow: 0 0 35px rgba(212, 168, 83, 0.8), 0 0 100px rgba(212, 168, 83, 0.4); }
-    }
     @keyframes viewerBlink {
       0%, 90%, 100% { opacity: 1; }
       95%            { opacity: 0.4; }
     }
-    @keyframes godRaySweep {
-      0%   { transform: translateX(-160vw) skewX(-15deg); opacity: 0; }
-      8%   { opacity: 0.08; }
-      92%  { opacity: 0.06; }
-      100% { transform: translateX(160vw) skewX(-15deg); opacity: 0; }
-    }
-    @keyframes lensFlare1 {
-      0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.7; }
-      33%       { transform: translate(4px, -3px) scale(1.2); opacity: 0.9; }
-      66%       { transform: translate(-3px, 2px) scale(0.85); opacity: 0.5; }
-    }
-    @keyframes lensFlare2 {
-      0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.5; }
-      40%       { transform: translate(-5px, 4px) scale(1.3); opacity: 0.8; }
-      80%       { transform: translate(3px, -2px) scale(0.8); opacity: 0.3; }
-    }
-    @keyframes lensFlare3 {
-      0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
-      50%       { transform: translate(6px, -5px) scale(1.15); opacity: 1.0; }
-    }
     @keyframes cntSecsFlicker {
       0%, 98%, 100% { opacity: 1; }
-      99% { opacity: 0.6; }
+      99% { opacity: 0.5; }
+    }
+    @keyframes gleam {
+      0%   { right: 100%; }
+      100% { right: -100%; }
+    }
+
+    /* ─── BLOBS (pastel, very light) ─── */
+
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
+    }
+    .blob-pink {
+      width: 80vw; height: 80vw;
+      top: -20%; left: -20%;
+      background: #ffc0cb;
+      animation: blobFloat1 22s ease-in-out infinite;
+    }
+    .blob-lavender {
+      width: 70vw; height: 70vw;
+      top: 10%; right: -20%;
+      background: #d8b4fe;
+      animation: blobFloat2 28s ease-in-out infinite;
+    }
+    .blob-mint {
+      width: 65vw; height: 65vw;
+      bottom: -10%; left: 5%;
+      background: #a7f3d0;
+      animation: blobFloat3 24s ease-in-out infinite;
+    }
+    .blob-yellow {
+      width: 60vw; height: 60vw;
+      top: 35%; left: 25%;
+      background: #fef08a;
+      animation: blobFloat4 19s ease-in-out infinite;
+    }
+    .blob-peach {
+      width: 55vw; height: 55vw;
+      top: 55%; right: -8%;
+      background: #fed7aa;
+      animation: blobFloat5 31s ease-in-out infinite;
+    }
+    .blob-blue {
+      width: 58vw; height: 58vw;
+      top: -8%; right: 12%;
+      background: #bae6fd;
+      animation: blobFloat6 26s ease-in-out infinite;
+    }
+    .blob-green {
+      width: 48vw; height: 48vw;
+      bottom: 8%; right: 3%;
+      background: #bbf7d0;
+      animation: blobFloat7 33s ease-in-out infinite;
+    }
+    .blob-rose {
+      width: 44vw; height: 44vw;
+      top: 28%; left: -12%;
+      background: #fecdd3;
+      animation: blobFloat8 20s ease-in-out infinite;
     }
 
     /* ─── BASE ─── */
 
     body {
-      background-color: var(--bg-base);
-      color: var(--text-dark);
-      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      font-family: var(--font);
       font-weight: 400;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       position: relative;
       overflow-x: hidden;
     }
 
-    /* ─── SPARKLE CANVAS ─── */
-
-    #sparkleCanvas {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* ─── GOD RAY SWEEP ─── */
-
-    .god-ray {
-      position: fixed;
-      top: -10vh;
-      left: 0;
-      width: 35vw;
-      height: 120vh;
-      background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 83, 0.18) 40%, rgba(255, 248, 220, 0.12) 50%, rgba(212, 168, 83, 0.18) 60%, transparent 100%);
-      animation: godRaySweep 4.5s ease-in-out infinite;
-      animation-delay: 1.5s;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    /* ─── BLOBS ─── */
-
-    .blob {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(90px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .blob-purple {
-      width: 80vw; height: 80vw;
-      top: -22%; left: -22%;
-      background: rgba(123, 59, 232, 0.42);
-      animation: blobFloat1 22s ease-in-out infinite;
-    }
-    .blob-rose {
-      width: 72vw; height: 72vw;
-      top: 12%; right: -24%;
-      background: rgba(232, 44, 112, 0.35);
-      animation: blobFloat2 28s ease-in-out infinite;
-    }
-    .blob-cyan {
-      width: 66vw; height: 66vw;
-      bottom: -14%; left: 6%;
-      background: rgba(44, 196, 212, 0.3);
-      animation: blobFloat3 24s ease-in-out infinite;
-    }
-    .blob-gold {
-      width: 62vw; height: 62vw;
-      top: 36%; left: 26%;
-      background: rgba(212, 148, 12, 0.38);
-      animation: blobFloat4 19s ease-in-out infinite;
-    }
-    .blob-amber {
-      width: 55vw; height: 55vw;
-      top: 55%; right: -10%;
-      background: rgba(240, 120, 20, 0.28);
-      animation: blobFloat5 31s ease-in-out infinite;
-    }
-    .blob-violet {
-      width: 60vw; height: 60vw;
-      top: -10%; right: 10%;
-      background: rgba(160, 44, 220, 0.32);
-      animation: blobFloat6 26s ease-in-out infinite;
-    }
-    .blob-lime {
-      width: 50vw; height: 50vw;
-      bottom: 5%; right: 5%;
-      background: rgba(80, 220, 160, 0.2);
-      animation: blobFloat7 33s ease-in-out infinite;
-    }
-    .blob-pink {
-      width: 45vw; height: 45vw;
-      top: 25%; left: -15%;
-      background: rgba(255, 80, 180, 0.25);
-      animation: blobFloat8 20s ease-in-out infinite;
-    }
-
-    /* ─── COUNTDOWN STRIP (STICKY TOP) ─── */
+    /* ─── COUNTDOWN STRIP ─── */
 
     .countdown-strip {
       width: 100%;
-      background: rgba(10, 5, 0, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(212, 168, 83, 0.5);
+      background: var(--black);
       padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
       position: sticky;
       top: 0;
@@ -260,47 +195,41 @@
     }
 
     .cnt-strip-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font);
       font-weight: 700;
-      font-size: clamp(0.62rem, 1.3vw, 0.78rem);
-      letter-spacing: 0.22em;
+      font-size: clamp(0.6rem, 1.2vw, 0.75rem);
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(212, 168, 83, 0.8);
+      color: var(--neon);
     }
 
     .cnt-strip-numbers {
       display: flex;
       align-items: center;
       gap: 4px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font);
       font-weight: 700;
-      font-size: clamp(1.5rem, 5vw, 2.5rem);
-      color: var(--gold-warm);
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      color: var(--white);
       letter-spacing: 0.04em;
-      text-shadow: 0 0 30px rgba(212, 168, 83, 0.7), 0 0 60px rgba(212, 168, 83, 0.3);
-      animation: goldGlow 2s ease-in-out infinite;
     }
 
-    .cnt-strip-sep {
-      opacity: 0.7;
-      padding: 0 1px;
-    }
+    .cnt-strip-sep { opacity: 0.5; padding: 0 1px; }
 
-    #cntSecs {
-      animation: cntSecsFlicker 1s step-end infinite;
-    }
+    #cntSecs { animation: cntSecsFlicker 1s step-end infinite; }
 
     /* ─── TICKER ─── */
 
     .ticker-wrap {
       width: 100%;
-      background: #1A0D00;
+      background: var(--white);
       overflow: hidden;
       padding: 9px 0;
       position: relative;
       z-index: 10;
       flex-shrink: 0;
-      border-bottom: 1px solid rgba(212, 168, 83, 0.35);
+      border-top: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
     }
     .ticker-track {
       display: inline-block;
@@ -308,188 +237,109 @@
       animation: tickerMove 35s linear infinite;
     }
     .ticker-track span {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 0.62rem;
-      letter-spacing: 0.22em;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gold-warm);
-    }
-
-    /* ─── WRAPPER ─── */
-
-    .page-wrap {
-      width: 100%;
-      max-width: 680px;
-      padding: 0 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-      flex: 1;
-    }
-
-    /* ─── GOLD RULE ─── */
-
-    .gold-rule {
-      width: 100%;
-      max-width: 520px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.7), rgba(212, 168, 83, 0.9), rgba(212, 168, 83, 0.7), transparent);
-      box-shadow: 0 0 10px rgba(212, 168, 83, 0.45), 0 0 24px rgba(212, 168, 83, 0.15);
-      margin: clamp(24px, 4vh, 48px) auto;
-      flex-shrink: 0;
+      color: var(--black);
     }
 
     /* ─── HEADER ─── */
 
     .site-header {
-      text-align: center;
-      padding-top: clamp(32px, 5vh, 64px);
-      flex-shrink: 0;
       width: 100%;
+      background: var(--white);
+      border-bottom: 2px solid var(--black);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 5;
+      flex-shrink: 0;
     }
 
     .site-name {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2.5rem, 8vw, 6rem);
-      letter-spacing: 0.15em;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
       line-height: 1;
-      color: #1A1208;
-    }
-
-    .site-name .gold {
-      color: #C9A84C;
-      animation: goldGlow 3s ease-in-out infinite;
     }
 
     .site-tagline {
-      margin-top: clamp(8px, 1.2vh, 14px);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.6rem, 1.5vw, 0.85rem);
-      letter-spacing: 0.3em;
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: clamp(0.58rem, 1.2vw, 0.75rem);
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(50, 30, 10, 0.7);
+      color: var(--gray-text);
+      text-align: right;
     }
 
-    /* ─── VIDEO AREA ─── */
+    /* ─── PAGE WRAP ─── */
 
-    .video-area {
+    .page-wrap {
+      width: 100%;
+      max-width: 900px;
+      padding: 32px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
       position: relative;
-      flex-shrink: 0;
+      z-index: 2;
+      flex: 1;
+    }
+
+    /* ─── PRODUCT LAYOUT ─── */
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 2px solid var(--black);
+      border-radius: 6px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    @media (max-width: 640px) {
+      .product-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─── VIDEO COLUMN ─── */
+
+    .video-col {
+      position: relative;
+      border-right: 2px solid var(--black);
+      background: rgba(255,255,255,0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
+      min-height: 360px;
+      overflow: hidden;
     }
 
-    /* Central radial glow behind video */
-    .central-glow {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 253, 240, 0.5) 25%, rgba(212, 168, 83, 0.1) 55%, transparent 75%);
-      animation: centralGlowPulse 3.5s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 0;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .video-glow-halo {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1;
-    }
-
-    /* radial halo */
-    .video-glow-halo::before {
-      content: '';
-      position: absolute;
-      inset: -65%;
-      border-radius: 50%;
-      background: radial-gradient(ellipse 80% 90% at 50% 50%,
-        rgba(255, 253, 240, 0.99) 0%,
-        rgba(255, 248, 220, 0.75) 18%,
-        rgba(212, 168, 83, 0.2) 42%,
-        rgba(123, 79, 212, 0.1) 60%,
-        transparent 78%
-      );
-      animation: glowPulse 3.8s ease-in-out infinite;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* conic ray burst */
-    .video-glow-halo::after {
-      content: '';
-      position: absolute;
-      inset: -75%;
-      border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        transparent 0deg, rgba(212, 168, 83, 0.22) 4deg, transparent 8deg,
-        transparent 14deg, rgba(255, 248, 220, 0.14) 18deg, transparent 22deg,
-        transparent 28deg, rgba(212, 168, 83, 0.2) 32deg, transparent 36deg,
-        transparent 44deg, rgba(255, 248, 220, 0.16) 48deg, transparent 52deg,
-        transparent 58deg, rgba(212, 168, 83, 0.22) 62deg, transparent 66deg,
-        transparent 72deg, rgba(255, 248, 220, 0.14) 78deg, transparent 82deg,
-        transparent 90deg, rgba(212, 168, 83, 0.2) 94deg, transparent 98deg,
-        transparent 108deg, rgba(255, 248, 220, 0.16) 114deg, transparent 118deg,
-        transparent 126deg, rgba(212, 168, 83, 0.22) 130deg, transparent 134deg,
-        transparent 144deg, rgba(255, 248, 220, 0.14) 148deg, transparent 152deg,
-        transparent 160deg, rgba(212, 168, 83, 0.2) 164deg, transparent 168deg,
-        transparent 176deg, rgba(255, 248, 220, 0.16) 180deg, transparent 184deg,
-        transparent 192deg, rgba(212, 168, 83, 0.22) 196deg, transparent 200deg,
-        transparent 210deg, rgba(255, 248, 220, 0.14) 214deg, transparent 218deg,
-        transparent 226deg, rgba(212, 168, 83, 0.2) 230deg, transparent 234deg,
-        transparent 242deg, rgba(255, 248, 220, 0.16) 248deg, transparent 252deg,
-        transparent 260deg, rgba(212, 168, 83, 0.22) 264deg, transparent 268deg,
-        transparent 276deg, rgba(255, 248, 220, 0.14) 280deg, transparent 284deg,
-        transparent 292deg, rgba(212, 168, 83, 0.2) 296deg, transparent 300deg,
-        transparent 308deg, rgba(255, 248, 220, 0.16) 314deg, transparent 318deg,
-        transparent 326deg, rgba(212, 168, 83, 0.22) 330deg, transparent 334deg,
-        transparent 342deg, rgba(255, 248, 220, 0.14) 348deg, transparent 352deg,
-        transparent 360deg
-      );
-      animation: rayRotate 20s linear infinite;
-      pointer-events: none;
-      z-index: -1;
-      mask-image: radial-gradient(ellipse 80% 90% at 50% 50%, black 20%, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 50%, black 20%, transparent 70%);
+    @media (max-width: 640px) {
+      .video-col {
+        border-right: none;
+        border-bottom: 2px solid var(--black);
+        min-height: 260px;
+      }
     }
 
     .video-card {
-      border-radius: 20px;
-      overflow: hidden;
+      width: 100%;
+      height: 100%;
       position: relative;
-      border: 1px solid rgba(212, 168, 83, 0.6);
-      box-shadow:
-        0 0 0 1px rgba(255, 248, 225, 0.7),
-        0 0 50px rgba(212, 168, 83, 0.45),
-        0 0 100px rgba(212, 168, 83, 0.2),
-        0 0 160px rgba(212, 168, 83, 0.08),
-        0 12px 60px rgba(44, 28, 12, 0.18);
       transition: transform 0.15s ease-out;
-      width: clamp(180px, 28vw, 360px);
-    }
-
-    .video-card::before {
-      content: '';
-      position: absolute;
-      inset: -40%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 248, 200, 0.25) 0%, transparent 65%);
-      pointer-events: none;
-      z-index: 3;
-      animation: glowPulse 4s ease-in-out infinite;
     }
 
     @media (hover: none) {
@@ -502,238 +352,180 @@
     .manifestation-video {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
       object-fit: cover;
-      background: #F5F0E0;
+      min-height: 360px;
+    }
+
+    @media (max-width: 640px) {
+      .manifestation-video { min-height: 260px; }
     }
 
     .video-glare {
       position: absolute;
       inset: 0;
-      border-radius: 20px;
       pointer-events: none;
       z-index: 2;
       transition: background 0.05s linear;
     }
 
-    /* ─── LENS FLARES ─── */
+    /* ─── DISCOUNT BADGE (like sneakers.com) ─── */
 
-    .lens-flare {
+    .discount-badge {
       position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 4;
-    }
-    .lf-1 {
-      width: 12px; height: 12px;
-      top: 8%; left: 62%;
-      background: radial-gradient(circle, rgba(255, 248, 180, 0.95) 0%, rgba(212, 168, 83, 0.6) 50%, transparent 80%);
-      box-shadow: 0 0 12px rgba(255, 248, 180, 0.8), 0 0 24px rgba(212, 168, 83, 0.4);
-      animation: lensFlare1 3.2s ease-in-out infinite;
-    }
-    .lf-2 {
-      width: 5px; height: 5px;
-      top: 15%; left: 72%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.98) 0%, rgba(255, 240, 160, 0.5) 60%, transparent 80%);
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
-      animation: lensFlare2 4.1s ease-in-out infinite;
-    }
-    .lf-3 {
-      width: 18px; height: 18px;
-      top: 4%; left: 50%;
-      background: radial-gradient(circle, rgba(255, 250, 200, 0.7) 0%, rgba(212, 168, 83, 0.25) 50%, transparent 75%);
-      box-shadow: 0 0 18px rgba(255, 250, 200, 0.5), 0 0 40px rgba(212, 168, 83, 0.2);
-      animation: lensFlare3 5.6s ease-in-out infinite;
-    }
-    .lf-4 {
-      width: 8px; height: 8px;
-      top: 20%; left: 35%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(255, 220, 100, 0.4) 60%, transparent 80%);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-      animation: lensFlare1 2.8s ease-in-out infinite;
-      animation-delay: 1.2s;
-    }
-
-    /* ─── GLASS CARDS ─── */
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 8px 32px rgba(180, 140, 50, 0.15);
-      width: 100%;
-      text-align: center;
-      margin: clamp(8px, 1.2vh, 14px) 0;
-    }
-
-    /* Product card — type floats on gradient, no visible glass */
-    .product-card-wrap {
-      background: transparent;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border: none;
-      box-shadow: none;
-      padding: clamp(24px, 4vh, 48px) 16px;
-    }
-
-    /* Price card — invisible border, keep blur */
-    .price-card {
-      border-color: transparent;
-    }
-
-    /* ─── PRODUCT INFO ─── */
-
-    .product-verse {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      font-size: 0.65rem;
-      letter-spacing: 0.4em;
+      top: 12px;
+      left: 12px;
+      background: var(--neon);
+      color: var(--black);
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      padding: 5px 10px;
+      border-radius: 4px;
+      z-index: 3;
       text-transform: uppercase;
-      color: #C9A84C;
-      line-height: 1.5;
-      margin-bottom: 8px;
-      text-shadow: 0 0 20px rgba(212, 168, 83, 0.35);
+    }
+
+    /* ─── INFO COLUMN ─── */
+
+    .info-col {
+      display: flex;
+      flex-direction: column;
+      padding: 28px 24px;
+      gap: 20px;
+    }
+
+    .product-label {
+      font-family: var(--font);
+      font-weight: 500;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gray-text);
     }
 
     .product-name {
-      font-family: 'Lora', Georgia, serif;
+      font-family: var(--font);
       font-weight: 700;
-      font-size: clamp(2.5rem, 7vw, 5rem);
-      letter-spacing: -0.01em;
-      color: #1A1208;
-      line-height: 1.08;
-      margin-bottom: 16px;
-      font-style: normal;
-    }
-
-    .product-subtitle {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: clamp(0.72rem, 1.4vw, 0.88rem);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold-warm);
-      margin-bottom: clamp(12px, 1.8vh, 20px);
-    }
-
-    .divine-purpose {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      font-size: clamp(0.9rem, 2vw, 1.05rem);
-      line-height: 1.8;
-      color: rgba(30, 20, 5, 0.85);
-      max-width: 480px;
-      margin: 0 auto 12px;
-    }
-
-    .divine-purpose-2 {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      font-size: clamp(0.9rem, 2vw, 1.05rem);
-      line-height: 1.8;
-      color: rgba(30, 20, 5, 0.85);
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    /* ─── PRICE CARD ─── */
-
-    .price {
-      font-family: 'Lora', Georgia, serif;
-      font-weight: 700;
-      font-size: clamp(4rem, 12vw, 8rem);
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
       letter-spacing: -0.02em;
-      color: #C9A84C;
-      line-height: 1;
-      text-shadow: 0 0 40px rgba(212, 168, 83, 0.65), 0 0 90px rgba(212, 168, 83, 0.25);
-      animation: goldGlow 4s ease-in-out infinite;
-      display: block;
-      margin-bottom: 18px;
+      color: var(--black);
+      line-height: 1.1;
     }
+
+    .product-desc {
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+      line-height: 1.75;
+      color: #333;
+    }
+
+    /* ─── PRICE ROW ─── */
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .price-main {
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      letter-spacing: -0.02em;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .price-original {
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+      color: var(--gray-text);
+      text-decoration: line-through;
+    }
+
+    /* ─── STOCK BADGE ─── */
 
     .stock-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: var(--urgency);
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
+      color: var(--white);
+      font-family: var(--font);
       font-weight: 700;
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 8px 18px;
-      border-radius: 30px;
-      animation: urgentPulse 1.2s ease-in-out infinite;
-      white-space: nowrap;
-      margin-bottom: 16px;
+      padding: 6px 14px;
+      border-radius: 4px;
+      animation: urgentPulse 1.4s ease-in-out infinite;
+      align-self: flex-start;
     }
 
     body[data-state="sold-out"] .stock-badge {
-      background: rgba(212, 168, 83, 0.4);
+      background: var(--gray-border);
+      color: var(--gray-text);
       animation: none;
     }
 
-    /* ─── BUY BUTTON ─── */
+    /* ─── BUY BUTTON (sneakers.com style) ─── */
 
     .btn-buy {
       display: block;
       width: 100%;
-      max-width: 480px;
-      margin: 0 auto 12px;
-      padding: clamp(16px, 2.2vh, 24px) 40px;
-      background: var(--gold);
-      color: #1A0B05;
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
+      padding: clamp(14px, 2vh, 20px) 24px;
+      background: var(--black);
+      color: var(--white);
+      border: 2px solid var(--black);
+      border-radius: 6px;
+      font-family: var(--font);
+      font-weight: 700;
       font-size: 1rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      border-radius: 4px;
-      transition: box-shadow 0.3s ease, background 0.3s ease;
-      box-shadow: 0 0 40px rgba(212, 168, 83, 0.45), 0 4px 24px rgba(44, 28, 12, 0.2);
+      transition: background 0.15s ease, color 0.15s ease;
+      margin-top: auto;
     }
 
     .btn-buy::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 55%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
-      animation: shimmer 2.2s ease-in-out infinite;
+      top: 0; left: 100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+      animation: gleam 2.5s ease-in-out infinite;
     }
 
     .btn-buy:hover:not(:disabled) {
-      background: #D4A853;
-      box-shadow: 0 0 60px rgba(212, 168, 83, 0.65), 0 6px 36px rgba(44, 28, 12, 0.25);
+      background: var(--neon);
+      color: var(--black);
+      border-color: var(--black);
     }
 
     .btn-buy:disabled,
     body[data-state="sold-out"] .btn-buy {
-      background: rgba(201, 168, 76, 0.3);
-      color: rgba(44, 28, 12, 0.45);
+      background: var(--gray-border);
+      color: var(--gray-text);
+      border-color: var(--gray-border);
       cursor: not-allowed;
-      box-shadow: none;
     }
 
-    body[data-state="sold-out"] .btn-buy::after {
-      display: none;
-    }
+    body[data-state="sold-out"] .btn-buy::after { display: none; }
 
     .shipping-perks {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: clamp(0.6rem, 1.1vw, 0.72rem);
-      letter-spacing: 0.12em;
-      color: var(--text-mid);
-      margin-top: 4px;
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--gray-text);
+      text-align: center;
     }
 
     /* ─── STATS ROW ─── */
@@ -741,134 +533,109 @@
     .stats-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      width: 100%;
-      margin: clamp(8px, 1.2vh, 14px) 0;
+      gap: 0;
+      border: 2px solid var(--black);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 16px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     .stat-card {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 20px;
-      padding: 18px 16px;
-      box-shadow: 0 8px 32px rgba(180, 140, 50, 0.15);
+      padding: 20px 24px;
       text-align: center;
+    }
+
+    .stat-card:first-child {
+      border-right: 2px solid var(--black);
     }
 
     .stock-counter {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      letter-spacing: 0.04em;
-      color: var(--gold-warm);
-      text-align: center;
       display: block;
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      letter-spacing: -0.01em;
+      color: var(--black);
       margin-bottom: 4px;
-    }
-
-    .stock-sublabel {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: clamp(0.58rem, 1vw, 0.7rem);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-dim);
     }
 
     body[data-state="sold-out"] .stock-counter {
-      color: rgba(212, 168, 83, 0.5);
+      color: var(--gray-text);
+    }
+
+    .stock-sublabel,
+    .viewers-sublabel {
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: clamp(0.58rem, 1vw, 0.68rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-text);
     }
 
     .viewers-counter {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      letter-spacing: 0.04em;
-      color: var(--text-dark);
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      color: var(--black);
       margin-bottom: 4px;
       animation: viewerBlink 8s ease-in-out infinite;
-    }
-
-    .viewers-sublabel {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      font-size: clamp(0.58rem, 1vw, 0.7rem);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-dim);
     }
 
     /* ─── FOOTER ─── */
 
     .site-footer {
-      text-align: center;
-      padding: clamp(32px, 5vh, 60px) 0 clamp(40px, 6vh, 80px);
-      flex-shrink: 0;
       width: 100%;
+      background: var(--white);
+      border-top: 2px solid var(--black);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: relative;
+      z-index: 5;
+      flex-shrink: 0;
+      margin-top: auto;
     }
 
-    .footer-heaven {
-      font-family: 'Lora', Georgia, serif;
+    .footer-brand {
+      font-family: var(--font);
       font-weight: 700;
-      font-size: clamp(2.5rem, 7vw, 5rem);
-      color: var(--gold-warm);
-      letter-spacing: -0.01em;
-      margin-bottom: 16px;
-      line-height: 1.1;
-      text-shadow: 0 0 40px rgba(212, 168, 83, 0.5), 0 0 80px rgba(212, 168, 83, 0.2);
-      animation: goldGlow 4s ease-in-out infinite;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--black);
     }
 
     .footer-micro {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font);
       font-weight: 400;
-      font-size: clamp(0.55rem, 0.9vw, 0.65rem);
-      letter-spacing: 0.16em;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-dim);
+      color: var(--gray-text);
     }
 
-    /* ─── BETWEEN-DROPS STATE ─── */
-
-    body[data-state="between-drops"] .product-card-wrap {
-      opacity: 0.45;
-      pointer-events: none;
-    }
-
-    /* ─── MOBILE ─── */
-
-    @media (max-width: 520px) {
-      .stats-row {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-      .cnt-strip-numbers {
-        font-size: 1.5rem;
-      }
-    }
   </style>
 </head>
 <body data-state="active">
 
-  <!-- ─── SPARKLE CANVAS ─── -->
-  <canvas id="sparkleCanvas"></canvas>
-
-  <!-- ─── GOD RAY SWEEP ─── -->
-  <div class="god-ray"></div>
-
   <!-- ─── BACKGROUND BLOBS ─── -->
-  <div class="blob blob-purple"></div>
-  <div class="blob blob-rose"></div>
-  <div class="blob blob-cyan"></div>
-  <div class="blob blob-gold"></div>
-  <div class="blob blob-amber"></div>
-  <div class="blob blob-violet"></div>
-  <div class="blob blob-lime"></div>
   <div class="blob blob-pink"></div>
+  <div class="blob blob-lavender"></div>
+  <div class="blob blob-mint"></div>
+  <div class="blob blob-yellow"></div>
+  <div class="blob blob-peach"></div>
+  <div class="blob blob-blue"></div>
+  <div class="blob blob-green"></div>
+  <div class="blob blob-rose"></div>
 
-  <!-- ─── COUNTDOWN STRIP (STICKY) ─── -->
+  <!-- ─── COUNTDOWN STRIP ─── -->
   <div class="countdown-strip">
     <span class="cnt-strip-label">⚡ Next Manifestation In</span>
     <div class="cnt-strip-numbers">
@@ -887,58 +654,52 @@
     </div>
   </div>
 
+  <!-- ─── HEADER ─── -->
+  <header class="site-header">
+    <h1 class="site-name">The God Shop</h1>
+    <p class="site-tagline">A new divine product<br>manifests every night at 3:33 AM</p>
+  </header>
+
   <!-- ─── PAGE WRAP ─── -->
   <div class="page-wrap">
 
-    <!-- ─── HEADER ─── -->
-    <header class="site-header">
-      <h1 class="site-name">THE&nbsp;<span class="gold">GOD</span>&nbsp;SHOP</h1>
-      <p class="site-tagline">A new divine product manifests every night at 3:33 AM</p>
-    </header>
+    <!-- ─── PRODUCT LAYOUT ─── -->
+    <div class="product-layout">
 
-    <div class="gold-rule"></div>
-
-    <!-- ─── VIDEO ─── -->
-    <div class="video-area">
-      <div class="central-glow"></div>
-      <div class="video-glow-halo">
+      <!-- VIDEO COLUMN -->
+      <div class="video-col">
         <div class="video-card" id="videoCard">
           <video
             class="manifestation-video"
             src="video.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
+            autoplay muted loop playsinline preload="auto"
           ></video>
           <div class="video-glare" id="videoGlare"></div>
-          <!-- Lens flares -->
-          <div class="lens-flare lf-1"></div>
-          <div class="lens-flare lf-2"></div>
-          <div class="lens-flare lf-3"></div>
-          <div class="lens-flare lf-4"></div>
+          <div class="discount-badge">Holy Drop</div>
         </div>
       </div>
-    </div>
 
-    <div class="gold-rule"></div>
+      <!-- INFO COLUMN -->
+      <div class="info-col">
+        <p class="product-label">✦ Today's Holy Manifestation ✦</p>
+        <h2 class="product-name">Genesis 847:3 — The Sacred Garden Hose</h2>
+        <p class="product-desc">
+          The rains of Eden have returned. This is not a garden hose. This is a 15-meter channel of divine hydration, blessed at 3:33 AM and shipped from heaven's warehouse in 3–5 business days.
+          <br><br>
+          Your garden will never be the same. God checked.
+        </p>
 
-    <!-- ─── PRODUCT CARD ─── -->
-    <div class="glass-card product-card-wrap">
-      <p class="product-verse">✦ Today's Holy Manifestation ✦</p>
-      <h2 class="product-name">Genesis 847:3 — The Sacred Garden Hose</h2>
-      <p class="product-subtitle">As seen manifesting on the Holy Altar</p>
-      <p class="divine-purpose">The rains of Eden have returned. This is not a garden hose. This is a 15-meter channel of divine hydration, blessed at 3:33 AM and shipped from heaven's warehouse in 3-5 business days.</p>
-      <p class="divine-purpose-2">Your garden will never be the same. God checked.</p>
-    </div>
+        <div class="price-row">
+          <span class="price-main">€500</span>
+          <span class="price-original">€1,400</span>
+        </div>
 
-    <!-- ─── PRICE CARD ─── -->
-    <div class="glass-card price-card">
-      <span class="price">€500.00</span>
-      <span class="stock-badge" id="stockBadge">⚡ 3 LEFT</span>
-      <button class="btn-buy" id="buyBtn">BUY NOW — €500</button>
-      <p class="shipping-perks">✦ Free shipping from Paradise &nbsp;·&nbsp; 30-day divine return policy ✦</p>
+        <span class="stock-badge" id="stockBadge">⚡ 3 Left</span>
+
+        <button class="btn-buy" id="buyBtn">Buy Now — €500</button>
+        <p class="shipping-perks">✦ Free shipping from Paradise &nbsp;·&nbsp; 30-day divine return policy ✦</p>
+      </div>
+
     </div>
 
     <!-- ─── STATS ROW ─── -->
@@ -953,15 +714,13 @@
       </div>
     </div>
 
-    <div class="gold-rule" style="margin-top: clamp(14px, 2vh, 24px);"></div>
-
-    <!-- ─── FOOTER ─── -->
-    <footer class="site-footer">
-      <p class="footer-heaven">Straight from Heaven™</p>
-      <p class="footer-micro">Products manifest nightly at 3:33 AM · Limited to 7 units · Straight from Heaven™</p>
-    </footer>
-
   </div><!-- /page-wrap -->
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="site-footer">
+    <p class="footer-brand">Straight from Heaven™</p>
+    <p class="footer-micro">Products manifest nightly at 3:33 AM · Limited to 7 units</p>
+  </footer>
 
   <script>
     // ─── COUNTDOWN TO NEXT 3:33 AM ───────────────────────────────────────────
@@ -986,7 +745,6 @@
       cntMins.textContent  = pad(Math.floor((total % 3600) / 60));
       cntSecs.textContent  = pad(total % 60);
     }
-
     tickCountdown();
     setInterval(tickCountdown, 1000);
 
@@ -1002,7 +760,6 @@
 
     function applyState() {
       const body = document.body;
-
       if (stockRemaining <= 0) {
         body.dataset.state = 'sold-out';
         buyBtn.textContent = 'Sold Out — God Has Moved On';
@@ -1011,10 +768,10 @@
         stockBadge.textContent = '✦ Sold Out ✦';
       } else {
         body.dataset.state = 'active';
-        buyBtn.textContent = `BUY NOW — €500`;
+        buyBtn.textContent = `Buy Now — €500`;
         buyBtn.disabled = false;
         stockCounter.textContent = `${stockRemaining} of ${STOCK_TOTAL}`;
-        stockBadge.textContent = `⚡ ${stockRemaining} LEFT`;
+        stockBadge.textContent = `⚡ ${stockRemaining} Left`;
       }
     }
 
@@ -1039,141 +796,20 @@
         const cy = window.innerHeight / 2;
         const dx = (e.clientX - cx) / cx;
         const dy = (e.clientY - cy) / cy;
-
-        const rotY =  dx * 12;
-        const rotX = -dy * 12;
-
+        const rotY =  dx * 8;
+        const rotX = -dy * 8;
         videoCard.style.transform =
           `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-
         const glareX = (e.clientX / window.innerWidth)  * 100;
         const glareY = (e.clientY / window.innerHeight) * 100;
         videoGlare.style.background =
-          `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.32) 0%, transparent 65%)`;
+          `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.25) 0%, transparent 65%)`;
       });
-
       document.addEventListener('mouseleave', () => {
         videoCard.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
         videoGlare.style.background = 'none';
       });
     }
-
-
-    // ─── SPARKLES CANVAS ─────────────────────────────────────────────────────
-
-    const canvas = document.getElementById('sparkleCanvas');
-    const ctx    = canvas.getContext('2d');
-
-    function resizeCanvas() {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const SPARKLE_COUNT = 80;
-    const sparkles = [];
-
-    function makeSparkle(yOverride) {
-      const isBig = Math.random() > 0.72;
-      return {
-        x:         Math.random() * window.innerWidth,
-        y:         yOverride !== undefined ? yOverride : Math.random() * window.innerHeight,
-        size:      isBig ? (12 + Math.random() * 8) : (3 + Math.random() * 9),
-        opacity:   Math.random() * 0.6,
-        targetOp:  0.3 + Math.random() * 0.7,
-        driftX:    (Math.random() - 0.5) * 0.28,
-        riseSpeed: 0.12 + Math.random() * 0.5,
-        fadeSpeed: 0.003 + Math.random() * 0.011,
-        rotation:  Math.random() * Math.PI * 2,
-        rotSpeed:  (Math.random() - 0.5) * 0.022,
-        isGold:    Math.random() > 0.38,
-        isStar:    Math.random() > 0.55,
-      };
-    }
-
-    for (let i = 0; i < SPARKLE_COUNT; i++) sparkles.push(makeSparkle());
-
-    function drawDiamond(x, y, size, rot) {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(rot);
-      ctx.beginPath();
-      ctx.moveTo(0, -size);
-      ctx.lineTo(size * 0.38, 0);
-      ctx.lineTo(0,  size);
-      ctx.lineTo(-size * 0.38, 0);
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-    }
-
-    function drawCross(x, y, size, rot) {
-      const hw = size * 0.14;
-      const hl = size * 0.52;
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(rot);
-      ctx.fillRect(-hw, -hl, hw * 2, hl * 2);
-      ctx.fillRect(-hl, -hw, hl * 2, hw * 2);
-      ctx.restore();
-    }
-
-    function drawStar4(x, y, outerR, rot) {
-      const innerR = outerR * 0.22;
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(rot);
-      ctx.beginPath();
-      for (let i = 0; i < 8; i++) {
-        const angle = (i * Math.PI) / 4;
-        const r = i % 2 === 0 ? outerR : innerR;
-        if (i === 0) ctx.moveTo(Math.cos(angle) * r, Math.sin(angle) * r);
-        else ctx.lineTo(Math.cos(angle) * r, Math.sin(angle) * r);
-      }
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-    }
-
-    function animateSparkles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (const s of sparkles) {
-        if (s.opacity < s.targetOp) {
-          s.opacity = Math.min(s.opacity + s.fadeSpeed, s.targetOp);
-        } else {
-          s.opacity -= s.fadeSpeed;
-          if (s.opacity <= 0) {
-            s.targetOp = 0.3 + Math.random() * 0.7;
-          }
-        }
-
-        s.y -= s.riseSpeed;
-        s.x += s.driftX;
-        s.rotation += s.rotSpeed;
-
-        if (s.y < -20) {
-          Object.assign(s, makeSparkle(canvas.height + 20));
-        }
-
-        ctx.globalAlpha = Math.max(0, s.opacity);
-        ctx.fillStyle   = s.isGold ? '#D4A853' : 'rgba(255,255,255,0.92)';
-
-        if (s.isStar) {
-          drawStar4(s.x, s.y, s.size * 0.6, s.rotation);
-        } else if (s.isGold) {
-          drawDiamond(s.x, s.y, s.size * 0.55, s.rotation);
-        } else {
-          drawCross(s.x, s.y, s.size, s.rotation);
-        }
-      }
-
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(animateSparkles);
-    }
-
-    animateSparkles();
 
 
     // ─── VIEWERS COUNTER ─────────────────────────────────────────────────────
@@ -1187,7 +823,6 @@
       viewersEl.textContent = viewers.toLocaleString('en');
       setTimeout(updateViewers, 2500 + Math.random() * 3000);
     }
-
     setTimeout(updateViewers, 3000);
   </script>
 
