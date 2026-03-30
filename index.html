@@ -444,60 +444,20 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: 60px 1fr 260px;
+      grid-template-columns: 1fr 1fr 240px;
       gap: 0;
       background: rgba(255,255,255,0.95);
       border: 1px solid var(--border);
     }
 
-    @media (max-width: 1000px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-      .thumb-col { display: none; }
-      .video-col {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-      .buy-box {
-        border-left: none;
-        border-top: 1px solid var(--border);
-      }
+    @media (max-width: 760px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .video-col { border-right: none; border-bottom: 1px solid var(--border); }
+      .info-col { border-right: none; border-bottom: 1px solid var(--border); }
+      .buy-box { border-left: none; border-top: 1px solid var(--border); }
     }
 
-    /* ─── THUMBNAIL STRIP (Amazon left rail) ─── */
-
-    .thumb-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 6px;
-      border-right: 1px solid var(--border);
-      background: #fff;
-    }
-
-    .thumb {
-      width: 46px; height: 46px;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.55rem;
-      color: var(--mid);
-      text-align: center;
-      cursor: pointer;
-      overflow: hidden;
-      background: var(--panel);
-      line-height: 1.2;
-      padding: 2px;
-    }
-
-    .thumb.active { border: 2px solid var(--orange); }
-
-    .thumb video, .thumb img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* ─── VIDEO / IMAGE COL ─── */
+        /* ─── VIDEO / IMAGE COL ─── */
 
     .video-col {
       position: relative;
@@ -544,6 +504,7 @@
       flex-direction: column;
       padding: 16px 14px;
       gap: 9px;
+      border-right: 1px solid var(--border);
     }
 
     .product-label {
@@ -911,17 +872,6 @@
 
     <div class="glow-border">
     <div class="product-grid">
-
-      <!-- THUMBNAIL STRIP -->
-      <div class="thumb-col">
-        <div class="thumb active">
-          <video src="video.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover"></video>
-        </div>
-        <div class="thumb" style="font-size:0.5rem;color:var(--mid);padding:3px">✦ Blessed</div>
-        <div class="thumb" style="font-size:0.5rem;color:var(--mid);padding:3px">15m</div>
-        <div class="thumb" style="font-size:0.5rem;color:var(--mid);padding:3px">3:33 AM</div>
-      </div>
-
       <!-- VIDEO -->
       <div class="video-col">
         <video class="manifestation-video" src="video.mp4" autoplay muted loop playsinline preload="auto"></video>
