@@ -451,13 +451,18 @@
     }
 
     @media (max-width: 860px) {
-      .product-grid { grid-template-columns: 60px 1fr; }
-      .buy-box { border-top: 1px solid var(--border); grid-column: 1 / -1; }
-    }
-    @media (max-width: 540px) {
-      .product-grid { grid-template-columns: 1fr; }
-      .buy-box { grid-column: 1; }
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
       .thumb-col { display: none; }
+      .video-col {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .buy-box {
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
     }
 
     /* ─── THUMBNAIL STRIP (Amazon left rail) ─── */
@@ -505,9 +510,6 @@
       border-right: 1px solid var(--border);
       padding: 8px;
     }
-    @media (max-width: 540px) {
-      .video-col { min-height: 240px; border-right: none; border-bottom: 1px solid var(--border); }
-    }
 
     .manifestation-video {
       display: block;
@@ -516,7 +518,11 @@
       object-fit: contain;
       min-height: 344px;
     }
-    @media (max-width: 540px) { .manifestation-video { min-height: 224px; } }
+
+    @media (max-width: 860px) {
+      .video-col { min-height: 260px; padding: 6px; }
+      .manifestation-video { min-height: 248px; }
+    }
 
     .drop-badge {
       position: absolute;
@@ -619,6 +625,10 @@
       gap: 9px;
       background: rgba(255,255,255,0.97);
       border-left: 1px solid var(--border);
+    }
+
+    @media (max-width: 860px) {
+      .buy-box { border-left: none; }
     }
 
     .buy-box-price {
