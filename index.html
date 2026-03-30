@@ -251,33 +251,36 @@
       width: 100%;
       background: var(--white);
       border-bottom: 1px solid #e0e0e0;
-      padding: 20px 24px;
+      padding: 16px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: relative;
       z-index: 5;
       flex-shrink: 0;
+      gap: 12px;
     }
 
     .site-name {
       font-family: var(--font-black);
       font-weight: 400;
-      font-size: clamp(1.4rem, 4vw, 2.2rem);
-      letter-spacing: 0.1em;
+      font-size: clamp(1.1rem, 3.5vw, 2.2rem);
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--black);
       line-height: 1;
+      white-space: nowrap;
     }
 
     .site-tagline {
       font-family: var(--font);
       font-weight: 400;
-      font-size: clamp(0.58rem, 1.2vw, 0.75rem);
-      letter-spacing: 0.15em;
+      font-size: clamp(0.55rem, 1.1vw, 0.72rem);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gray-text);
       text-align: right;
+      line-height: 1.5;
     }
 
     /* ─── PAGE WRAP ─── */
@@ -285,13 +288,19 @@
     .page-wrap {
       width: 100%;
       max-width: 900px;
-      padding: 32px 20px;
+      padding: 20px 16px;
       display: flex;
       flex-direction: column;
       gap: 0;
       position: relative;
       z-index: 2;
       flex: 1;
+    }
+
+    @media (min-width: 641px) {
+      .page-wrap {
+        padding: 32px 24px;
+      }
     }
 
     /* ─── PRODUCT LAYOUT ─── */
@@ -386,8 +395,15 @@
     .info-col {
       display: flex;
       flex-direction: column;
-      padding: 28px 24px;
-      gap: 20px;
+      padding: 20px 18px;
+      gap: 14px;
+    }
+
+    @media (min-width: 641px) {
+      .info-col {
+        padding: 28px 24px;
+        gap: 20px;
+      }
     }
 
     .product-label {
@@ -525,12 +541,12 @@
     .stats-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 16px;
+      gap: 10px;
+      margin-top: 12px;
     }
 
     .stat-card {
-      padding: 20px 24px;
+      padding: 16px 12px;
       text-align: center;
       background: #ffffff;
       border-radius: 24px;
@@ -702,7 +718,7 @@
   <!-- ─── FOOTER ─── -->
   <footer class="site-footer">
     <p class="footer-brand">Straight from Heaven™</p>
-    <p class="footer-micro">Products manifest nightly at 3:33 AM · Limited to 7 units</p>
+    <p class="footer-micro">Products manifest nightly at 3:33 AM · 1 unit per day</p>
   </footer>
 
   <script>
